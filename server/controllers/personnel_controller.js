@@ -1,9 +1,10 @@
 const dbo = require("../models/conn");
-const db_connect = dbo.getDb();
+const personnel_collection = "personnel";
 
 exports.get_all_personnel = async (req, res) => {
+    const db_connect = dbo.getDb();
 
-    const cursor = Personnel.find();
+    const cursor = db_connect.collection(personnel_collection).find({});
 
     const response_data = {
         data: await cursor.toArray(),
@@ -15,7 +16,11 @@ exports.get_all_personnel = async (req, res) => {
 
 exports.create_personnel = (req, res) => {
     try {
+        const db_connect = dbo.getDb();
+
         const { first_name, last_name } = req.body;
+
+
 
         const data = {
             first_name: first_name,

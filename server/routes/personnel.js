@@ -3,8 +3,8 @@ const personnel_controller = require("../controllers/personnel_controller");
 
 const router = express.Router();
 
-router.get("/", personnel_controller.personnel_list);
+router.get("/", personnel_controller.get_all_personnel);
 
-router.post("/", personnel_controller.personnel_create);
+router.post("/", personnel_controller.create_personnel);
 
 module.exports = router;

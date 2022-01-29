@@ -1,27 +1,32 @@
 const dbo = require("../models/conn");
-const personnel_collection = "personnel";
+const db_connect = dbo.getDb();
 
-exports.personnel_list = (req, res) => {
-    const db_connect = dbo.getDb();
+exports.get_all_personnel = async (req, res) => {
 
-    db_connect.collection(personnel_collection).find({}).toArray((err, response) => {
-        if (err) throw err;
-        res.json(response);
-    })
-}
+    const cursor = Personnel.find();
 
-exports.personnel_create = (req, res) => {
-    const db_connect = dbo.getDb();
-
-    const { first_name, last_name } = req.body;
-
-    const data = {
-        first_name: first_name,
-        last_name: last_name,
+    const response_data = {
+        data: await cursor.toArray(),
+        total: await cursor.count(),
     }
 
-    db_connect.collection(personnel_collection).insertOne(data, (err, response) => {
-        if (err) throw err;
-        res.json(response);
-    })
+    res.json(response_data);
+}
+
+exports.create_personnel = (req, res) => {
+    try {
+        const { first_name, last_name } = req.body;
+
+        const data = {
+            first_name: first_name,
+            last_name: last_name,
+        }
+
+        db_connect.collection(personnel_collection).insertOne(data, (err, response) => {
+            if (err) throw err;
+            res.json(response);
+        })
+    } catch (error) {
+
+    }
 }

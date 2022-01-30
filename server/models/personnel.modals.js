@@ -12,7 +12,7 @@ module.exports.create = (obj, cb) => {
     const record = {
         first_name,
         last_name,
-        email
+        email,
     }
 
     db_connect.collection("personnel").insertOne(record, cb)

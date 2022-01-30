@@ -1,8 +1,7 @@
-const express = require("express");
 const validate = require("../middlewares/validate");
 const personnel_controller = require("../controllers/personnel_controller");
 
-const router = express.Router();
+const router = require("express").Router();
 
 // Get all personnel
 router.get("/", personnel_controller.get_all_personnel);

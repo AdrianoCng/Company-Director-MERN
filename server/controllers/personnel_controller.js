@@ -1,4 +1,4 @@
-const dbo = require("../models/conn");
+const dbo = require("../db");
 const personnel_collection = "personnel";
 
 exports.get_all_personnel = async (req, res) => {

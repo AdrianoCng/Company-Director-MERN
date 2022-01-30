@@ -1,5 +1,5 @@
 const { validationResult } = require("express-validator");
-const Personnel = require("../models/Personnel");
+const Personnel = require("../models/personnel.modals");
 
 exports.get_all_personnel = (req, res) => {
     try {

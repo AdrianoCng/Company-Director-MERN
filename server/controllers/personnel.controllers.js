@@ -25,7 +25,7 @@ exports.get_all_personnel = (req, res) => {
                 page,
                 from: page > last_page ? 0 : from,
                 to: page > last_page ? 0 : to,
-                last_page,
+                last_page: page > last_page ? 0 : last_page,
                 per_page,
                 total: page > last_page ? 0 : total,
             }

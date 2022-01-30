@@ -1,3 +1,4 @@
+const { ObjectId } = require("mongodb");
 const db = require("../db");
 
 module.exports.create = (obj, cb) => {
@@ -26,4 +27,10 @@ module.exports.get_all = (cb) => {
     const cursor = db_connect.collection("personnel").find();
 
     return cb(cursor);
+}
+
+module.exports.get_by_id = async (id, cb) => {
+    const db_connect = db.getDb();
+
+    db_connect.collection("personnel").findOne({ _id: { $eq: ObjectId(id) } }, cb)
 }

@@ -9,6 +9,11 @@ router.get("/",
     personnel_controller.get_all_personnel
 );
 
+router.get("/:id",
+    validate("get_by_id"),
+    personnel_controller.get_by_id
+);
+
 // Create personnel
 router.post("/",
     validate("create_personnel"),

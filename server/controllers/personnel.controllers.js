@@ -1,19 +1,19 @@
-const dbo = require("../db");
 const { validationResult } = require("express-validator");
 const Personnel = require("../models/Personnel");
-const personnel_collection = "personnel";
 
-exports.get_all_personnel = async (req, res) => {
-    const db_connect = dbo.getDb();
+exports.get_all_personnel = (req, res) => {
+    try {
+        Personnel.get_all(async docs => {
+            const response = {
+                data: await docs.toArray(),
+                total: await docs.count(),
+            }
 
-    const cursor = db_connect.collection(personnel_collection).find({});
-
-    const response_data = {
-        data: await cursor.toArray(),
-        total: await cursor.count(),
+            res.status(200).json(response);
+        });
+    } catch (error) {
+        res.status(500).json(error);
     }
-
-    res.json(response_data);
 }
 
 exports.create_personnel = (req, res) => {

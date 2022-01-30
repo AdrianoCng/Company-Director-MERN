@@ -17,3 +17,11 @@ module.exports.create = (obj, cb) => {
 
     db_connect.collection("personnel").insertOne(record, cb)
 }
+
+module.exports.get_all = (cb) => {
+    const db_connect = db.getDb();
+
+    const cursor = db_connect.collection("personnel").find();
+
+    return cb(cursor);
+}

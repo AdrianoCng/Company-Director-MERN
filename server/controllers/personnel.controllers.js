@@ -12,7 +12,7 @@ exports.get_all_personnel = (req, res) => {
         }
 
         Personnel.get_all(async docs => {
-            const { page = 1, per_page = 5, order_field = "_id", order = "desc" } = req.query;
+            const { page = 1, per_page = 5, order_field = "created_at", order = "desc" } = req.query;
 
             const total = await docs.count();
 

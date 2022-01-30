@@ -1,4 +1,6 @@
 const dbo = require("../db");
+const { validationResult } = require("express-validator");
+const Personnel = require("../models/Personnel");
 const personnel_collection = "personnel";
 
 exports.get_all_personnel = async (req, res) => {
@@ -16,22 +18,18 @@ exports.get_all_personnel = async (req, res) => {
 
 exports.create_personnel = (req, res) => {
     try {
-        const db_connect = dbo.getDb();
+        const errors = validationResult(req);
 
-        const { first_name, last_name } = req.body;
-
-
-
-        const data = {
-            first_name: first_name,
-            last_name: last_name,
+        if (!errors.isEmpty()) {
+            res.status(400).json(errors);
+            return;
         }
 
-        db_connect.collection(personnel_collection).insertOne(data, (err, response) => {
+        Personnel.create(req.body, (err, response) => {
             if (err) throw err;
-            res.json(response);
+            res.status(201).json(response);
         })
     } catch (error) {
-
+        res.status(500).json(error);
     }
 }

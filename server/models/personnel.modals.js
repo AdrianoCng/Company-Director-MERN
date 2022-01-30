@@ -14,6 +14,7 @@ module.exports.create = (obj, cb) => {
         last_name,
         email,
         created_at: new Date(),
+        updated_at: new Date(),
     }
 
     db_connect.collection("personnel").insertOne(record, cb)

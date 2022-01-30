@@ -1,5 +1,5 @@
-const validate = require("../middlewares/validate");
-const personnel_controller = require("../controllers/personnel_controller");
+const validate = require("../middlewares/validate.middlewares");
+const personnel_controller = require("../controllers/personnel.controllers");
 
 const router = require("express").Router();
 

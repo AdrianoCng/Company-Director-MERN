@@ -29,8 +29,14 @@ module.exports.get_all = (cb) => {
     return cb(cursor);
 }
 
-module.exports.get_by_id = async (id, cb) => {
+module.exports.get_by_id = (id, cb) => {
     const db_connect = db.getDb();
 
-    db_connect.collection("personnel").findOne({ _id: { $eq: ObjectId(id) } }, cb)
+    db_connect.collection("personnel").findOne({ _id: ObjectId(id) }, cb)
+}
+
+module.exports.delete = (id, cb) => {
+    const db_connect = db.getDb();
+
+    db_connect.collection("personnel").deleteOne({ _id: ObjectId(id) }, cb);
 }

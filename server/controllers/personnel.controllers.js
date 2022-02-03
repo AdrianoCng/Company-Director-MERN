@@ -75,3 +75,24 @@ exports.create_personnel = (req, res) => {
         res.status(500).json(error.message);
     }
 }
+
+exports.delete_personnel = (req, res) => {
+    try {
+        const errors = validationResult(req);
+
+        if (!errors.isEmpty()) {
+            res.status(400).json(errors);
+            return;
+        }
+
+        const { id } = req.params;
+
+        Personnel.delete(id, (err, response) => {
+            if (err) throw err;
+            res.status(200).json(response);
+        })
+
+    } catch (error) {
+        res.status(500).json(error.message);
+    }
+}

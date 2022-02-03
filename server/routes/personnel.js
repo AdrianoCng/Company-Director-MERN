@@ -20,4 +20,9 @@ router.post("/",
     personnel_controller.create_personnel
 );
 
+router.delete("/:id",
+    validate.delete_personnel(),
+    personnel_controller.delete_personnel
+);
+
 module.exports = router;

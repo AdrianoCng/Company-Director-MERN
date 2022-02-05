@@ -1,6 +1,5 @@
 const { ObjectId } = require("mongodb");
 const db = require("../db");
-const constants = require("../utilities/constants");
 
 module.exports.create = (obj, cb) => {
     const db_connect = db.getDb()
@@ -16,7 +15,7 @@ module.exports.create = (obj, cb) => {
         last_name,
         email,
         created_at: new Date(),
-        updated_at: null,
+        last_modified: null,
     }
 
     db_connect.collection("personnel").insertOne(record, cb)
@@ -65,7 +64,7 @@ module.exports.update_personnel = (id, body, cb) => {
     db_connect.collection("personnel").updateOne({ _id: ObjectId(id) }, {
         $set: fields,
         $currentDate: {
-            updated_at: true
+            last_modified: true
         }
     }, cb)
 }

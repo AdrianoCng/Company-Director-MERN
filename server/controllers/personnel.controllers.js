@@ -96,3 +96,23 @@ exports.delete_personnel = (req, res) => {
         res.status(500).json(error.message);
     }
 }
+
+exports.update_personnel = (req, res) => {
+    try {
+        const errors = validationResult(req);
+
+        if (!errors.isEmpty()) {
+            res.status(400).json(errors);
+            return;
+        }
+
+        const { id } = req.params;
+
+        Personnel.update_personnel(id, req.body, (err, response) => {
+            if (err) throw err;
+            res.status(200).json(response);
+        });
+    } catch (error) {
+        res.status(500).json(error.message);
+    }
+}

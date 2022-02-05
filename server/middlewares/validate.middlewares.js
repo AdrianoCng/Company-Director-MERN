@@ -1,13 +1,12 @@
 const { body, query, param } = require("express-validator");
-
-const personnel_documents_fields = ["_id", "first_name", "last_name", "email", "created_at", "updated_at"]
+const constants = require("../utilities/constants");
 
 module.exports = {
     get_all_personnel: () => {
         return [
             query("page").optional().trim().isInt({ gt: 0 }).toInt(),
             query("per_page").optional().trim().isInt({ gt: 0 }).toInt(),
-            query("order_field").optional().trim().toLowerCase().isIn(personnel_documents_fields),
+            query("order_field").optional().trim().toLowerCase().isIn(constants.personnel_documents_fields),
             query("order").optional().trim().toLowerCase().isIn(["asc", "desc"]),
         ];
     },
@@ -25,5 +24,14 @@ module.exports = {
     },
     delete_personnel: () => {
         return param("id", "Invalid mongoDB ObjectId").trim().isMongoId();
+    },
+    update_personnel: () => {
+        return [
+            param("id", "Invalid mongoDB ObjectId").trim().isMongoId(),
+            body("_id", "Cannot updated personnel ID").not().exists(),
+            body("first_name", "Invalid first name").optional().not().isEmpty().trim().toLowerCase().isAlpha(),
+            body("last_name", "Invalid last name").optional().not().isEmpty().trim().toLowerCase().isAlpha(),
+            body("email", "Invalid email").optional().trim().toLowerCase().isEmail().normalizeEmail(),
+        ]
     }
 };

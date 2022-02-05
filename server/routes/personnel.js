@@ -25,4 +25,9 @@ router.delete("/:id",
     personnel_controller.delete_personnel
 );
 
+router.put("/:id",
+    validate.update_personnel(),
+    personnel_controller.update_personnel
+);
+
 module.exports = router;

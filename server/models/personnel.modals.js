@@ -1,5 +1,6 @@
 const { ObjectId } = require("mongodb");
 const db = require("../db");
+const constants = require("../utilities/constants");
 
 module.exports.create = (obj, cb) => {
     const db_connect = db.getDb()
@@ -39,4 +40,32 @@ module.exports.delete = (id, cb) => {
     const db_connect = db.getDb();
 
     db_connect.collection("personnel").deleteOne({ _id: ObjectId(id) }, cb);
+}
+
+module.exports.update_personnel = (id, body, cb) => {
+    const db_connect = db.getDb();
+
+    let fields = {};
+
+    for (field in body) {
+        switch (field) {
+            case "first_name":
+            case "last_name":
+            case "email": {
+                fields[field] = body[field];
+                break;
+            }
+        }
+    }
+
+    if (Object.keys(fields).length === 0) {
+        return cb(new Error("No fields to updated"))
+    }
+
+    db_connect.collection("personnel").updateOne({ _id: ObjectId(id) }, {
+        $set: fields,
+        $currentDate: {
+            updated_at: true
+        }
+    }, cb)
 }

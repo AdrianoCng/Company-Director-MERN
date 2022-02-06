@@ -31,7 +31,7 @@ module.exports = {
             body("_id", "Cannot updated personnel ID").not().exists(),
             body("first_name", "Invalid first name").optional().not().isEmpty().trim().toLowerCase().isAlpha(),
             body("last_name", "Invalid last name").optional().not().isEmpty().trim().toLowerCase().isAlpha(),
-            body("email", "Invalid email").optional().trim().toLowerCase().isEmail().normalizeEmail(),
+            body("email", "Invalid email").optional().not().isEmpty().trim().toLowerCase().isEmail().normalizeEmail(),
         ]
     }
 };

@@ -3,15 +3,15 @@ const Personnel = require("../models/personnel.modals");
 const { paginate } = require("../utilities/functions")
 
 exports.get_all_personnel = (req, res) => {
-    try {
-        const errors = validationResult(req);
+    const errors = validationResult(req);
 
-        if (!errors.isEmpty()) {
-            res.status(400).json(errors)
-            return;
-        }
+    if (!errors.isEmpty()) {
+        res.status(400).json(errors)
+        return;
+    }
 
-        Personnel.get_all(async docs => {
+    Personnel.get_all(async docs => {
+        try {
             const { page = 1, per_page = 5, order_field = "created_at", order = "desc" } = req.query;
 
             const total = await docs.count();
@@ -31,10 +31,10 @@ exports.get_all_personnel = (req, res) => {
             }
 
             res.status(200).json(response);
-        });
-    } catch (error) {
-        res.status(500).json(error.message);
-    }
+        } catch (error) {
+            res.status(500).json(error.message);
+        }
+    });
 }
 
 exports.get_by_id = (req, res) => {

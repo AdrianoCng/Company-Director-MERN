@@ -36,7 +36,7 @@ module.exports = {
     },
     create_department: () => {
         return [
-            body("name").exists().withMessage("Name is required").bail().trim().toLowerCase().isString()
+            body("name").exists().withMessage("Name is required").bail().trim().toLowerCase().isString().escape()
         ]
     },
     update_department: () => {

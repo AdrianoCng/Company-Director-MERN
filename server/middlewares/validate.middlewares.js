@@ -18,8 +18,8 @@ module.exports = {
             body("first_name", "Invalid first name").exists().withMessage("Email is required").bail().trim().toLowerCase().isAlpha(),
             body("last_name", "Invalid last name").exists().withMessage("Email is required").bail().trim().toLowerCase().isAlpha(),
             body("email", "Invalid email").exists().withMessage("Email is required").bail().trim().toLowerCase().isEmail().normalizeEmail(),
-            // body("department_id", "Invalid department ID").exists().bail().isInt(),
-            // body("location_id", "Invalid location ID").exists().bail().isInt(),
+            body("department_id", "Invalid department ID").exists().bail().isMongoId(),
+            body("location_id", "Invalid location ID").exists().bail().isMongoId(),
         ];
     },
     delete: () => {
@@ -32,6 +32,8 @@ module.exports = {
             body("first_name", "Invalid first name").optional().not().isEmpty().trim().toLowerCase().isAlpha(),
             body("last_name", "Invalid last name").optional().not().isEmpty().trim().toLowerCase().isAlpha(),
             body("email", "Invalid email").optional().not().isEmpty().trim().toLowerCase().isEmail().normalizeEmail(),
+            body("department_id", "Invalid department Id").optional().not().isEmpty().trim().isMongoId(),
+            body("location_id", "Invalid location Id").optional().not().isEmpty().trim().isMongoId(),
         ]
     },
     create_department: () => {
@@ -42,7 +44,7 @@ module.exports = {
     update_department: () => {
         return [
             param("id", "Invalid mongDB ObjectId").trim().isMongoId(),
-            body("name").exists().trim().toLowerCase().isAlpha(),
+            body("name").exists().bail().trim().toLowerCase().isAlpha(),
         ]
     },
     create_location: () => {
@@ -53,7 +55,7 @@ module.exports = {
     update_location: () => {
         return [
             param("id", "Invalid mongDB ObjectId").trim().isMongoId(),
-            body("name").exists().trim().toLowerCase().isAlpha(),
+            body("name").exists().bail().trim().toLowerCase().isAlpha(),
         ]
     },
 };

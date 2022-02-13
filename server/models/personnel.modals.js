@@ -4,9 +4,9 @@ const db = require("../db");
 module.exports.create = (obj, cb) => {
     const db_connect = db.getDb()
 
-    const { first_name, last_name, email } = obj;
+    const { first_name, last_name, email, department_id, location_id } = obj;
 
-    if (!first_name || !last_name || !email) {
+    if (!first_name || !last_name || !email || !department_id || location_id) {
         throw new Error();
     }
 
@@ -14,6 +14,8 @@ module.exports.create = (obj, cb) => {
         first_name,
         last_name,
         email,
+        department_id,
+        location_id,
         created_at: new Date(),
         last_modified: null,
     }
@@ -62,7 +64,9 @@ module.exports.update_personnel = (id, body, cb) => {
         switch (field) {
             case "first_name":
             case "last_name":
-            case "email": {
+            case "email":
+            case "department_id":
+            case "location_id": {
                 fields[field] = body[field];
                 break;
             }

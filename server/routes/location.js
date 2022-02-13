@@ -9,4 +9,9 @@ router.get("/:id",
     location_controller.get_by_id
 );
 
+router.post("/",
+    validate.create_location(),
+    location_controller.create
+);
+
 module.exports = router;

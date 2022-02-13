@@ -32,3 +32,21 @@ module.exports.get_by_id = (req, res) => {
         res.status(500).json(error.message);
     }
 }
+
+module.exports.create = (req, res) => {
+    try {
+        const errors = validationResult(req);
+
+        if (!errors.isEmpty()) {
+            res.status(400).json(errors);
+            return;
+        }
+
+        Location.create(req.body, (err, response) => {
+            if (err) throw err;
+            res.status(201).json(response);
+        })
+    } catch (error) {
+        res.status(500).json(error.message);
+    }
+}

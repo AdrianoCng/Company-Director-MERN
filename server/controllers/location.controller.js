@@ -12,3 +12,23 @@ module.exports.get_all = (req, res) => {
         }
     })
 }
+
+module.exports.get_by_id = (req, res) => {
+    try {
+        const errors = validationResult(req);
+
+        if (!errors.isEmpty()) {
+            res.status(400).json(errors);
+            return;
+        }
+
+        const { id } = req.params;
+
+        Location.get_by_id(id, (err, response) => {
+            if (err) throw err;
+            res.status(200).json(response);
+        })
+    } catch (error) {
+        res.status(500).json(error.message);
+    }
+}

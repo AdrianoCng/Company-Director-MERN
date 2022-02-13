@@ -6,7 +6,7 @@ module.exports.create = (obj, cb) => {
 
     const { first_name, last_name, email, department_id, location_id } = obj;
 
-    if (!first_name || !last_name || !email || !department_id || location_id) {
+    if (!first_name || !last_name || !email || !department_id || !location_id) {
         throw new Error();
     }
 

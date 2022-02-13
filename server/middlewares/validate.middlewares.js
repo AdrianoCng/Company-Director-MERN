@@ -22,7 +22,7 @@ module.exports = {
             // body("location_id", "Invalid location ID").exists().bail().isInt(),
         ];
     },
-    delete_personnel: () => {
+    delete: () => {
         return param("id", "Invalid mongoDB ObjectId").trim().isMongoId();
     },
     update_personnel: () => {

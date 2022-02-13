@@ -19,7 +19,7 @@ router.post("/",
 );
 
 router.delete("/:id",
-    validate.delete_personnel(),
+    validate.delete(),
     personnel_controller.delete_personnel
 );
 

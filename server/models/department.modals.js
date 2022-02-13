@@ -28,3 +28,9 @@ module.exports.get_by_id = (id, cb) => {
 
     db_connect.collection("departments").findOne({ _id: ObjectId(id) }, cb)
 };
+
+module.exports.delete = (id, cb) => {
+    const db_connect = db.getDb();
+
+    db_connect.collection("departments").deleteOne({ _id: ObjectId(id) }, cb);
+}

@@ -19,4 +19,9 @@ router.delete("/:id",
     location_controller.delete_location
 );
 
+router.put("/:id",
+    validate.update_location(),
+    location_controller.update_location
+);
+
 module.exports = router;

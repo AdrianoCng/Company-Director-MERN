@@ -36,3 +36,19 @@ module.exports.delete = (id, cb) => {
 
     db_connect.collection("locations").deleteOne({ _id: ObjectId(id) }, cb);
 }
+
+module.exports.update = (id, obj, cb) => {
+    if (!id) {
+        throw new Error("Id is required");
+    }
+
+    if (!obj.name) {
+        throw new Error("Name is required");
+    }
+
+    const db_connect = db.getDb();
+
+    db_connect.collection("locations").updateOne({ _id: ObjectId(id) }, {
+        $set: { name: obj.name }
+    }, cb);
+}

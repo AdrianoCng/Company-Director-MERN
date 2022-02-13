@@ -49,5 +49,11 @@ module.exports = {
         return [
             body("name").exists().withMessage("Name is required").bail().trim().toLowerCase().isAlpha()
         ]
-    }
+    },
+    update_location: () => {
+        return [
+            param("id", "Invalid mongDB ObjectId").trim().isMongoId(),
+            body("name").exists().trim().toLowerCase().isAlpha(),
+        ]
+    },
 };

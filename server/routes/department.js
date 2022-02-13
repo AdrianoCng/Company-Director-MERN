@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const department_controller = require("../controllers/department.controller");
+const department_controller = require("../controllers/department.controllers");
 const validate = require("../middlewares/validate.middlewares");
 
 router.get("/", department_controller.get_all_departments);

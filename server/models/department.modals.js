@@ -1,3 +1,4 @@
+const { ObjectId } = require("mongodb");
 const db = require("../db");
 
 module.exports.get_all = (cb) => {
@@ -21,3 +22,9 @@ module.exports.create = (obj, cb) => {
 
     db_connect.collection("departments").insertOne(newDepartment, cb);
 }
+
+module.exports.get_by_id = (id, cb) => {
+    const db_connect = db.getDb();
+
+    db_connect.collection("departments").findOne({ _id: ObjectId(id) }, cb)
+};

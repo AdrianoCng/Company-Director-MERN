@@ -13,6 +13,26 @@ exports.get_all_departments = (req, res) => {
     });
 }
 
+exports.get_by_id = (req, res) => {
+    try {
+        const errors = validationResult(req);
+
+        if (!errors.isEmpty()) {
+            res.status(400).json(errors);
+            return;
+        }
+
+        const { id } = req.params;
+
+        Departments.get_by_id(id, (err, doc) => {
+            if (err) throw err;
+            res.status(doc ? 200 : 404).json({ data: doc });
+        });
+    } catch (error) {
+        res.status(500).json(error.message);
+    }
+};
+
 exports.create_department = (req, res) => {
     try {
         const errors = validationResult(req);

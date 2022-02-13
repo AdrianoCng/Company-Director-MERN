@@ -5,6 +5,7 @@ const cors = require("cors");
 const db = require("./db");
 const personnel = require("./routes/personnel.js");
 const department = require("./routes/department");
+const location = require("./routes/location");
 
 const app = express();
 
@@ -13,6 +14,7 @@ app.use(express.json());
 
 app.use("/api/personnel", personnel);
 app.use("/api/department", department);
+app.use("/api/location", location);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {

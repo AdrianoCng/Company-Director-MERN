@@ -33,7 +33,7 @@ module.exports.get_by_id = (req, res) => {
     }
 }
 
-module.exports.create = (req, res) => {
+module.exports.create_location = (req, res) => {
     try {
         const errors = validationResult(req);
 
@@ -45,6 +45,26 @@ module.exports.create = (req, res) => {
         Location.create(req.body, (err, response) => {
             if (err) throw err;
             res.status(201).json(response);
+        })
+    } catch (error) {
+        res.status(500).json(error.message);
+    }
+}
+
+module.exports.delete_location = (req, res) => {
+    try {
+        const errors = validationResult(req);
+
+        if (!errors.isEmpty()) {
+            res.status(400).json(errors);
+            return;
+        }
+
+        const { id } = req.params;
+
+        Location.delete(id, (err, response) => {
+            if (err) throw err;
+            res.status(200).json(response);
         })
     } catch (error) {
         res.status(500).json(error.message);

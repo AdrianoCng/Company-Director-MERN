@@ -11,7 +11,12 @@ router.get("/:id",
 
 router.post("/",
     validate.create_location(),
-    location_controller.create
+    location_controller.create_location
+);
+
+router.delete("/:id",
+    validate.delete(),
+    location_controller.delete_location
 );
 
 module.exports = router;

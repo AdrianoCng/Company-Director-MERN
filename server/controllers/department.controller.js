@@ -12,3 +12,21 @@ exports.get_all_departments = (req, res) => {
         }
     });
 }
+
+exports.create_department = (req, res) => {
+    try {
+        const errors = validationResult(req);
+
+        if (!errors.isEmpty()) {
+            res.status(400).json(errors);
+            return;
+        }
+
+        Departments.create(req.body, (err, response) => {
+            if (err) throw err;
+            res.status(201).json(response);
+        })
+    } catch (error) {
+        res.status(500).json(error.message);
+    }
+}

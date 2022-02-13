@@ -33,5 +33,10 @@ module.exports = {
             body("last_name", "Invalid last name").optional().not().isEmpty().trim().toLowerCase().isAlpha(),
             body("email", "Invalid email").optional().not().isEmpty().trim().toLowerCase().isEmail().normalizeEmail(),
         ]
+    },
+    create_department: () => {
+        return [
+            body("name").exists().withMessage("Name is required").bail().trim().toLowerCase().isAlpha()
+        ]
     }
 };

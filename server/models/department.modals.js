@@ -34,3 +34,15 @@ module.exports.delete = (id, cb) => {
 
     db_connect.collection("departments").deleteOne({ _id: ObjectId(id) }, cb);
 }
+
+module.exports.update = (id, obj, cb) => {
+    const db_connect = db.getDb();
+
+    if (!obj.name) {
+        throw new Error("Name field is required");
+    }
+
+    db_connect.collection("departments").updateOne({ _id: ObjectId(id) }, {
+        $set: { name: obj.name }
+    }, cb);
+}

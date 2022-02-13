@@ -19,4 +19,9 @@ router.delete("/:id",
     department_controller.delete_department
 );
 
+router.put("/:id",
+    validate.update_department(),
+    department_controller.update_department
+);
+
 module.exports = router;

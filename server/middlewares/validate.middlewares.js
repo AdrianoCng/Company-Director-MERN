@@ -47,7 +47,7 @@ module.exports = {
     },
     create_location: () => {
         return [
-            body("name").exists().withMessage("Name is required").bail().trim().toLowerCase().isString()
+            body("name").exists().withMessage("Name is required").bail().trim().toLowerCase().isAlpha()
         ]
     }
 };

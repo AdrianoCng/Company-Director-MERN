@@ -1,9 +1,21 @@
 import React from "react";
-import Sidebar from "./components/Sidebar";
+import { createGlobalStyle } from "styled-components";
+import Sidebar from "./components/sidebar";
 
-const App = () => {
+const GlobalStyles = createGlobalStyle`
+    *,
+    *::before, 
+    *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+`;
+
+const App = (): JSX.Element => {
     return (
         <>
+            <GlobalStyles />
             <Sidebar />
         </>
     );

@@ -1,7 +1,11 @@
 import styled from "styled-components";
 
-const Wrapper = styled.div`
-    width: 290px;
+interface Props {
+    isCollapsed: boolean;
+}
+
+const Wrapper = styled.div<Props>`
+    width: ${(props) => (props.isCollapsed ? "90px" : "290px")};
     background: #1f3350;
     padding: 20px;
     height: 100vh;

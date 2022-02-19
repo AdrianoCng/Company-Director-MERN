@@ -11,12 +11,15 @@ const Wrapper = styled.div`
     bottom: 0;
 `;
 
-const Introduction = styled.div`
+const Title = styled.div`
     padding: 0 20px;
+    font-size: 24px;
+    color: white;
+    font-weight: bold;
 `;
 
 const Styles = {
     Wrapper,
-    Introduction,
+    Title,
 };
 export default Styles;

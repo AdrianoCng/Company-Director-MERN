@@ -10,7 +10,7 @@ import {
 } from "./utils/constants";
 
 const App = (): JSX.Element => {
-    const [isCollapsed, setIsCollapsed] = useState(false);
+    const [isCollapsed, setIsCollapsed] = useState(true);
 
     return (
         <Wrapper isCollapsed={isCollapsed}>

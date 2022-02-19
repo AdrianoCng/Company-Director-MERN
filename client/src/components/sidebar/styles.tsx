@@ -11,7 +11,12 @@ const Wrapper = styled.div`
     bottom: 0;
 `;
 
+const Introduction = styled.div`
+    padding: 0 20px;
+`;
+
 const Styles = {
     Wrapper,
+    Introduction,
 };
 export default Styles;

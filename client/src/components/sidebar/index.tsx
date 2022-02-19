@@ -5,7 +5,9 @@ import styles from "./styles";
 const Sidebar = (): JSX.Element => {
     return (
         <styles.Wrapper>
-            <Logo />
+            <styles.Introduction>
+                <Logo />
+            </styles.Introduction>
         </styles.Wrapper>
     );
 };

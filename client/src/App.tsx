@@ -2,10 +2,7 @@ import React, { useState } from "react";
 import Sidebar from "./components/sidebar";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import styled from "styled-components";
-
-interface WrapperProps {
-    isCollapsed: boolean;
-}
+import Homepage from "./containers/homepage";
 
 const App = (): JSX.Element => {
     const [isCollapsed, setIsCollapsed] = useState(false);
@@ -15,13 +12,16 @@ const App = (): JSX.Element => {
             <Wrapper isCollapsed={isCollapsed}>
                 <Sidebar isCollapsed={isCollapsed} toogle={setIsCollapsed} />
                 <Routes>
-                    <Route path="/" element={"Component"} />
+                    <Route path="/" element={<Homepage />} />
                 </Routes>
             </Wrapper>
         </BrowserRouter>
     );
 };
 
+interface WrapperProps {
+    isCollapsed: boolean;
+}
 const Wrapper = styled.div<WrapperProps>`
     margin-left: ${(props) => (props.isCollapsed ? "90px" : "290px")};
     padding: 20px;

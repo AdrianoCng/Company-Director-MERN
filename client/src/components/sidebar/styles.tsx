@@ -8,7 +8,7 @@ const Wrapper = styled.div<Props>`
     width: ${(props) => (props.isCollapsed ? "90px" : "290px")};
     background: #1f3350;
     padding: 20px;
-    height: 100vh;
+    height: 100%;
     position: fixed;
     left: 0;
     top: 0;

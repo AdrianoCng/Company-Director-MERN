@@ -1,15 +1,30 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import Sidebar from "./components/sidebar";
+import { Routes, Route } from "react-router-dom";
+import styled from "styled-components";
+import Homepage from "./containers/homepage";
 
-function App() {
-    const [response, setResponse] = useState("");
+const App = (): JSX.Element => {
+    const [isCollapsed, setIsCollapsed] = useState(false);
 
-    useEffect(() => {
-        fetch("http://localhost:5000")
-            .then((res) => res.json())
-            .then((res) => setResponse(res.message));
-    }, []);
+    return (
+        <Wrapper isCollapsed={isCollapsed}>
+            <Sidebar isCollapsed={isCollapsed} toogle={setIsCollapsed} />
 
-    return <div>{response}</div>;
+            <Routes>
+                <Route path="/" element={<Homepage />} />
+            </Routes>
+        </Wrapper>
+    );
+};
+
+interface WrapperProps {
+    isCollapsed: boolean;
 }
+const Wrapper = styled.div<WrapperProps>`
+    margin-left: ${(props) => (props.isCollapsed ? "90px" : "290px")};
+    padding: 20px;
+    height: 100vh;
+`;
 
 export default App;

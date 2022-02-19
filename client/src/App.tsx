@@ -1,15 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import { useQuery } from "react-query";
+import { api } from "./utils";
 
-function App() {
-    const [response, setResponse] = useState("");
+const App = () => {
+    const { data, isError, isLoading } = useQuery("personnel", async () => {
+        const res = await api.get("http://localhost:5000/api/personnel");
+        return res;
+    });
 
-    useEffect(() => {
-        fetch("http://localhost:5000")
-            .then((res) => res.json())
-            .then((res) => setResponse(res.message));
-    }, []);
-
-    return <div>{response}</div>;
-}
+    return (
+        <div>
+            {isError && <p>Error fetching data</p>}
+            {isLoading && <p>Loading...</p>}
+            {data?.data.data.map((el: { first_name: string }) => el.first_name)}
+        </div>
+    );
+};
 
 export default App;

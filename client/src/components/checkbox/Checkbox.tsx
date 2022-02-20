@@ -1,7 +1,7 @@
 import React from "react";
 import * as S from "./styles";
 
-const Checkbox = () => {
+const Checkbox = (): JSX.Element => {
     return (
         <div>
             <S.Checkbox id="c1" />

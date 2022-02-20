@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import Sidebar from "./components/sidebar";
+import { Sidebar } from "./components/sidebar";
 import { Routes, Route } from "react-router-dom";
 import styled from "styled-components";
-import Homepage from "./containers/homepage";
+import { Homepage } from "./containers/homepage";
 import {
     sidebarCollapsedWidth,
     sidebarExpandedWidth,

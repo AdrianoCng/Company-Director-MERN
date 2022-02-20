@@ -17,6 +17,7 @@ const Sidebar = ({ isCollapsed, toogle }: Props): JSX.Element => {
                 <S.Button onClick={() => toogle((prev) => !prev)}>
                     <GiHamburgerMenu />
                 </S.Button>
+
                 <S.Button>
                     <FaUserPlus />
                 </S.Button>

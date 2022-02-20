@@ -4,6 +4,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { GoLocation } from "react-icons/go";
 import { MdOutlineLocationCity } from "react-icons/md";
 import { FaUserPlus } from "react-icons/fa";
+import { Checkbox } from "../checkbox";
 
 interface Props {
     isCollapsed: boolean;
@@ -29,7 +30,9 @@ const Sidebar = ({ isCollapsed, toogle }: Props): JSX.Element => {
                         <GoLocation /> Locations
                     </S.SectionGroupHeader>
 
-                    <S.SectionGroupContent>Checkbox here</S.SectionGroupContent>
+                    <S.SectionGroupContent>
+                        <Checkbox />
+                    </S.SectionGroupContent>
                 </S.SectionGroup>
 
                 <MdOutlineLocationCity />

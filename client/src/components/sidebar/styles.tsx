@@ -5,10 +5,6 @@ import {
     sidebarTransition,
 } from "../../utils/constants";
 
-interface Props {
-    $isCollapsed: boolean;
-}
-
 export const Content = styled.div`
     margin-top: 40px;
     display: flex;
@@ -16,6 +12,31 @@ export const Content = styled.div`
     gap: 20px;
 `;
 
+export const SectionGroup = styled(Content)`
+    margin-top: 0px;
+    height: 200px;
+`;
+
+export const Hamburger = styled.button`
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    background: none;
+    border: none;
+`;
+
+export const SectionGroupIcon = styled.span`
+    font-weight: bold;
+    letter-spacing: 0.7px;
+`;
+
+export const SectionGroupContent = styled.div`
+    padding: 0 20px;
+`;
+
+interface Props {
+    $isCollapsed: boolean;
+}
 export const Wrapper = styled.div<Props>`
     width: ${(props) =>
         props.$isCollapsed ? sidebarCollapsedWidth : sidebarExpandedWidth};
@@ -35,17 +56,4 @@ export const Wrapper = styled.div<Props>`
         transition: ${sidebarTransition("opacity")};
         white-space: nowrap;
     }
-`;
-
-export const Hamburger = styled.button`
-    color: white;
-    font-size: 24px;
-    cursor: pointer;
-    background: none;
-    border: none;
-`;
-
-export const SidebarIcon = styled.span`
-    font-weight: bold;
-    letter-spacing: 0.7px;
 `;

@@ -1,5 +1,5 @@
 import React from "react";
-import * as Styled from "./styles";
+import * as S from "./styles";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { GoLocation } from "react-icons/go";
 import { MdOutlineLocationCity } from "react-icons/md";
@@ -11,18 +11,23 @@ interface Props {
 
 const Sidebar = ({ isCollapsed, toogle }: Props): JSX.Element => {
     return (
-        <Styled.Wrapper $isCollapsed={isCollapsed}>
-            <Styled.Hamburger onClick={() => toogle((prev) => !prev)}>
+        <S.Wrapper $isCollapsed={isCollapsed}>
+            <S.Hamburger onClick={() => toogle((prev) => !prev)}>
                 <GiHamburgerMenu />
-            </Styled.Hamburger>
+            </S.Hamburger>
 
-            <Styled.Content>
-                <Styled.SidebarIcon>
-                    <GoLocation /> Locations
-                </Styled.SidebarIcon>
+            <S.Content>
+                <S.SectionGroup>
+                    <S.SectionGroupIcon>
+                        <GoLocation /> Locations
+                    </S.SectionGroupIcon>
+
+                    <S.SectionGroupContent>Checkbox here</S.SectionGroupContent>
+                </S.SectionGroup>
+
                 <MdOutlineLocationCity />
-            </Styled.Content>
-        </Styled.Wrapper>
+            </S.Content>
+        </S.Wrapper>
     );
 };
 

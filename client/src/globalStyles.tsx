@@ -9,8 +9,13 @@ const GlobalStyles = createGlobalStyle`
         box-sizing: border-box;
     }
 
+    html {
+        --white: #f5f5f5;
+    }
+
     body {
         font-family: 'Roboto', sans-serif;
+        background-color: var(--white);
     }
 `;
 

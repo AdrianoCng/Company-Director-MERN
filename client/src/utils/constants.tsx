@@ -13,7 +13,7 @@ export const sidebarTransition = (property: string) =>
 
 export const iconStyles = {
     style: {
-        color: "white",
+        color: "var(--white)",
         fontSize: "24px",
     },
 };

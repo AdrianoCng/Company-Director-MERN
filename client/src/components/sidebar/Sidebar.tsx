@@ -27,7 +27,7 @@ const Sidebar = ({ isCollapsed, toogle }: Props): JSX.Element => {
             <S.Content>
                 <S.SectionGroup>
                     <S.SectionGroupHeader>
-                        <GoLocation /> Locations
+                        <GoLocation opacity={0.6} /> Locations
                     </S.SectionGroupHeader>
 
                     <S.SectionGroupContent>
@@ -35,7 +35,11 @@ const Sidebar = ({ isCollapsed, toogle }: Props): JSX.Element => {
                     </S.SectionGroupContent>
                 </S.SectionGroup>
 
-                <MdOutlineLocationCity />
+                <S.SectionGroup>
+                    <S.SectionGroupHeader>
+                        <MdOutlineLocationCity opacity={0.6} /> Departments
+                    </S.SectionGroupHeader>
+                </S.SectionGroup>
             </S.Content>
         </S.Wrapper>
     );

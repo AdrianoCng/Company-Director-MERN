@@ -17,7 +17,15 @@ export const SectionGroup = styled(Content)`
     height: 200px;
 `;
 
-export const Hamburger = styled.button`
+export const Header = styled.div`
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-end;
+`;
+
+export const Button = styled.button`
     color: white;
     font-size: 24px;
     cursor: pointer;

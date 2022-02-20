@@ -3,6 +3,7 @@ import * as S from "./styles";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { GoLocation } from "react-icons/go";
 import { MdOutlineLocationCity } from "react-icons/md";
+import { FaUserPlus } from "react-icons/fa";
 
 interface Props {
     isCollapsed: boolean;
@@ -12,9 +13,14 @@ interface Props {
 const Sidebar = ({ isCollapsed, toogle }: Props): JSX.Element => {
     return (
         <S.Wrapper $isCollapsed={isCollapsed}>
-            <S.Hamburger onClick={() => toogle((prev) => !prev)}>
-                <GiHamburgerMenu />
-            </S.Hamburger>
+            <S.Header>
+                <S.Button onClick={() => toogle((prev) => !prev)}>
+                    <GiHamburgerMenu />
+                </S.Button>
+                <S.Button>
+                    <FaUserPlus />
+                </S.Button>
+            </S.Header>
 
             <S.Content>
                 <S.SectionGroup>

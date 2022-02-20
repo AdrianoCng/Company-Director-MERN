@@ -24,9 +24,9 @@ const Sidebar = ({ isCollapsed, toogle }: Props): JSX.Element => {
 
             <S.Content>
                 <S.SectionGroup>
-                    <S.SectionGroupIcon>
+                    <S.SectionGroupHeader>
                         <GoLocation /> Locations
-                    </S.SectionGroupIcon>
+                    </S.SectionGroupHeader>
 
                     <S.SectionGroupContent>Checkbox here</S.SectionGroupContent>
                 </S.SectionGroup>

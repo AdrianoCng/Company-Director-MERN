@@ -33,9 +33,10 @@ export const Button = styled.button`
     border: none;
 `;
 
-export const SectionGroupIcon = styled.span`
+export const SectionGroupHeader = styled.h1`
     font-weight: bold;
     letter-spacing: 0.7px;
+    font-size: 28px;
 `;
 
 export const SectionGroupContent = styled.div`

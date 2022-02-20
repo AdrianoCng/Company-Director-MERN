@@ -15,6 +15,5 @@ export const iconStyles = {
     style: {
         color: "white",
         fontSize: "24px",
-        verticalAlign: "middle",
     },
 };

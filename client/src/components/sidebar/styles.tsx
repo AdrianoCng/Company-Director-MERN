@@ -26,21 +26,23 @@ export const Header = styled.div`
 `;
 
 export const Button = styled.button`
-    color: white;
+    color: var(--white);
     font-size: 24px;
     cursor: pointer;
     background: none;
     border: none;
 `;
 
-export const SectionGroupHeader = styled.h1`
+export const SectionGroupHeader = styled.h3`
     font-weight: bold;
     letter-spacing: 0.7px;
-    font-size: 28px;
+    font-size: 24px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    padding-bottom: 5px;
 `;
 
 export const SectionGroupContent = styled.div`
-    padding: 0 20px;
+    padding: 0 10px;
 `;
 
 interface Props {
@@ -57,7 +59,7 @@ export const Wrapper = styled.div<Props>`
     top: 0;
     bottom: 0;
     transition: ${sidebarTransition("width")};
-    color: white;
+    color: var(--white);
     font-size: 18px;
 
     ${Content} {

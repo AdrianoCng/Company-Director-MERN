@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./styles";
+import * as Styled from "./styles";
 import { GiHamburgerMenu } from "react-icons/gi";
 
 interface Props {
@@ -9,11 +9,11 @@ interface Props {
 
 const Sidebar = ({ isCollapsed, toogle }: Props): JSX.Element => {
     return (
-        <styles.Wrapper isCollapsed={isCollapsed}>
-            <styles.Hamburger onClick={() => toogle((prev) => !prev)}>
+        <Styled.Wrapper $isCollapsed={isCollapsed}>
+            <Styled.Hamburger onClick={() => toogle((prev) => !prev)}>
                 <GiHamburgerMenu />
-            </styles.Hamburger>
-        </styles.Wrapper>
+            </Styled.Hamburger>
+        </Styled.Wrapper>
     );
 };
 

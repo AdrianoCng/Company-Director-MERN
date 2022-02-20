@@ -13,7 +13,7 @@ const App = (): JSX.Element => {
     const [isCollapsed, setIsCollapsed] = useState(true);
 
     return (
-        <Wrapper isCollapsed={isCollapsed}>
+        <Wrapper $isCollapsed={isCollapsed}>
             <Sidebar isCollapsed={isCollapsed} toogle={setIsCollapsed} />
 
             <Routes>
@@ -24,11 +24,11 @@ const App = (): JSX.Element => {
 };
 
 interface WrapperProps {
-    isCollapsed: boolean;
+    $isCollapsed: boolean;
 }
 const Wrapper = styled.div<WrapperProps>`
     margin-left: ${(props) =>
-        props.isCollapsed ? sidebarCollapsedWidth : sidebarExpandedWidth};
+        props.$isCollapsed ? sidebarCollapsedWidth : sidebarExpandedWidth};
     padding: 20px;
     min-height: 100vh;
     transition: ${sidebarTransition("margin")};

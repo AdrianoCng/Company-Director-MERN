@@ -6,12 +6,12 @@ import {
 } from "../../utils/constants";
 
 interface Props {
-    isCollapsed: boolean;
+    $isCollapsed: boolean;
 }
 
-const Wrapper = styled.div<Props>`
+export const Wrapper = styled.div<Props>`
     width: ${(props) =>
-        props.isCollapsed ? sidebarCollapsedWidth : sidebarExpandedWidth};
+        props.$isCollapsed ? sidebarCollapsedWidth : sidebarExpandedWidth};
     background: #1f3350;
     padding: 20px;
     height: 100%;
@@ -22,16 +22,10 @@ const Wrapper = styled.div<Props>`
     transition: ${sidebarTransition("width")};
 `;
 
-const Hamburger = styled.button`
+export const Hamburger = styled.button`
     color: white;
     font-size: 24px;
     cursor: pointer;
     background: none;
     border: none;
 `;
-
-const Styles = {
-    Wrapper,
-    Hamburger,
-};
-export default Styles;

@@ -1,6 +1,8 @@
 import axios from "axios";
 import { baseURL } from "./constants";
 
-axios.defaults.baseURL = baseURL;
+const api = axios.create({
+    baseURL,
+});
 
-export default axios;
+export default api;

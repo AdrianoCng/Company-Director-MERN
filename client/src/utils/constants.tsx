@@ -1,8 +1,11 @@
-export const baseURL = "http://localhost:5000/api/";
+export const baseURL = "http://localhost:5000";
 
 export const apiEndpoints = {
     personnel: {
-        getAll: "personnel",
+        getAll: "/api/personnel",
+    },
+    location: {
+        getAll: "/api/location",
     },
 };
 

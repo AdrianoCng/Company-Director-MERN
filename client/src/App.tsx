@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { Sidebar } from "./components/sidebar";
 import { Routes, Route } from "react-router-dom";
 import styled from "styled-components";
 import { Homepage } from "./containers/homepage";
+import useApp from "./hooks/useApp";
 import {
     sidebarCollapsedWidth,
     sidebarExpandedWidth,
@@ -10,11 +11,15 @@ import {
 } from "./utils/constants";
 
 const App = (): JSX.Element => {
-    const [isCollapsed, setIsCollapsed] = useState(true);
+    const { toogleSidebar, isCollapsed, locations } = useApp();
 
     return (
         <Wrapper $isCollapsed={isCollapsed}>
-            <Sidebar isCollapsed={isCollapsed} toogle={setIsCollapsed} />
+            <Sidebar
+                isCollapsed={isCollapsed}
+                toogle={toogleSidebar}
+                locations={locations.data}
+            />
 
             <Routes>
                 <Route path="/" element={<Homepage />} />

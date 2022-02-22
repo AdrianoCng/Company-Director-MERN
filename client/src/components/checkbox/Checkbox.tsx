@@ -1,11 +1,18 @@
 import React from "react";
 import * as S from "./styles";
 
-const Checkbox = (): JSX.Element => {
+interface Props {
+    name: string;
+    id: string;
+}
+
+const Checkbox = ({ name, id }: Props): JSX.Element => {
     return (
         <div>
-            <S.Checkbox id="c1" />
-            <label htmlFor="c1">London</label>
+            <S.Checkbox id={id} value={id} />
+            <label style={{ textTransform: "capitalize" }} htmlFor={id}>
+                {name}
+            </label>
         </div>
     );
 };

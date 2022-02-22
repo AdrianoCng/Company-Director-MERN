@@ -5,13 +5,15 @@ import { GoLocation } from "react-icons/go";
 import { MdOutlineLocationCity } from "react-icons/md";
 import { FaUserPlus } from "react-icons/fa";
 import { Checkbox } from "../checkbox";
+import { LocationResponseData } from "../../types/Location";
 
 interface Props {
     isCollapsed: boolean;
     toogle: React.Dispatch<React.SetStateAction<boolean>>;
+    locations: LocationResponseData | undefined;
 }
 
-const Sidebar = ({ isCollapsed, toogle }: Props): JSX.Element => {
+const Sidebar = ({ isCollapsed, toogle, locations }: Props): JSX.Element => {
     return (
         <S.Wrapper $isCollapsed={isCollapsed}>
             <S.Header>
@@ -31,7 +33,9 @@ const Sidebar = ({ isCollapsed, toogle }: Props): JSX.Element => {
                     </S.SectionGroupHeader>
 
                     <S.SectionGroupContent>
-                        <Checkbox />
+                        {locations?.data.map(({ name, _id }) => (
+                            <Checkbox name={name} id={_id} key={_id} />
+                        ))}
                     </S.SectionGroupContent>
                 </S.SectionGroup>
 

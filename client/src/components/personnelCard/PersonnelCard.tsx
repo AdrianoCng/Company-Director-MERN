@@ -1,6 +1,11 @@
 import React from "react";
 import * as S from "./styles";
 import avatar from "../../avatar.jpg";
+import {
+    AiFillFacebook,
+    AiFillGoogleSquare,
+    AiFillTwitterSquare,
+} from "react-icons/ai";
 
 const PersonnelCard = () => {
     return (
@@ -21,11 +26,17 @@ const PersonnelCard = () => {
                     <a href="">email@emai.com</a>
                 </div>
 
-                <div className="card-footer">
-                    <button className="card-button">T</button>
-                    <button className="card-button">G</button>
-                    <button className="card-button">F</button>
-                </div>
+                <S.Footer>
+                    <button type="button">
+                        <AiFillFacebook color="#4267B2" />
+                    </button>
+                    <button type="button">
+                        <AiFillGoogleSquare color="#DB4437" />
+                    </button>
+                    <button type="button">
+                        <AiFillTwitterSquare color="#1DA1F2" />
+                    </button>
+                </S.Footer>
             </S.Body>
         </S.Card>
     );

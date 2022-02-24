@@ -8,15 +8,14 @@ const flexCenter = css`
 
 export const Card = styled.div`
     background-color: #fff;
-    width: 400px;
+    flex: 0 0 calc((100% / 5) - 16px);
     border-radius: 5px;
     box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
-    // padding: 20px;
 `;
 
 export const Background = styled.div`
-    background: red;
-    height: 175px;
+    background: rgba(0, 0, 0, 0.2);
+    height: 125px;
     border-radius: inherit;
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
@@ -51,5 +50,24 @@ export const Body = styled.div`
 
     h3 {
         text-transform: capitalize;
+    }
+`;
+
+export const Footer = styled.div`
+    margin-top: 20px;
+
+    button {
+        border: none;
+        background: none;
+        cursor: pointer;
+
+        &:not(:last-of-type) {
+            margin-right: 5px;
+        }
+
+        svg {
+            font-size: 32px;
+            border-radius: 20px;
+        }
     }
 `;

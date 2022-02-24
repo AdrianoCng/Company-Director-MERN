@@ -22,7 +22,7 @@ export const Background = styled.div`
 `;
 
 export const Avatar = styled.div`
-    height: 105px;
+    height: 100px;
     position: relative;
     top: -50px;
     ${flexCenter}

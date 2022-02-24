@@ -7,7 +7,13 @@ import {
     AiFillTwitterSquare,
 } from "react-icons/ai";
 
-const PersonnelCard = () => {
+interface Props {
+    firstName: string;
+    lastName: string;
+    email: string;
+}
+
+const PersonnelCard = ({ firstName, lastName, email }: Props) => {
     return (
         <S.Card>
             <S.Background />
@@ -18,12 +24,12 @@ const PersonnelCard = () => {
 
             <S.Body>
                 <h3>
-                    <a href="#">firstName LastName</a>
+                    <a href="#">{`${firstName} ${lastName}`}</a>
                 </h3>
                 <span>Market</span>
                 <span>London</span>
                 <div>
-                    <a href="">email@emai.com</a>
+                    <a href="">{email}</a>
                 </div>
 
                 <S.Footer>

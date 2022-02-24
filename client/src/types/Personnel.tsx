@@ -1,7 +1,5 @@
-import { ObjectId } from "mongodb";
-
 export interface PersonnelObject {
-    _id: ObjectId;
+    _id: string;
     first_name: string;
     last_name: string;
     email: string;

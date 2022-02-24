@@ -1,4 +1,5 @@
 import React from "react";
+import { PersonnelCard } from "../../components/personnelCard";
 import useHomepage from "../../hooks/useHomepage";
 
 const Homepage = (): JSX.Element => {
@@ -9,11 +10,12 @@ const Homepage = (): JSX.Element => {
             {allPersonnel.isLoading && "Loading..."}
             {allPersonnel.isError &&
                 "Error Fetching data! Please try again later."}
-            {allPersonnel.data?.data.map((personnel) => (
-                <p>{personnel.first_name}</p>
-            ))}
-            <button onClick={goPreviousPage}>prev</button>
-            <button onClick={goNextPage}>next</button>
+            {/* {allPersonnel.data?.data.map((personnel) => (
+                <PersonnelCard />
+            ))} */}
+            <PersonnelCard />
+            {/* <button onClick={goPreviousPage}>prev</button>
+            <button onClick={goNextPage}>next</button> */}
         </div>
     );
 };

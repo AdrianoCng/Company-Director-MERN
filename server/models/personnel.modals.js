@@ -4,7 +4,7 @@ const db = require("../db");
 module.exports.create = (obj, cb) => {
     const db_connect = db.getDb()
 
-    const { first_name, last_name, email } = obj;
+    const { first_name, last_name, email, department_name, location_name } = obj;
 
     if (!first_name || !last_name || !email) {
         throw new Error();
@@ -14,6 +14,8 @@ module.exports.create = (obj, cb) => {
         first_name,
         last_name,
         email,
+        department_name,
+        location_name,
         created_at: new Date(),
         last_modified: null,
     }

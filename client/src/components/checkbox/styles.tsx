@@ -10,13 +10,15 @@ export const Checkbox = styled.input.attrs({ type: "checkbox" })`
 export const Label = styled.label`
     font-size: 1em;
     cursor: pointer;
+    pointer-events: none;
 `;
 
 interface TileProps {
     $selected: boolean;
 }
 export const Tile = styled.div<TileProps>`
-    height: 40px;
+    padding: 10px 0;
+    font-size: 16px;
     border-radius: 5px;
     display: flex;
     align-items: center;

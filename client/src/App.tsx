@@ -11,7 +11,7 @@ import {
 } from "./utils/constants";
 
 const App = (): JSX.Element => {
-    const { toogleSidebar, isCollapsed, locations } = useApp();
+    const { toogleSidebar, isCollapsed, locations, departments } = useApp();
 
     return (
         <Wrapper $isCollapsed={isCollapsed}>
@@ -19,6 +19,7 @@ const App = (): JSX.Element => {
                 isCollapsed={isCollapsed}
                 toogle={toogleSidebar}
                 locations={locations.data}
+                departments={departments.data}
             />
 
             <Routes>

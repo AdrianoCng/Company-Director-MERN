@@ -7,6 +7,9 @@ export const apiEndpoints = {
     location: {
         getAll: "/api/location",
     },
+    department: {
+        getAll: "/api/department",
+    },
 };
 
 export const sidebarCollapsedWidth = "64px";

@@ -5,7 +5,7 @@ import {
     sidebarTransition,
 } from "../../utils/constants";
 
-export const Content = styled.div`
+export const Content = styled.form`
     margin-top: 40px;
     display: flex;
     flex-direction: column;
@@ -45,7 +45,7 @@ export const SectionGroupContent = styled.div`
     padding: 0 10px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 15px;
 `;
 
 interface Props {
@@ -68,6 +68,5 @@ export const Wrapper = styled.div<Props>`
     ${Content} {
         opacity: ${(props) => (props.$isCollapsed ? "0" : "1")};
         transition: ${sidebarTransition("opacity")};
-        white-space: nowrap;
     }
 `;

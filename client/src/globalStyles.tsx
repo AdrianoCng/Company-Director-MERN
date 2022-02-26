@@ -11,11 +11,13 @@ const GlobalStyles = createGlobalStyle`
 
     html {
         --white: #f5f5f5;
+        --black: #383838;
     }
 
     body {
         font-family: 'Roboto', sans-serif;
         background-color: var(--white);
+        color: var(--black);
     }
 `;
 

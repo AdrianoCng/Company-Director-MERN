@@ -3,8 +3,8 @@ export interface PersonnelObject {
     first_name: string;
     last_name: string;
     email: string;
-    department_id: string;
-    location_id: string;
+    department_name: string;
+    location_name: string;
     created_at: string;
     last_modified: string;
 }

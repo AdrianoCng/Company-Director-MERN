@@ -43,13 +43,14 @@ export const Body = styled.div`
     padding: 20px;
     flex-direction: column;
 
+    h3,
+    span {
+        text-transform: capitalize;
+    }
+
     a {
         text-decoration: none;
         color: #194d9b;
-    }
-
-    h3 {
-        text-transform: capitalize;
     }
 `;
 

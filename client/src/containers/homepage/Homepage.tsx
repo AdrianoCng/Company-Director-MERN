@@ -11,13 +11,23 @@ const Homepage = (): JSX.Element => {
             {allPersonnel.isLoading && "Loading..."}
             {allPersonnel.isError &&
                 "Error Fetching data! Please try again later."}
-            {allPersonnel.data?.data.map(({ first_name, last_name, email }) => (
-                <PersonnelCard
-                    firstName={first_name}
-                    lastName={last_name}
-                    email={email}
-                />
-            ))}
+            {allPersonnel.data?.data.map(
+                ({
+                    first_name,
+                    last_name,
+                    email,
+                    department_name,
+                    location_name,
+                }) => (
+                    <PersonnelCard
+                        firstName={first_name}
+                        lastName={last_name}
+                        email={email}
+                        department={department_name}
+                        location={location_name}
+                    />
+                )
+            )}
         </S.Deck>
     );
 };

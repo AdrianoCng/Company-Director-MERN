@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import * as S from "./styles";
 
 interface Props {
@@ -7,13 +7,18 @@ interface Props {
 }
 
 const Checkbox = ({ name, id }: Props): JSX.Element => {
+    const [selected, setSelected] = useState(false);
+
     return (
-        <div>
+        <S.Tile
+            onClick={() => setSelected((prev) => !prev)}
+            $selected={selected}
+        >
             <S.Checkbox id={id} value={id} />
-            <label style={{ textTransform: "capitalize" }} htmlFor={id}>
+            <S.Label style={{ textTransform: "capitalize" }} htmlFor={id}>
                 {name}
-            </label>
-        </div>
+            </S.Label>
+        </S.Tile>
     );
 };
 

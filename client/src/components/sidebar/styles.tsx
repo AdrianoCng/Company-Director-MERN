@@ -14,7 +14,7 @@ export const Content = styled.div`
 
 export const SectionGroup = styled(Content)`
     margin-top: 0px;
-    height: 200px;
+    height: 100%;
 `;
 
 export const Header = styled.div`
@@ -43,6 +43,9 @@ export const SectionGroupHeader = styled.h3`
 
 export const SectionGroupContent = styled.div`
     padding: 0 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 `;
 
 interface Props {

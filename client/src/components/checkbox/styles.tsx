@@ -25,7 +25,7 @@ export const Tile = styled.div<TileProps>`
     cursor: pointer;
     background-color: ${(props) =>
         props.$selected
-            ? "rgba(105, 105, 160, 0.5)"
+            ? "rgba(137, 160, 195, 0.4)"
             : "rgba(68, 78, 120, 0.3)"};
     color: ${(props) =>
         props.$selected ? "#fff" : "rgba(255, 255, 255, 0.5)"};

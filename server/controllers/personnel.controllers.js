@@ -10,9 +10,15 @@ exports.get_all_personnel = (req, res) => {
         return;
     }
 
-    Personnel.get_all(async docs => {
+    const { page = 1, per_page = 5, order_field = "created_at", order = "desc", location, department = "" } = req.query;
+
+    const filters = {
+        location_name: location,
+        department_name: department,
+    }
+
+    Personnel.get_all(filters, async docs => {
         try {
-            const { page = 1, per_page = 5, order_field = "created_at", order = "desc" } = req.query;
 
             const total = await docs.count();
 

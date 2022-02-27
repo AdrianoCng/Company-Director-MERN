@@ -8,6 +8,8 @@ module.exports = {
             query("per_page").optional().trim().isInt({ gt: 0 }).toInt(),
             query("order_field").optional().trim().toLowerCase().isIn(constants.personnel_documents_fields),
             query("order").optional().trim().toLowerCase().isIn(["asc", "desc"]),
+            query("location").optional().trim().toLowerCase().isString(),
+            query("department").optional().trim().toLowerCase().isString(),
         ];
     },
     get_by_id: () => {

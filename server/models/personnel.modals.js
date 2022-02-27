@@ -23,10 +23,19 @@ module.exports.create = (obj, cb) => {
     db_connect.collection("personnel").insertOne(record, cb)
 }
 
-module.exports.get_all = (cb) => {
+module.exports.get_all = (filters, cb) => {
     const db_connect = db.getDb();
 
-    const cursor = db_connect.collection("personnel").find();
+    let query = {};
+
+    for (let keys in filters) {
+        if (!filters[keys]) {
+            continue;
+        }
+        query[keys] = { $in: filters[keys].split(",") }
+    }
+
+    const cursor = db_connect.collection("personnel").find(query);
 
     return cb(cursor);
 }

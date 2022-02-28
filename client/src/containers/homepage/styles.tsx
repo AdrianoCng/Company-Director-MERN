@@ -1,7 +1,23 @@
 import styled from "styled-components";
+import {
+    sidebarCollapsedWidth,
+    sidebarExpandedWidth,
+    sidebarTransition,
+} from "../../utils/constants";
 
 export const Deck = styled.div`
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
+`;
+
+interface WrapperProps {
+    $isCollapsed: boolean;
+}
+export const Wrapper = styled.div<WrapperProps>`
+    margin-left: ${(props) =>
+        props.$isCollapsed ? sidebarCollapsedWidth : sidebarExpandedWidth};
+    padding: 20px;
+    min-height: 100vh;
+    transition: ${sidebarTransition("margin")};
 `;

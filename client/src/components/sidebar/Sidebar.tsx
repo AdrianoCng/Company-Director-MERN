@@ -41,7 +41,13 @@ const Sidebar = ({
 
                     <S.SectionGroupContent>
                         {locations?.data.map(({ name, _id }) => (
-                            <Checkbox name={name} id={_id} key={_id} />
+                            <Checkbox
+                                name={"location"}
+                                id={_id}
+                                key={_id}
+                                value={name}
+                                onChange={(name, value) => {}}
+                            />
                         ))}
                     </S.SectionGroupContent>
                 </S.SectionGroup>
@@ -53,7 +59,13 @@ const Sidebar = ({
 
                     <S.SectionGroupContent>
                         {departments?.map(({ name, _id }) => (
-                            <Checkbox name={name} id={_id} key={_id} />
+                            <Checkbox
+                                name={"department"}
+                                id={_id}
+                                key={_id}
+                                value={name}
+                                onChange={(name, checked) => {}}
+                            />
                         ))}
                     </S.SectionGroupContent>
                 </S.SectionGroup>

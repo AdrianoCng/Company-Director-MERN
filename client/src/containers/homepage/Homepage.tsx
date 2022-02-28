@@ -4,7 +4,7 @@ import { PersonnelCard } from "../../components/personnelCard";
 import useHomepage from "../../hooks/useHomepage";
 
 const Homepage = (): JSX.Element => {
-    const { allPersonnel, goNextPage, goPreviousPage } = useHomepage();
+    const { allPersonnel } = useHomepage();
 
     return (
         <S.Deck>
@@ -13,6 +13,7 @@ const Homepage = (): JSX.Element => {
                 "Error Fetching data! Please try again later."}
             {allPersonnel.data?.data.map(
                 ({
+                    _id,
                     first_name,
                     last_name,
                     email,
@@ -25,6 +26,7 @@ const Homepage = (): JSX.Element => {
                         email={email}
                         department={department_name}
                         location={location_name}
+                        key={_id}
                     />
                 )
             )}

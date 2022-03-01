@@ -4,11 +4,8 @@ import * as S from "./styles";
 interface Props {
     name: string;
     id: string;
-    value: string | number | readonly string[];
-    onChange?: (
-        name: string,
-        value: string | number | readonly string[]
-    ) => void;
+    value: string;
+    onChange?: (name: string, value: string) => void;
 }
 
 const Checkbox = ({ name, id, value, onChange }: Props): JSX.Element => {

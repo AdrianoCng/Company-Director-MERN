@@ -13,6 +13,7 @@ interface Props {
     toogle: React.Dispatch<React.SetStateAction<boolean>>;
     locations: LocationResponseData | undefined;
     departments: DepartmentResponseObject[] | undefined;
+    onChange: (name: string, value: string) => void;
 }
 
 const Sidebar = ({
@@ -20,6 +21,7 @@ const Sidebar = ({
     toogle,
     locations,
     departments,
+    onChange,
 }: Props): JSX.Element => {
     return (
         <S.Wrapper $isCollapsed={isCollapsed}>
@@ -46,7 +48,7 @@ const Sidebar = ({
                                 id={_id}
                                 key={_id}
                                 value={name}
-                                onChange={(name, value) => {}}
+                                onChange={onChange}
                             />
                         ))}
                     </S.SectionGroupContent>
@@ -64,7 +66,7 @@ const Sidebar = ({
                                 id={_id}
                                 key={_id}
                                 value={name}
-                                onChange={(name, checked) => {}}
+                                onChange={onChange}
                             />
                         ))}
                     </S.SectionGroupContent>

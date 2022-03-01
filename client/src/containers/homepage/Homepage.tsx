@@ -5,8 +5,14 @@ import { PersonnelCard } from "../../components/personnelCard";
 import { Sidebar } from "../../components/sidebar";
 
 const Homepage = (): JSX.Element => {
-    const { allPersonnel, toogleSidebar, isCollapsed, locations, departments } =
-        useHomepage();
+    const {
+        allPersonnel,
+        toogleSidebar,
+        isCollapsed,
+        locations,
+        departments,
+        handleInputOnChange,
+    } = useHomepage();
 
     return (
         <S.Wrapper $isCollapsed={isCollapsed}>
@@ -15,6 +21,7 @@ const Homepage = (): JSX.Element => {
                 toogle={toogleSidebar}
                 locations={locations.data}
                 departments={departments.data}
+                onChange={handleInputOnChange}
             />
 
             <S.Deck>

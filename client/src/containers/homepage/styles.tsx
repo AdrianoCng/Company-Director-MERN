@@ -21,3 +21,12 @@ export const Wrapper = styled.div<WrapperProps>`
     min-height: 100vh;
     transition: ${sidebarTransition("margin")};
 `;
+
+export const LoaderWrapper = styled.div`
+    height: calc(100vh - 40px);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 5%;
+`;

@@ -3,6 +3,7 @@ import * as S from "./styles";
 import useHomepage from "../../hooks/useHomepage";
 import { PersonnelCard } from "../../components/personnelCard";
 import { Sidebar } from "../../components/sidebar";
+import { LoaderSpinner } from "../../components/loaderSpinner";
 
 const Homepage = (): JSX.Element => {
     const {
@@ -13,6 +14,18 @@ const Homepage = (): JSX.Element => {
         departments,
         handleInputOnChange,
     } = useHomepage();
+
+    const renderLoaderSpinner = () => {
+        if (!allPersonnel.isLoading) {
+            return null;
+        }
+
+        return (
+            <S.LoaderWrapper>
+                <LoaderSpinner />
+            </S.LoaderWrapper>
+        );
+    };
 
     return (
         <S.Wrapper $isCollapsed={isCollapsed}>
@@ -25,7 +38,6 @@ const Homepage = (): JSX.Element => {
             />
 
             <S.Deck>
-                {allPersonnel.isLoading && "Loading..."}
                 {allPersonnel.isError &&
                     "Error Fetching data! Please try again later."}
                 {allPersonnel.data?.data.map(
@@ -48,6 +60,8 @@ const Homepage = (): JSX.Element => {
                     )
                 )}
             </S.Deck>
+
+            {renderLoaderSpinner()}
         </S.Wrapper>
     );
 };

@@ -54,7 +54,7 @@ interface Props {
 export const Wrapper = styled.div<Props>`
     width: ${(props) =>
         props.$isCollapsed ? sidebarCollapsedWidth : sidebarExpandedWidth};
-    background: #1f3350;
+    background: var(--primary);
     padding: 20px;
     height: 100%;
     position: fixed;

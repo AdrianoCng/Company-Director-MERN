@@ -16,7 +16,7 @@ app.use("/api/personnel", personnel);
 app.use("/api/department", department);
 app.use("/api/location", location);
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5001;
 app.listen(PORT, () => {
     db.connectToServer(err => {
         if (err) console.log(err);

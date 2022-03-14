@@ -12,6 +12,11 @@ export const apiEndpoints = {
     },
 };
 
+export const routes = {
+    homepage: "/",
+    addPersonnel: "/add-personnel",
+};
+
 export const sidebarCollapsedWidth = "64px";
 export const sidebarExpandedWidth = "290px";
 export const sidebarTransition = (property: string) =>

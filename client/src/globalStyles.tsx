@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle, css } from "styled-components";
 
 const GlobalStyles = createGlobalStyle`
     *,
@@ -20,6 +20,24 @@ const GlobalStyles = createGlobalStyle`
         background-color: var(--white);
         color: var(--black);
     }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        color: var(--primary);
+    }
+`;
+
+export const inputStyles = css`
+    padding: 10px;
+    width: 100%;
+    background: transparent;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    font-size: 1.05em;
 `;
 
 export default GlobalStyles;

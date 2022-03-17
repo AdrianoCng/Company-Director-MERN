@@ -3,6 +3,7 @@ export const baseURL = "http://localhost:5000";
 export const apiEndpoints = {
     personnel: {
         getAll: "/api/personnel",
+        add: "/api/personnel",
     },
     location: {
         getAll: "/api/location",

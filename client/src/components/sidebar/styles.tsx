@@ -39,6 +39,7 @@ export const SectionGroupHeader = styled.h3`
     font-size: 24px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.5);
     padding-bottom: 5px;
+    color: var(--white);
 `;
 
 export const SectionGroupContent = styled.div`
@@ -64,6 +65,7 @@ export const Wrapper = styled.div<Props>`
     transition: ${sidebarTransition("width")};
     color: var(--white);
     font-size: 18px;
+    overflow: auto;
 
     ${Content} {
         opacity: ${(props) => (props.$isCollapsed ? "0" : "1")};

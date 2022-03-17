@@ -1,6 +1,6 @@
 import React from "react";
 import * as S from "./styles";
-import avatar from "../../avatar.jpg";
+import avatar from "../../assets/avatar.jpg";
 import {
     AiFillFacebook,
     AiFillGoogleSquare,

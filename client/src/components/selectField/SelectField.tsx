@@ -6,8 +6,18 @@ interface Props {
     onChange: (name: string, value: string) => void;
     options?: OptionSelectField[];
     name: string;
+    value: string;
+    label?: string;
 }
-const SelectField = ({ options, onChange, name }: Props) => {
+const SelectField = ({ options, onChange, name, value, label }: Props) => {
+    const renderLabel = () => {
+        if (!label) {
+            return null;
+        }
+
+        return <S.Label>{label}</S.Label>;
+    };
+
     const renderOptions = () => {
         if (Array.isArray(options) && options?.length < 1) {
             return null;
@@ -21,14 +31,19 @@ const SelectField = ({ options, onChange, name }: Props) => {
     };
 
     return (
-        <S.SelectInput
-            name={name}
-            onChange={(e) => {
-                onChange(name, e.target.value);
-            }}
-        >
-            {renderOptions()}
-        </S.SelectInput>
+        <S.Container>
+            {renderLabel()}
+
+            <S.SelectInput
+                name={name}
+                onChange={(e) => {
+                    onChange(name, e.target.value);
+                }}
+                value={value}
+            >
+                {renderOptions()}
+            </S.SelectInput>
+        </S.Container>
     );
 };
 

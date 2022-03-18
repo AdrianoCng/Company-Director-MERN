@@ -32,6 +32,7 @@ const GlobalStyles = createGlobalStyle`
 `;
 
 export const inputStyles = css`
+    appearance: none;
     padding: 10px;
     width: 100%;
     background: transparent;

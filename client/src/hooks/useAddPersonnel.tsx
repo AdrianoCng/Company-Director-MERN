@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 import { useMutation } from "react-query";
+import { useNavigate } from "react-router-dom";
 import { OptionSelectField } from "../types/SelectField";
 import { api } from "../utils";
-import { apiEndpoints } from "../utils/constants";
+import { apiEndpoints, routes } from "../utils/constants";
 import useHomepage from "./useHomepage";
+import { toast } from "react-toastify";
 
 const initialAddPersonnelForm: AddPersonnelForm = {
     first_name: "",
@@ -22,6 +24,7 @@ interface AddPersonnelForm {
 }
 
 const useAddPersonnel = () => {
+    const navigate = useNavigate();
     const { locations, departments } = useHomepage();
 
     const [form, setForm] = useState<AddPersonnelForm>(initialAddPersonnelForm);
@@ -78,7 +81,8 @@ const useAddPersonnel = () => {
         },
         {
             onSuccess: (res) => {
-                console.log(res);
+                navigate(routes.homepage);
+                toast("Record successfully added.");
             },
         }
     );

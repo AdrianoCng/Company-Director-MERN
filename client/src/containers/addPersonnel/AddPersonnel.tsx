@@ -24,7 +24,8 @@ const AddPersonnel = () => {
         departmentOptions,
     } = useAddPersonnel();
 
-    const { first_name, last_name, email } = form;
+    const { first_name, last_name, email, location_name, department_name } =
+        form;
 
     return (
         <Wrapper $isCollapsed>
@@ -63,30 +64,20 @@ const AddPersonnel = () => {
                     </S.FormRow>
 
                     <S.FormRow>
-                        {/* <Textbox
-                            name={PersonnelDetails.location}
-                            label="Location"
-                            value={location_name}
-                            onChange={handleInputOnChange}
-                            required
-                        /> */}
                         <SelectField
                             options={locationOptions}
                             name={PersonnelDetails.location}
+                            value={location_name}
                             onChange={handleInputOnChange}
+                            label={"Location"}
                         />
 
-                        {/* <Textbox
-                            name={PersonnelDetails.department}
-                            label="Department"
-                            value={department_name}
-                            onChange={handleInputOnChange}
-                            required
-                        /> */}
                         <SelectField
                             options={departmentOptions}
                             name={PersonnelDetails.department}
                             onChange={handleInputOnChange}
+                            value={department_name}
+                            label={"Department"}
                         />
                     </S.FormRow>
 

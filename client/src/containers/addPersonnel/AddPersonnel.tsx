@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import useAddPersonnel from "../../hooks/useAddPersonnel";
 import * as S from "./styles";
 import { Wrapper } from "../homepage/styles";
@@ -6,7 +6,6 @@ import { Sidebar } from "../../components/sidebar";
 import { Textbox } from "../../components/textbox";
 import { Avatar } from "../../components/avatar";
 import SelectField from "../../components/selectField/SelectField";
-import useHomepage from "../../hooks/useHomepage";
 
 enum PersonnelDetails {
     firstName = "first_name",
@@ -25,8 +24,7 @@ const AddPersonnel = () => {
         departmentOptions,
     } = useAddPersonnel();
 
-    const { first_name, last_name, location_name, department_name, email } =
-        form;
+    const { first_name, last_name, email } = form;
 
     return (
         <Wrapper $isCollapsed>

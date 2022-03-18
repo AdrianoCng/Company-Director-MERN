@@ -6,6 +6,8 @@ import GlobalStyles from "./globalStyles";
 import { BrowserRouter } from "react-router-dom";
 import { IconContext } from "react-icons";
 import { iconStyles } from "./utils/constants";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const queryClient = new QueryClient();
 
@@ -19,6 +21,7 @@ ReactDOM.render(
                 </BrowserRouter>
             </IconContext.Provider>
         </QueryClientProvider>
+        <ToastContainer />
     </React.StrictMode>,
     document.getElementById("root")
 );

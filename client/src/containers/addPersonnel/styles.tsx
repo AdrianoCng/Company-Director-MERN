@@ -14,30 +14,3 @@ export const Main = styled.main`
 export const Title = styled.h2`
     margin-left: 20px;
 `;
-
-export const FormRow = styled.div`
-    display: flex;
-    gap: 20px;
-    align-items: flex-end;
-`;
-
-export const Form = styled.form`
-    ${FormRow}:not(:last-of-type) {
-        margin-bottom: 20px;
-    }
-`;
-
-export const Button = styled.button`
-    position: absolute;
-    right: 20px;
-    bottom: 20px;
-    padding: 10px;
-    background-color: var(--primary);
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 1.04em;
-    font-weight: bold;
-    min-width: 100px;
-    cursor: pointer;
-`;

@@ -57,17 +57,19 @@ export const Wrapper = styled.div<Props>`
         props.$isCollapsed ? sidebarCollapsedWidth : sidebarExpandedWidth};
     background: var(--primary);
     padding: 20px;
-    height: ${(props) => (props.$isCollapsed ? "auto" : "100%")};
     position: fixed;
     left: 0;
     top: 0;
+    bottom: 0;
     transition: ${sidebarTransition("width")};
     color: var(--white);
     font-size: 18px;
     overflow: auto;
+    overflow-x: hidden;
 
     ${Content} {
-        opacity: ${(props) => (props.$isCollapsed ? "0" : "1")};
-        transition: ${sidebarTransition("opacity")};
+        // opacity: ${(props) => (props.$isCollapsed ? "0" : "1")};
+        // transition: ${sidebarTransition("all")};
+        display: ${(props) => props.$isCollapsed && "none"};
     }
 `;

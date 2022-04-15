@@ -3,6 +3,7 @@ import * as S from "./styles";
 import { Wrapper } from "../homepage/styles";
 import { Sidebar } from "../../components/sidebar";
 import { PersonnelDetailsForm } from "../../components/personnelDetailsForm";
+import { PageMeta } from "../../components/pageMeta";
 
 const AddPersonnel = () => {
     const {
@@ -16,7 +17,10 @@ const AddPersonnel = () => {
     return (
         <Wrapper $isCollapsed>
             <Sidebar isCollapsed />
-            <S.Title>Add Personnel</S.Title>
+            <PageMeta
+                title="Add Personnel"
+                description="Add a new entry to the database"
+            />
 
             <S.Main>
                 <PersonnelDetailsForm

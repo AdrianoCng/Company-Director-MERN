@@ -4,6 +4,7 @@ import { PersonnelCard } from "../../components/personnelCard";
 import { Sidebar } from "../../components/sidebar";
 import { LoaderSpinner } from "../../components/loaderSpinner";
 import { Pagination } from "../../components/pagination";
+import { PageMeta } from "../../components/pageMeta";
 
 const Homepage = (): JSX.Element => {
     const {
@@ -39,35 +40,42 @@ const Homepage = (): JSX.Element => {
                 onChange={handleInputOnChange}
             />
 
-            <S.Deck>
-                {allPersonnel.isError &&
-                    "Error Fetching data! Please try again later."}
-                {allPersonnel.data?.data.map(
-                    ({
-                        _id,
-                        first_name,
-                        last_name,
-                        email,
-                        department_name,
-                        location_name,
-                    }) => (
-                        <PersonnelCard
-                            firstName={first_name}
-                            lastName={last_name}
-                            email={email}
-                            department={department_name}
-                            location={location_name}
-                            key={_id}
-                        />
-                    )
-                )}
-            </S.Deck>
+            <S.Main>
+                <PageMeta
+                    title="All Personnel"
+                    description="View the list of all the personnel."
+                />
 
-            <Pagination
-                currentPage={currentPage}
-                lastPage={allPersonnel.data?.last_page || currentPage}
-                changePage={goToPage}
-            />
+                <S.Deck>
+                    {allPersonnel.isError &&
+                        "Error Fetching data! Please try again later."}
+                    {allPersonnel.data?.data.map(
+                        ({
+                            _id,
+                            first_name,
+                            last_name,
+                            email,
+                            department_name,
+                            location_name,
+                        }) => (
+                            <PersonnelCard
+                                firstName={first_name}
+                                lastName={last_name}
+                                email={email}
+                                department={department_name}
+                                location={location_name}
+                                key={_id}
+                            />
+                        )
+                    )}
+                </S.Deck>
+
+                <Pagination
+                    currentPage={currentPage}
+                    lastPage={allPersonnel.data?.last_page || currentPage}
+                    changePage={goToPage}
+                />
+            </S.Main>
 
             {renderLoaderSpinner()}
         </S.Wrapper>

@@ -21,8 +21,8 @@ export const PaginationWrapper = styled.div`
     display: flex;
     gap: 2px;
     position: absolute;
-    right: 40px;
-    bottom: 20px;
+    right: 20px;
+    bottom: 0;
 `;
 
 export const PageButton = styled.div<PageButtonProps>`

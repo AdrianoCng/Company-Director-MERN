@@ -5,10 +5,18 @@ import {
     sidebarTransition,
 } from "../../utils/constants";
 
+export const Main = styled.main`
+    height: 100%;
+    position: relative;
+`;
+
 export const Deck = styled.div`
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
+    margin-top: 20px;
+    max-height: calc(100% - 120px);
+    overflow: scroll;
 `;
 
 interface WrapperProps {
@@ -18,7 +26,7 @@ export const Wrapper = styled.div<WrapperProps>`
     margin-left: ${(props) =>
         props.$isCollapsed ? sidebarCollapsedWidth : sidebarExpandedWidth};
     padding: 20px;
-    min-height: 100vh;
+    height: 100vh;
     transition: ${sidebarTransition("margin")};
 `;
 

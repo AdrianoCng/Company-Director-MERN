@@ -52,7 +52,7 @@ export const SectionGroupContent = styled.div`
 interface Props {
     $isCollapsed: boolean;
 }
-export const Wrapper = styled.div<Props>`
+export const Wrapper = styled.aside<Props>`
     width: ${(props) =>
         props.$isCollapsed ? sidebarCollapsedWidth : sidebarExpandedWidth};
     background: var(--primary);

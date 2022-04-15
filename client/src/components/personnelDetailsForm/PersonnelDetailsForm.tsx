@@ -1,4 +1,4 @@
-import React from "react";
+import { FormEventHandler } from "react";
 import * as S from "./styles";
 import { Avatar } from "../avatar";
 import { Textbox } from "../textbox";
@@ -15,7 +15,7 @@ enum PersonnelDetails {
 }
 
 interface Props {
-    onSubmit: React.FormEventHandler<HTMLFormElement>;
+    onSubmit: FormEventHandler<HTMLFormElement>;
     onInputChange: (name: string, value: string) => void;
     form: {
         first_name: string;

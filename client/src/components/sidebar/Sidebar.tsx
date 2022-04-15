@@ -1,4 +1,4 @@
-import React from "react";
+import { Dispatch, SetStateAction } from "react";
 import { Link, useLocation, matchPath } from "react-router-dom";
 import * as S from "./styles";
 import { GiHamburgerMenu } from "react-icons/gi";
@@ -13,7 +13,7 @@ import { routes } from "../../utils/constants";
 
 interface Props {
     isCollapsed: boolean;
-    toogle?: React.Dispatch<React.SetStateAction<boolean>>;
+    toogle?: Dispatch<SetStateAction<boolean>>;
     locations?: LocationResponseData | undefined;
     departments?: DepartmentResponseObject[] | undefined;
     onChange?: (name: string, value: string) => void;

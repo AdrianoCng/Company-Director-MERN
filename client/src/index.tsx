@@ -1,4 +1,4 @@
-import React from "react";
+import { StrictMode } from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 import { QueryClientProvider, QueryClient } from "react-query";
@@ -12,7 +12,7 @@ import "react-toastify/dist/ReactToastify.css";
 const queryClient = new QueryClient();
 
 ReactDOM.render(
-    <React.StrictMode>
+    <StrictMode>
         <QueryClientProvider client={queryClient}>
             <IconContext.Provider value={iconStyles}>
                 <BrowserRouter>
@@ -22,6 +22,6 @@ ReactDOM.render(
             </IconContext.Provider>
         </QueryClientProvider>
         <ToastContainer />
-    </React.StrictMode>,
+    </StrictMode>,
     document.getElementById("root")
 );

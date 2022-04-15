@@ -1,4 +1,3 @@
-import React from "react";
 import * as S from "./styles";
 import useHomepage from "../../hooks/useHomepage";
 import { PersonnelCard } from "../../components/personnelCard";

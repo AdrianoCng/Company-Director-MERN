@@ -1,3 +1,51 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
-export const PaginationWrapper = styled.div``;
+interface PageButtonProps {
+    $active?: boolean;
+}
+
+const shaking = keyframes`
+    25% {transform: rotate(-10deg);}
+    50% {transform: rotate(10deg);}
+    75% {transform: rotate(-5deg);}
+    100% {transform: rotate(0deg);}
+`;
+
+const activePageStyles = `
+    background: var(--primary);
+    color: var(--white);
+    font-weight: bold;
+`;
+
+export const PaginationWrapper = styled.div`
+    display: flex;
+    gap: 2px;
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+`;
+
+export const PageButton = styled.div<PageButtonProps>`
+    height: 30px;
+    width: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 1.15em;
+    border-radius: 2px;
+    padding: 15px;
+
+    &:hover {
+        ${activePageStyles}
+        animation: ${shaking} 300ms ease;
+        opacity: ${({ $active }) => !$active && "0.65"};
+    }
+
+    ${({ $active }) =>
+        !!$active &&
+        `
+        ${activePageStyles} 
+        cursor: default;
+    `}
+`;

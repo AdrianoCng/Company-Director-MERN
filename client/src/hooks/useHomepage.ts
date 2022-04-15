@@ -63,6 +63,10 @@ const useHomepage = () => {
         setCurrentPage((prev) => prev - 1);
     };
 
+    const goToPage = (page: number) => {
+        setCurrentPage(page);
+    };
+
     /**
      * Handle onChange event fired when filtering by location or department
      * Populate queryParams with key=value pair
@@ -72,6 +76,8 @@ const useHomepage = () => {
      * @param value
      */
     const handleInputOnChange = (name: string, value: string): void => {
+        setCurrentPage(1);
+
         setQueryParams((prev) => {
             let options = prev[name];
 
@@ -100,6 +106,8 @@ const useHomepage = () => {
         departments,
         isCollapsed,
         handleInputOnChange,
+        goToPage,
+        currentPage,
     };
 };
 

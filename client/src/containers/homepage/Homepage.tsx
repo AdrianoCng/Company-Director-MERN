@@ -4,6 +4,7 @@ import useHomepage from "../../hooks/useHomepage";
 import { PersonnelCard } from "../../components/personnelCard";
 import { Sidebar } from "../../components/sidebar";
 import { LoaderSpinner } from "../../components/loaderSpinner";
+import { Pagination } from "../../components/pagination";
 
 const Homepage = (): JSX.Element => {
     const {
@@ -13,6 +14,8 @@ const Homepage = (): JSX.Element => {
         locations,
         departments,
         handleInputOnChange,
+        goToPage,
+        currentPage,
     } = useHomepage();
 
     const renderLoaderSpinner = () => {
@@ -60,6 +63,12 @@ const Homepage = (): JSX.Element => {
                     )
                 )}
             </S.Deck>
+
+            <Pagination
+                currentPage={currentPage}
+                lastPage={allPersonnel.data?.last_page || currentPage}
+                changePage={goToPage}
+            />
 
             {renderLoaderSpinner()}
         </S.Wrapper>

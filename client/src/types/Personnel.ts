@@ -11,4 +11,10 @@ export interface PersonnelObject {
 
 export interface PersonnelResponseData {
     data: PersonnelObject[];
+    page: number;
+    from: number;
+    to: number;
+    last_page: number;
+    per_page: number;
+    total: number;
 }

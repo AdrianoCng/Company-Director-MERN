@@ -13,6 +13,7 @@ const Pagination = ({
     const renderPages: () => JSX.Element[] = () => {
         return Array.from({ length: lastPage }, (_, i) => i + 1).map((page) => (
             <S.PageButton
+                key={page}
                 $active={page === currentPage}
                 onClick={() => changePage(page)}
             >

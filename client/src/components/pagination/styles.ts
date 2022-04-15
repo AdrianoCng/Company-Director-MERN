@@ -21,7 +21,7 @@ export const PaginationWrapper = styled.div`
     display: flex;
     gap: 2px;
     position: absolute;
-    right: 20px;
+    right: 40px;
     bottom: 20px;
 `;
 

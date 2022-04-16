@@ -49,6 +49,7 @@ const Homepage = (): JSX.Element => {
                 <S.Deck>
                     {allPersonnel.isError &&
                         "Error Fetching data! Please try again later."}
+                    {renderLoaderSpinner()}
                     {allPersonnel.data?.data.map(
                         ({
                             _id,
@@ -76,8 +77,6 @@ const Homepage = (): JSX.Element => {
                     changePage={goToPage}
                 />
             </S.Main>
-
-            {renderLoaderSpinner()}
         </S.Wrapper>
     );
 };

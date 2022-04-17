@@ -139,6 +139,7 @@ const useAddPersonnel = ({ personnelID }: Props) => {
                     location_name,
                 });
             },
+            refetchOnWindowFocus: false,
         }
     );
 

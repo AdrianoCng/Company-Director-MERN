@@ -11,3 +11,12 @@ export const Form = styled.form`
         margin-bottom: 20px;
     }
 `;
+
+export const ButtonsContainer = styled.div`
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
+`;

@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
 export const Button = styled.button`
-    position: absolute;
-    right: 20px;
-    bottom: 20px;
+    // position: absolute;
+    // right: 20px;
+    // bottom: 20px;
     padding: 10px;
     background-color: var(--primary);
     color: white;

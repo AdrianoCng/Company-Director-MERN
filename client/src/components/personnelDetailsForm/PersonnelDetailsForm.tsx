@@ -26,6 +26,7 @@ interface Props {
     };
     locationOptions: OptionSelectField[];
     departmentOptions: OptionSelectField[];
+    isEditing: boolean;
 }
 
 const PersonnelDetailsForm = ({
@@ -34,9 +35,25 @@ const PersonnelDetailsForm = ({
     form,
     locationOptions,
     departmentOptions,
+    isEditing,
 }: Props) => {
     const { first_name, last_name, email, location_name, department_name } =
         form;
+
+    const renderButton = (): JSX.Element => {
+        if (isEditing) {
+            return (
+                <>
+                    <Button type="button" onClick={() => alert("Delete")}>
+                        Delete
+                    </Button>
+                    <Button type="submit">Edit</Button>
+                </>
+            );
+        }
+
+        return <Button type="submit">Add</Button>;
+    };
 
     return (
         <>
@@ -88,7 +105,7 @@ const PersonnelDetailsForm = ({
                     />
                 </S.FormRow>
 
-                <Button type="submit">Add</Button>
+                <S.ButtonsContainer>{renderButton()}</S.ButtonsContainer>
             </S.Form>
         </>
     );

@@ -35,6 +35,7 @@ const AddPersonnel = () => {
                     form={form}
                     locationOptions={locationOptions}
                     departmentOptions={departmentOptions}
+                    isEditing={isEditing()}
                 />
             </S.Main>
         </Wrapper>

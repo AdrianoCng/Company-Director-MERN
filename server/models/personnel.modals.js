@@ -2,11 +2,18 @@ const { ObjectId } = require("mongodb");
 const db = require("../db");
 
 module.exports.create = (obj, cb) => {
-    const db_connect = db.getDb()
+    const db_connect = db.getDb();
 
-    const { first_name, last_name, email, department_name, location_name } = obj;
+    const { first_name, last_name, email, department_name, location_name } =
+        obj;
 
-    if (!first_name || !last_name || !email || !department_name || !location_name) {
+    if (
+        !first_name ||
+        !last_name ||
+        !email ||
+        !department_name ||
+        !location_name
+    ) {
         throw new Error();
     }
 
@@ -18,10 +25,10 @@ module.exports.create = (obj, cb) => {
         location_name,
         created_at: new Date(),
         last_modified: null,
-    }
+    };
 
-    db_connect.collection("personnel").insertOne(record, cb)
-}
+    db_connect.collection("personnel").insertOne(record, cb);
+};
 
 module.exports.get_all = (filters, cb) => {
     const db_connect = db.getDb();
@@ -32,13 +39,13 @@ module.exports.get_all = (filters, cb) => {
         if (!filters[keys]) {
             continue;
         }
-        query[keys] = { $in: filters[keys].split(",") }
+        query[keys] = { $in: filters[keys].split(",") };
     }
 
     const cursor = db_connect.collection("personnel").find(query);
 
     return cb(cursor);
-}
+};
 
 module.exports.get_by_id = (id, cb) => {
     if (!id) {
@@ -47,8 +54,8 @@ module.exports.get_by_id = (id, cb) => {
 
     const db_connect = db.getDb();
 
-    db_connect.collection("personnel").findOne({ _id: ObjectId(id) }, cb)
-}
+    db_connect.collection("personnel").findOne({ _id: ObjectId(id) }, cb);
+};
 
 module.exports.delete = (id, cb) => {
     if (!id) {
@@ -58,7 +65,7 @@ module.exports.delete = (id, cb) => {
     const db_connect = db.getDb();
 
     db_connect.collection("personnel").deleteOne({ _id: ObjectId(id) }, cb);
-}
+};
 
 module.exports.update_personnel = (id, body, cb) => {
     if (!id) {
@@ -74,8 +81,8 @@ module.exports.update_personnel = (id, body, cb) => {
             case "first_name":
             case "last_name":
             case "email":
-            case "department_id":
-            case "location_id": {
+            case "department_name":
+            case "location_name": {
                 fields[field] = body[field];
                 break;
             }
@@ -83,13 +90,17 @@ module.exports.update_personnel = (id, body, cb) => {
     }
 
     if (Object.keys(fields).length === 0) {
-        return cb(new Error("No fields to updated"))
+        return cb(new Error("No fields to updated"));
     }
 
-    db_connect.collection("personnel").updateOne({ _id: ObjectId(id) }, {
-        $set: fields,
-        $currentDate: {
-            last_modified: true
-        }
-    }, cb)
-}
+    db_connect.collection("personnel").updateOne(
+        { _id: ObjectId(id) },
+        {
+            $set: fields,
+            $currentDate: {
+                last_modified: true,
+            },
+        },
+        cb
+    );
+};

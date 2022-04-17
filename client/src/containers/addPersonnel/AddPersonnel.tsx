@@ -4,23 +4,29 @@ import { Wrapper } from "../homepage/styles";
 import { Sidebar } from "../../components/sidebar";
 import { PersonnelDetailsForm } from "../../components/personnelDetailsForm";
 import { PageMeta } from "../../components/pageMeta";
+import { useParams } from "react-router-dom";
 
 const AddPersonnel = () => {
+    const { id } = useParams();
     const {
         handleInputOnChange,
         form,
         handleFormOnSubmit,
         locationOptions,
         departmentOptions,
-    } = useAddPersonnel();
+    } = useAddPersonnel({ personnelID: id });
+
+    const isEditing = () => !!id;
+
+    const pageTitle = isEditing() ? "Edit Personnel" : "Add Personnel";
+    const pageDescription = isEditing()
+        ? "Edit details about this record."
+        : "Add a new entry to the database";
 
     return (
         <Wrapper $isCollapsed>
             <Sidebar isCollapsed />
-            <PageMeta
-                title="Add Personnel"
-                description="Add a new entry to the database"
-            />
+            <PageMeta title={pageTitle} description={pageDescription} />
 
             <S.Main>
                 <PersonnelDetailsForm

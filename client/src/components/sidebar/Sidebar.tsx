@@ -49,9 +49,7 @@ const Sidebar = ({
                     </Link>
                 </>
             );
-        }
-
-        if (matchPath(location.pathname, routes.addPersonnel)) {
+        } else {
             return (
                 <Link to={routes.homepage}>
                     <S.Button>

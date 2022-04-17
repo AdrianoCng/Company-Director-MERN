@@ -65,6 +65,7 @@ const Homepage = (): JSX.Element => {
                                 email={email}
                                 department={department_name}
                                 location={location_name}
+                                id={_id}
                                 key={_id}
                             />
                         )

@@ -18,3 +18,7 @@ export interface PersonnelResponseData {
     per_page: number;
     total: number;
 }
+
+export interface PersonnelDetailsResponseData {
+    data: PersonnelObject;
+}

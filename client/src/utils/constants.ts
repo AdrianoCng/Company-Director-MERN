@@ -4,6 +4,12 @@ export const apiEndpoints = {
     personnel: {
         getAll: "/api/personnel",
         add: "/api/personnel",
+        getByID({ personnelID }: { personnelID: string }) {
+            return `/api/personnel/${personnelID}`;
+        },
+        updateByID({ personnelID }: { personnelID: string }) {
+            return `/api/personnel/${personnelID}`;
+        },
     },
     location: {
         getAll: "/api/location",
@@ -15,7 +21,8 @@ export const apiEndpoints = {
 
 export const routes = {
     homepage: "/",
-    addPersonnel: "/add-personnel",
+    addPersonnel: "/personnel",
+    editPersonnel: "/personnel",
 };
 
 export const sidebarCollapsedWidth = "64px";

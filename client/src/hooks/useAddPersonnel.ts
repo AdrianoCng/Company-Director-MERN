@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
-import { useMutation } from "react-query";
+import { useMutation, useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
 import { OptionSelectField } from "../types/SelectField";
 import { api } from "../utils";
 import { apiEndpoints, routes } from "../utils/constants";
 import useHomepage from "./useHomepage";
 import { toast } from "react-toastify";
+import { PersonnelDetailsResponseData } from "../types/Personnel";
 
 const initialAddPersonnelForm: AddPersonnelForm = {
     first_name: "",
@@ -23,7 +24,10 @@ interface AddPersonnelForm {
     location_name: string;
 }
 
-const useAddPersonnel = () => {
+interface Props {
+    personnelID?: string;
+}
+const useAddPersonnel = ({ personnelID }: Props) => {
     const navigate = useNavigate();
     const { locations, departments } = useHomepage();
 
@@ -50,7 +54,7 @@ const useAddPersonnel = () => {
     const handleFormOnSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
         e.preventDefault();
 
-        addPersonnel.mutate(form);
+        !!personnelID ? editPersonnel(form) : addPersonnel(form);
     };
 
     const populateLocationOptions = () => {
@@ -75,7 +79,7 @@ const useAddPersonnel = () => {
         setDepartmentOptions(departmentsList || []);
     };
 
-    const addPersonnel = useMutation(
+    const { mutate: addPersonnel } = useMutation(
         (newPersonnel: AddPersonnelForm) => {
             return api.post(apiEndpoints.personnel.add, newPersonnel);
         },
@@ -87,12 +91,64 @@ const useAddPersonnel = () => {
         }
     );
 
+    const { mutate: editPersonnel } = useMutation(
+        (updatedPersonnel: AddPersonnelForm) => {
+            return api.put(
+                apiEndpoints.personnel.updateByID({
+                    personnelID: personnelID || "",
+                }),
+                updatedPersonnel
+            );
+        },
+        {
+            onSuccess: (res) => {
+                navigate(routes.homepage);
+                toast("Record successfully updated.");
+            },
+        }
+    );
+
+    const PersonnelDetails = useQuery(
+        ["personnel details", personnelID],
+        async () => {
+            if (typeof personnelID === "string") {
+                const { data } = await api.get<PersonnelDetailsResponseData>(
+                    apiEndpoints.personnel.getByID({ personnelID })
+                );
+                return data;
+            }
+
+            throw new Error("Error occured while fetching personnel details.");
+        },
+        {
+            enabled: !!personnelID,
+            onSuccess: ({ data }) => {
+                const {
+                    first_name,
+                    last_name,
+                    email,
+                    department_name,
+                    location_name,
+                } = data;
+
+                setForm({
+                    first_name,
+                    last_name,
+                    email,
+                    department_name,
+                    location_name,
+                });
+            },
+        }
+    );
+
     return {
         handleInputOnChange,
         form,
         handleFormOnSubmit,
         locationOptions,
         departmentOptions,
+        PersonnelDetails,
     };
 };
 

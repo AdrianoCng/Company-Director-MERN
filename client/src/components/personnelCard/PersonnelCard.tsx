@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import * as S from "./styles";
 import avatar from "../../assets/avatar.jpg";
 import {
@@ -5,6 +6,7 @@ import {
     AiFillGoogleSquare,
     AiFillTwitterSquare,
 } from "react-icons/ai";
+import { routes } from "../../utils/constants";
 
 interface Props {
     firstName: string;
@@ -12,6 +14,7 @@ interface Props {
     email: string;
     department: string;
     location: string;
+    id: string;
 }
 
 const PersonnelCard = ({
@@ -20,6 +23,7 @@ const PersonnelCard = ({
     email,
     department,
     location,
+    id,
 }: Props) => {
     return (
         <S.Card>
@@ -31,7 +35,9 @@ const PersonnelCard = ({
 
             <S.Body>
                 <h3>
-                    <a href="#">{`${firstName} ${lastName}`}</a>
+                    <Link
+                        to={`${routes.editPersonnel}/${id}`}
+                    >{`${firstName} ${lastName}`}</Link>
                 </h3>
                 <span>{department}</span>
                 <span>{location}</span>

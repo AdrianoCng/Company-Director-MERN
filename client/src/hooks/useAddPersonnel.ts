@@ -91,15 +91,18 @@ const useAddPersonnel = ({ personnelID }: Props) => {
         }
     );
 
-    // TODO: Refactor to throw an error if personnelID is undefined
     const { mutate: editPersonnel } = useMutation(
         (updatedPersonnel: AddPersonnelForm) => {
-            return api.put(
-                apiEndpoints.personnel.updateByID({
-                    personnelID: personnelID || "",
-                }),
-                updatedPersonnel
-            );
+            if (typeof personnelID === "string") {
+                return api.put(
+                    apiEndpoints.personnel.updateByID({
+                        personnelID: personnelID || "",
+                    }),
+                    updatedPersonnel
+                );
+            }
+
+            throw new Error("Invalid ID.");
         },
         {
             onSuccess: (res) => {

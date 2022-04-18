@@ -7,6 +7,31 @@ import { apiEndpoints, routes } from "../utils/constants";
 import useHomepage from "./useHomepage";
 import { toast } from "react-toastify";
 import { PersonnelDetailsResponseData } from "../types/Personnel";
+import { AxiosError } from "axios";
+
+export enum PersonnelDetails {
+    FIRST_NAME = "first_name",
+    LAST_NAME = "last_name",
+    EMAIL = "email",
+    LOCATION = "location_name",
+    DEPARTMENT = "department_name",
+}
+
+type AddPersonnelForm = {
+    [key in PersonnelDetails]: string;
+};
+
+export interface IFormErrors extends AddPersonnelForm {}
+
+interface FormErrorResponseObject {
+    value: string;
+    msg: string;
+    param: string;
+    location: string;
+}
+interface AxiosFormErrorResponse {
+    errors: FormErrorResponseObject[];
+}
 
 const initialAddPersonnelForm: AddPersonnelForm = {
     first_name: "",
@@ -16,14 +41,6 @@ const initialAddPersonnelForm: AddPersonnelForm = {
     location_name: "",
 };
 
-interface AddPersonnelForm {
-    first_name: string;
-    last_name: string;
-    email: string;
-    department_name: string;
-    location_name: string;
-}
-
 interface Props {
     personnelID?: string;
 }
@@ -32,6 +49,9 @@ const useAddPersonnel = ({ personnelID }: Props) => {
     const { locations, departments } = useHomepage();
 
     const [form, setForm] = useState<AddPersonnelForm>(initialAddPersonnelForm);
+    const [formErrors, setFormErrors] = useState<IFormErrors>(
+        initialAddPersonnelForm
+    );
     const [locationOptions, setLocationOptions] = useState<OptionSelectField[]>(
         []
     );
@@ -79,21 +99,38 @@ const useAddPersonnel = ({ personnelID }: Props) => {
         setDepartmentOptions(departmentsList || []);
     };
 
+    // TODO: type Axios response
+    // TODO: Client validation
+    // TODO: Refactor onError to be reusabled
     const { mutate: addPersonnel } = useMutation(
         (newPersonnel: AddPersonnelForm) => {
+            cleanFormErrors();
+
             return api.post(apiEndpoints.personnel.add, newPersonnel);
         },
         {
-            onSuccess: (res) => {
+            onSuccess: () => {
                 navigate(routes.homepage);
                 toast("Record successfully added.");
+            },
+            onError: (err: AxiosError<AxiosFormErrorResponse>) => {
+                const errors = err.response?.data.errors;
+
+                errors?.forEach(({ param, msg }) => {
+                    setFormErrors((prev) => ({ ...prev, [param]: msg }));
+                });
             },
         }
     );
 
+    // TODO: type Axios response
+    // TODO: Client validation
+    // TODO: Refactor onError to be reusabled
     const { mutate: editPersonnel } = useMutation(
         (updatedPersonnel: AddPersonnelForm) => {
             if (typeof personnelID === "string") {
+                cleanFormErrors();
+
                 return api.put(
                     apiEndpoints.personnel.updateByID({
                         personnelID: personnelID || "",
@@ -105,9 +142,16 @@ const useAddPersonnel = ({ personnelID }: Props) => {
             throw new Error("Invalid ID.");
         },
         {
-            onSuccess: (res) => {
+            onSuccess: () => {
                 navigate(routes.homepage);
                 toast("Record successfully updated.");
+            },
+            onError: (err: AxiosError<AxiosFormErrorResponse>) => {
+                const errors = err.response?.data.errors;
+
+                errors?.forEach(({ param, msg }) => {
+                    setFormErrors((prev) => ({ ...prev, [param]: msg }));
+                });
             },
         }
     );
@@ -147,6 +191,10 @@ const useAddPersonnel = ({ personnelID }: Props) => {
         }
     );
 
+    const cleanFormErrors = () => {
+        setFormErrors(initialAddPersonnelForm);
+    };
+
     return {
         handleInputOnChange,
         form,
@@ -154,6 +202,7 @@ const useAddPersonnel = ({ personnelID }: Props) => {
         locationOptions,
         departmentOptions,
         PersonnelDetails,
+        formErrors,
     };
 };
 

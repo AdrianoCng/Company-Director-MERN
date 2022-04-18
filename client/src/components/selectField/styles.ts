@@ -21,3 +21,8 @@ export const Container = styled.div`
     position: relative;
     width: 100%;
 `;
+
+export const Error = styled.span`
+    font-size: 0.75em;
+    color: orange;
+`;

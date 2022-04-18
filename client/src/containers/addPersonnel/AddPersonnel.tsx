@@ -14,6 +14,7 @@ const AddPersonnel = () => {
         handleFormOnSubmit,
         locationOptions,
         departmentOptions,
+        formErrors,
     } = useAddPersonnel({ personnelID: id });
 
     const isEditing = () => !!id;
@@ -33,6 +34,7 @@ const AddPersonnel = () => {
                     onSubmit={handleFormOnSubmit}
                     onInputChange={handleInputOnChange}
                     form={form}
+                    formErrors={formErrors}
                     locationOptions={locationOptions}
                     departmentOptions={departmentOptions}
                     isEditing={isEditing()}

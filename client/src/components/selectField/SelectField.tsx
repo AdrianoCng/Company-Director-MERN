@@ -7,8 +7,16 @@ interface Props {
     name: string;
     value: string;
     label?: string;
+    error?: string;
 }
-const SelectField = ({ options, onChange, name, value, label }: Props) => {
+const SelectField = ({
+    options,
+    onChange,
+    name,
+    value,
+    label,
+    error,
+}: Props) => {
     const renderLabel = () => {
         if (!label) {
             return null;
@@ -29,6 +37,14 @@ const SelectField = ({ options, onChange, name, value, label }: Props) => {
         ));
     };
 
+    const renderError = () => {
+        if (!error) {
+            return null;
+        }
+
+        return <S.Error>{error}</S.Error>;
+    };
+
     return (
         <S.Container>
             {renderLabel()}
@@ -42,6 +58,8 @@ const SelectField = ({ options, onChange, name, value, label }: Props) => {
             >
                 {renderOptions()}
             </S.SelectInput>
+
+            {renderError()}
         </S.Container>
     );
 };

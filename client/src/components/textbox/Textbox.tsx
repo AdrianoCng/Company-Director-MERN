@@ -8,6 +8,7 @@ interface Props {
     placeholder?: string;
     label?: string;
     required?: boolean;
+    error?: string;
 }
 
 const Textbox = ({
@@ -17,7 +18,8 @@ const Textbox = ({
     id,
     placeholder,
     label,
-    required,
+    required = false,
+    error,
 }: Props) => {
     const renderLabel = () => {
         if (!label) {
@@ -25,6 +27,14 @@ const Textbox = ({
         }
 
         return <S.Label htmlFor={id}>{label}</S.Label>;
+    };
+
+    const renderError = () => {
+        if (!error) {
+            return null;
+        }
+
+        return <S.Error>{error}</S.Error>;
     };
 
     return (
@@ -41,6 +51,8 @@ const Textbox = ({
                 placeholder={placeholder}
                 required={required}
             />
+
+            {renderError()}
         </S.Container>
     );
 };

@@ -5,14 +5,8 @@ import { Textbox } from "../textbox";
 import { SelectField } from "../selectField";
 import { OptionSelectField } from "../../types/SelectField";
 import { Button } from "../button";
-
-enum PersonnelDetails {
-    FIRST_NAME = "first_name",
-    LAST_NAME = "last_name",
-    EMAIL = "email",
-    LOCATION = "location_name",
-    DEPARTMENT = "department_name",
-}
+import { IFormErrors } from "../../hooks/useAddPersonnel";
+import { PersonnelDetails } from "../../hooks/useAddPersonnel";
 
 interface Props {
     onSubmit: FormEventHandler<HTMLFormElement>;
@@ -27,6 +21,7 @@ interface Props {
     locationOptions: OptionSelectField[];
     departmentOptions: OptionSelectField[];
     isEditing: boolean;
+    formErrors: IFormErrors;
 }
 
 const PersonnelDetailsForm = ({
@@ -36,6 +31,7 @@ const PersonnelDetailsForm = ({
     locationOptions,
     departmentOptions,
     isEditing,
+    formErrors,
 }: Props) => {
     const { first_name, last_name, email, location_name, department_name } =
         form;
@@ -65,15 +61,15 @@ const PersonnelDetailsForm = ({
                         name={PersonnelDetails.FIRST_NAME}
                         value={first_name}
                         onChange={onInputChange}
-                        required
                         label="First Name"
+                        error={formErrors[PersonnelDetails.FIRST_NAME]}
                     />
                     <Textbox
                         name={PersonnelDetails.LAST_NAME}
                         label="Last Name"
                         value={last_name}
                         onChange={onInputChange}
-                        required
+                        error={formErrors[PersonnelDetails.LAST_NAME]}
                     />
                 </S.FormRow>
 
@@ -83,7 +79,7 @@ const PersonnelDetailsForm = ({
                         label="Email"
                         value={email}
                         onChange={onInputChange}
-                        required
+                        error={formErrors[PersonnelDetails.EMAIL]}
                     />
                 </S.FormRow>
 
@@ -94,6 +90,7 @@ const PersonnelDetailsForm = ({
                         value={location_name}
                         onChange={onInputChange}
                         label={"Location"}
+                        error={formErrors[PersonnelDetails.LOCATION]}
                     />
 
                     <SelectField
@@ -102,6 +99,7 @@ const PersonnelDetailsForm = ({
                         onChange={onInputChange}
                         value={department_name}
                         label={"Department"}
+                        error={formErrors[PersonnelDetails.DEPARTMENT]}
                     />
                 </S.FormRow>
 

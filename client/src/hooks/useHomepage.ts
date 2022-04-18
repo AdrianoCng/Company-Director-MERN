@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useQuery } from "react-query";
-import { PersonnelResponseData } from "../types/Personnel";
-import { DepartmentResponseObject } from "../types/Department";
-import { LocationResponseData } from "../types/Location";
+import { PersonnelResponseData } from "../types/personnel.types";
+import { DepartmentResponseObject } from "../types/department.types";
+import { LocationResponseData } from "../types/location.types";
 import { api } from "../utils";
 import { apiEndpoints } from "../utils/constants";
 

@@ -1,5 +1,5 @@
 import * as S from "./styles";
-import { OptionSelectField } from "../../types/SelectField";
+import { OptionSelectField } from "../../types/selectField.types";
 
 interface Props {
     onChange: (name: string, value: string) => void;

@@ -3,9 +3,9 @@ import * as S from "./styles";
 import { Avatar } from "../avatar";
 import { Textbox } from "../textbox";
 import { SelectField } from "../selectField";
-import { OptionSelectField } from "../../types/SelectField";
+import { OptionSelectField } from "../../types/selectField.types";
 import { Button } from "../button";
-import { IFormErrors, PersonnelDetails } from "../../hooks/usePersonnel";
+import { IFormErrors, PersonnelDetails } from "../../types/personnel.types";
 
 interface Props {
     onSubmit: FormEventHandler<HTMLFormElement>;

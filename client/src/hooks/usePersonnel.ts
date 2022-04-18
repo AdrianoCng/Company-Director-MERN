@@ -1,37 +1,22 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import { useMutation, useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
-import { OptionSelectField } from "../types/SelectField";
+import { OptionSelectField } from "../types/selectField.types";
 import { api } from "../utils";
 import { apiEndpoints, routes } from "../utils/constants";
 import useHomepage from "./useHomepage";
 import { toast } from "react-toastify";
-import { PersonnelDetailsResponseData } from "../types/Personnel";
+import {
+    IFormErrors,
+    PersonnelDetails,
+    PersonnelDetailsResponseData,
+} from "../types/personnel.types";
 import { AxiosError } from "axios";
-
-export enum PersonnelDetails {
-    FIRST_NAME = "first_name",
-    LAST_NAME = "last_name",
-    EMAIL = "email",
-    LOCATION = "location_name",
-    DEPARTMENT = "department_name",
-}
+import { AxiosFormErrorResponse } from "../types/axios.types";
 
 type AddPersonnelForm = {
     [key in PersonnelDetails]: string;
 };
-
-export interface IFormErrors extends AddPersonnelForm {}
-
-interface FormErrorResponseObject {
-    value: string;
-    msg: string;
-    param: string;
-    location: string;
-}
-interface AxiosFormErrorResponse {
-    errors: FormErrorResponseObject[];
-}
 
 const initialAddPersonnelForm: AddPersonnelForm = {
     first_name: "",
@@ -83,15 +68,40 @@ const usePersonnel = ({ personnelID }: Props) => {
         setDepartmentOptions(departmentsList || []);
     }, [departments.data]);
 
-    const handleInputOnChange = (name: string, value: string) => {
-        setForm((prev) => ({ ...prev, [name]: value }));
-    };
+    const PersonnelDetails = useQuery(
+        ["personnel details", personnelID],
+        async () => {
+            if (typeof personnelID === "string") {
+                const { data } = await api.get<PersonnelDetailsResponseData>(
+                    apiEndpoints.personnel.getByID({ personnelID })
+                );
+                return data;
+            }
 
-    const handleFormOnSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
-        e.preventDefault();
+            throw new Error("Error occured while fetching personnel details.");
+        },
+        {
+            enabled: !!personnelID,
+            onSuccess: ({ data }) => {
+                const {
+                    first_name,
+                    last_name,
+                    email,
+                    department_name,
+                    location_name,
+                } = data;
 
-        !!personnelID ? editPersonnel(form) : addPersonnel(form);
-    };
+                setForm({
+                    first_name,
+                    last_name,
+                    email,
+                    department_name,
+                    location_name,
+                });
+            },
+            refetchOnWindowFocus: false,
+        }
+    );
 
     // TODO: type Axios response
     // TODO: Client validation
@@ -150,40 +160,15 @@ const usePersonnel = ({ personnelID }: Props) => {
         }
     );
 
-    const PersonnelDetails = useQuery(
-        ["personnel details", personnelID],
-        async () => {
-            if (typeof personnelID === "string") {
-                const { data } = await api.get<PersonnelDetailsResponseData>(
-                    apiEndpoints.personnel.getByID({ personnelID })
-                );
-                return data;
-            }
+    const handleInputOnChange = (name: string, value: string) => {
+        setForm((prev) => ({ ...prev, [name]: value }));
+    };
 
-            throw new Error("Error occured while fetching personnel details.");
-        },
-        {
-            enabled: !!personnelID,
-            onSuccess: ({ data }) => {
-                const {
-                    first_name,
-                    last_name,
-                    email,
-                    department_name,
-                    location_name,
-                } = data;
+    const handleFormOnSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
+        e.preventDefault();
 
-                setForm({
-                    first_name,
-                    last_name,
-                    email,
-                    department_name,
-                    location_name,
-                });
-            },
-            refetchOnWindowFocus: false,
-        }
-    );
+        !!personnelID ? editPersonnel(form) : addPersonnel(form);
+    };
 
     const cleanFormErrors = () => {
         setFormErrors(initialAddPersonnelForm);

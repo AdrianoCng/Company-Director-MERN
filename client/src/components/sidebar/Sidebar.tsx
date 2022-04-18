@@ -7,8 +7,8 @@ import { MdOutlineLocationCity } from "react-icons/md";
 import { FaUserPlus } from "react-icons/fa";
 import { TiArrowBack } from "react-icons/ti";
 import { Checkbox } from "../checkbox";
-import { LocationResponseData } from "../../types/Location";
-import { DepartmentResponseObject } from "../../types/Department";
+import { LocationResponseData } from "../../types/location.types";
+import { DepartmentResponseObject } from "../../types/department.types";
 import { routes } from "../../utils/constants";
 
 interface Props {

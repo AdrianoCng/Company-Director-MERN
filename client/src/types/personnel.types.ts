@@ -22,3 +22,17 @@ export interface PersonnelResponseData {
 export interface PersonnelDetailsResponseData {
     data: PersonnelObject;
 }
+
+export enum PersonnelDetails {
+    FIRST_NAME = "first_name",
+    LAST_NAME = "last_name",
+    EMAIL = "email",
+    LOCATION = "location_name",
+    DEPARTMENT = "department_name",
+}
+
+export type AddPersonnelForm = {
+    [key in PersonnelDetails]: string;
+};
+
+export interface IFormErrors extends AddPersonnelForm {}

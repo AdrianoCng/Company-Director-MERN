@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useMutation, useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
 import { OptionSelectField } from "../types/SelectField";
@@ -59,12 +59,28 @@ const usePersonnel = ({ personnelID }: Props) => {
         OptionSelectField[]
     >([]);
 
+    /** Populate location options */
     useEffect(() => {
-        populateLocationOptions();
-    }, [locations.data]);
+        const locationsList = locations.data?.data.map(
+            ({ name }): OptionSelectField => ({
+                label: name,
+                value: name,
+            })
+        );
 
+        setLocationOptions(locationsList || []);
+    }, [locations.data?.data]);
+
+    /** Populate department options */
     useEffect(() => {
-        populateDepartmentOptions();
+        const departmentsList = departments.data?.map(
+            ({ name }): OptionSelectField => ({
+                label: name,
+                value: name,
+            })
+        );
+
+        setDepartmentOptions(departmentsList || []);
     }, [departments.data]);
 
     const handleInputOnChange = (name: string, value: string) => {
@@ -75,28 +91,6 @@ const usePersonnel = ({ personnelID }: Props) => {
         e.preventDefault();
 
         !!personnelID ? editPersonnel(form) : addPersonnel(form);
-    };
-
-    const populateLocationOptions = () => {
-        const locationsList = locations.data?.data.map(
-            ({ name }): OptionSelectField => ({
-                label: name,
-                value: name,
-            })
-        );
-
-        setLocationOptions(locationsList || []);
-    };
-
-    const populateDepartmentOptions = () => {
-        const departmentsList = departments.data?.map(
-            ({ name }): OptionSelectField => ({
-                label: name,
-                value: name,
-            })
-        );
-
-        setDepartmentOptions(departmentsList || []);
     };
 
     // TODO: type Axios response

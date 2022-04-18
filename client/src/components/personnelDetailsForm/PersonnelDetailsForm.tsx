@@ -5,8 +5,7 @@ import { Textbox } from "../textbox";
 import { SelectField } from "../selectField";
 import { OptionSelectField } from "../../types/SelectField";
 import { Button } from "../button";
-import { IFormErrors } from "../../hooks/useAddPersonnel";
-import { PersonnelDetails } from "../../hooks/useAddPersonnel";
+import { IFormErrors, PersonnelDetails } from "../../hooks/usePersonnel";
 
 interface Props {
     onSubmit: FormEventHandler<HTMLFormElement>;

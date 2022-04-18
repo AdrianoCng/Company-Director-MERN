@@ -44,7 +44,7 @@ const initialAddPersonnelForm: AddPersonnelForm = {
 interface Props {
     personnelID?: string;
 }
-const useAddPersonnel = ({ personnelID }: Props) => {
+const usePersonnel = ({ personnelID }: Props) => {
     const navigate = useNavigate();
     const { locations, departments } = useHomepage();
 
@@ -206,4 +206,4 @@ const useAddPersonnel = ({ personnelID }: Props) => {
     };
 };
 
-export default useAddPersonnel;
+export default usePersonnel;

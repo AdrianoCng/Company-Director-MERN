@@ -1,4 +1,4 @@
-import useAddPersonnel from "../../hooks/useAddPersonnel";
+import usePersonnel from "../../hooks/usePersonnel";
 import * as S from "./styles";
 import { Wrapper } from "../homepage/styles";
 import { Sidebar } from "../../components/sidebar";
@@ -15,7 +15,7 @@ const AddPersonnel = () => {
         locationOptions,
         departmentOptions,
         formErrors,
-    } = useAddPersonnel({ personnelID: id });
+    } = usePersonnel({ personnelID: id });
 
     const isEditing = () => !!id;
 

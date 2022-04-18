@@ -12,7 +12,10 @@ import {
     PersonnelDetailsResponseData,
 } from "../types/personnel.types";
 import { AxiosError } from "axios";
-import { AxiosFormErrorResponse } from "../types/axios.types";
+import {
+    AxiosFormErrorResponse,
+    FormErrorResponseObject,
+} from "../types/axios.types";
 
 const initialAddPersonnelForm: AddPersonnelForm = {
     first_name: "",
@@ -101,7 +104,6 @@ const usePersonnel = ({ personnelID }: Props) => {
 
     // TODO: type Axios response
     // TODO: Client validation
-    // TODO: Refactor onError to be reusabled
     const { mutate: addPersonnel } = useMutation(
         (newPersonnel: AddPersonnelForm) => {
             cleanFormErrors();
@@ -114,18 +116,13 @@ const usePersonnel = ({ personnelID }: Props) => {
                 toast("Record successfully added.");
             },
             onError: (err: AxiosError<AxiosFormErrorResponse>) => {
-                const errors = err.response?.data.errors;
-
-                errors?.forEach(({ param, msg }) => {
-                    setFormErrors((prev) => ({ ...prev, [param]: msg }));
-                });
+                resolveFormErrors(err);
             },
         }
     );
 
     // TODO: type Axios response
     // TODO: Client validation
-    // TODO: Refactor onError to be reusabled
     const { mutate: editPersonnel } = useMutation(
         (updatedPersonnel: AddPersonnelForm) => {
             if (typeof personnelID === "string") {
@@ -147,11 +144,7 @@ const usePersonnel = ({ personnelID }: Props) => {
                 toast("Record successfully updated.");
             },
             onError: (err: AxiosError<AxiosFormErrorResponse>) => {
-                const errors = err.response?.data.errors;
-
-                errors?.forEach(({ param, msg }) => {
-                    setFormErrors((prev) => ({ ...prev, [param]: msg }));
-                });
+                resolveFormErrors(err);
             },
         }
     );
@@ -168,6 +161,14 @@ const usePersonnel = ({ personnelID }: Props) => {
 
     const cleanFormErrors = () => {
         setFormErrors(initialAddPersonnelForm);
+    };
+
+    const resolveFormErrors = (err: AxiosError<AxiosFormErrorResponse>) => {
+        const errors = err.response?.data.errors;
+
+        errors?.forEach(({ param, msg }) => {
+            setFormErrors((prev) => ({ ...prev, [param]: msg }));
+        });
     };
 
     return {

@@ -7,16 +7,12 @@ import { apiEndpoints, routes } from "../utils/constants";
 import useHomepage from "./useHomepage";
 import { toast } from "react-toastify";
 import {
+    AddPersonnelForm,
     IFormErrors,
-    PersonnelDetails,
     PersonnelDetailsResponseData,
 } from "../types/personnel.types";
 import { AxiosError } from "axios";
 import { AxiosFormErrorResponse } from "../types/axios.types";
-
-type AddPersonnelForm = {
-    [key in PersonnelDetails]: string;
-};
 
 const initialAddPersonnelForm: AddPersonnelForm = {
     first_name: "",

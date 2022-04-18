@@ -1,0 +1,1 @@
+-   Add error border to textbox when input is invalid

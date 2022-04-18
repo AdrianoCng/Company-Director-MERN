@@ -17,6 +17,12 @@ export const Deck = styled.div`
     margin-top: 20px;
     max-height: calc(100% - 120px);
     overflow: scroll;
+
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+        display: none;
+    }
 `;
 
 interface WrapperProps {

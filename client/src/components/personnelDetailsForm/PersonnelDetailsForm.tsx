@@ -40,7 +40,11 @@ const PersonnelDetailsForm = ({
         if (isEditing) {
             return (
                 <>
-                    <Button type="button" onClick={() => alert("Delete")}>
+                    <Button
+                        type="button"
+                        $secondary
+                        onClick={() => alert("Delete")}
+                    >
                         Delete
                     </Button>
                     <Button type="submit">Edit</Button>

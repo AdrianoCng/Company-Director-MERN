@@ -1,11 +1,12 @@
 import styled from "styled-components";
 
-export const Button = styled.button`
-    // position: absolute;
-    // right: 20px;
-    // bottom: 20px;
+interface Props {
+    $secondary?: boolean;
+}
+export const Button = styled.button<Props>`
     padding: 10px;
     background-color: var(--primary);
+    opacity: ${({ $secondary }) => $secondary && "0.65"};
     color: white;
     border: none;
     border-radius: 5px;

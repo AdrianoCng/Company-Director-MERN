@@ -30,6 +30,41 @@ const Homepage = (): JSX.Element => {
         );
     };
 
+    const renderErrorMessage = () => {
+        if (!allPersonnel.isError) {
+            return null;
+        }
+
+        return <p>Error fetching data. Please try again later.</p>;
+    };
+
+    const renderContent = () => {
+        if (!allPersonnel.data?.data) {
+            return null;
+        }
+
+        return allPersonnel.data?.data.map(
+            ({
+                _id,
+                first_name,
+                last_name,
+                email,
+                department_name,
+                location_name,
+            }) => (
+                <PersonnelCard
+                    firstName={first_name}
+                    lastName={last_name}
+                    email={email}
+                    department={department_name}
+                    location={location_name}
+                    id={_id}
+                    key={_id}
+                />
+            )
+        );
+    };
+
     return (
         <S.Wrapper $isCollapsed={isCollapsed}>
             <Sidebar
@@ -47,29 +82,10 @@ const Homepage = (): JSX.Element => {
                 />
 
                 <S.Deck>
-                    {allPersonnel.isError &&
-                        "Error Fetching data! Please try again later."}
+                    {renderErrorMessage()}
+                    {renderContent()}
+
                     {renderLoaderSpinner()}
-                    {allPersonnel.data?.data.map(
-                        ({
-                            _id,
-                            first_name,
-                            last_name,
-                            email,
-                            department_name,
-                            location_name,
-                        }) => (
-                            <PersonnelCard
-                                firstName={first_name}
-                                lastName={last_name}
-                                email={email}
-                                department={department_name}
-                                location={location_name}
-                                id={_id}
-                                key={_id}
-                            />
-                        )
-                    )}
                 </S.Deck>
 
                 <Pagination

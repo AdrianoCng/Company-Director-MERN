@@ -12,10 +12,7 @@ import {
     PersonnelDetailsResponseData,
 } from "../types/personnel.types";
 import { AxiosError } from "axios";
-import {
-    AxiosFormErrorResponse,
-    FormErrorResponseObject,
-} from "../types/axios.types";
+import { AxiosFormErrorResponse } from "../types/axios.types";
 
 const initialAddPersonnelForm: AddPersonnelForm = {
     first_name: "",

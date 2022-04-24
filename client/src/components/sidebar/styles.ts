@@ -3,7 +3,7 @@ import {
     sidebarCollapsedWidth,
     sidebarExpandedWidth,
     sidebarTransition,
-} from "../../utils/constants";
+} from "../../constants";
 
 export const Content = styled.form`
     margin-top: 40px;

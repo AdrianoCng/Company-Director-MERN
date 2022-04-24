@@ -8,7 +8,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 import App from "./App";
 import GlobalStyles from "./globalStyles";
-import { iconStyles } from "./utils/constants";
+import { iconStyles } from "./constants";
 
 const queryClient = new QueryClient();
 

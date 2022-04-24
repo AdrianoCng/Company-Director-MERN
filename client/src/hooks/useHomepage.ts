@@ -5,7 +5,7 @@ import { PersonnelResponseData } from "../types/personnel.types";
 import { DepartmentResponseObject } from "../types/department.types";
 import { LocationResponseData } from "../types/location.types";
 import { api } from "../utils";
-import { apiEndpoints } from "../utils/constants";
+import { apiEndpoints } from "../constants";
 
 interface QueryParamsState {
     [key: string]: string[];

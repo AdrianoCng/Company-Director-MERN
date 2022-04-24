@@ -2,7 +2,7 @@ import { Routes, Route } from "react-router-dom";
 
 import { Personnel } from "./pages/personnel";
 import { Homepage } from "./pages/homepage";
-import { routes } from "./utils/constants";
+import { routes } from "./constants";
 
 const App = (): JSX.Element => {
     return (

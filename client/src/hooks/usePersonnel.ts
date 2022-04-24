@@ -6,7 +6,7 @@ import { AxiosError } from "axios";
 
 import { OptionSelectField } from "../types/selectField.types";
 import { api } from "../utils";
-import { apiEndpoints, routes } from "../utils/constants";
+import { apiEndpoints, routes } from "../constants";
 import useHomepage from "./useHomepage";
 import {
     AddPersonnelForm,

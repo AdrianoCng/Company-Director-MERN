@@ -10,7 +10,7 @@ import * as S from "./styles";
 import { Checkbox } from "../checkbox";
 import { LocationResponseData } from "../../types/location.types";
 import { DepartmentResponseObject } from "../../types/department.types";
-import { routes } from "../../utils/constants";
+import { routes } from "../../constants";
 
 interface Props {
     isCollapsed: boolean;

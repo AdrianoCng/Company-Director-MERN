@@ -3,7 +3,7 @@ import {
     sidebarCollapsedWidth,
     sidebarExpandedWidth,
     sidebarTransition,
-} from "../../utils/constants";
+} from "../../constants";
 
 export const Main = styled.main`
     height: 100%;

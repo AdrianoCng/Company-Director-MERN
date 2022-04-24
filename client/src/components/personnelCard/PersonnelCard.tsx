@@ -7,7 +7,7 @@ import {
 
 import * as S from "./styles";
 import avatar from "../../assets/avatar.jpg";
-import { routes } from "../../utils/constants";
+import { routes } from "../../constants";
 
 interface Props {
     firstName: string;

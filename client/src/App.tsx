@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 
-import { Personnel } from "./containers/personnel";
-import { Homepage } from "./containers/homepage";
+import { Personnel } from "./pages/personnel";
+import { Homepage } from "./pages/homepage";
 import { routes } from "./utils/constants";
 
 const App = (): JSX.Element => {

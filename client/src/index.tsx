@@ -1,13 +1,14 @@
 import { StrictMode } from "react";
 import ReactDOM from "react-dom";
-import App from "./App";
-import { QueryClientProvider, QueryClient } from "react-query";
-import GlobalStyles from "./globalStyles";
 import { BrowserRouter } from "react-router-dom";
 import { IconContext } from "react-icons";
-import { iconStyles } from "./utils/constants";
+import { QueryClientProvider, QueryClient } from "react-query";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
+import App from "./App";
+import GlobalStyles from "./globalStyles";
+import { iconStyles } from "./utils/constants";
 
 const queryClient = new QueryClient();
 

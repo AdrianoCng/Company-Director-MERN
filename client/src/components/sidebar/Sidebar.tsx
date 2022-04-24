@@ -1,11 +1,12 @@
 import { Dispatch, SetStateAction } from "react";
 import { Link, useLocation, matchPath } from "react-router-dom";
-import * as S from "./styles";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { GoLocation } from "react-icons/go";
 import { MdOutlineLocationCity } from "react-icons/md";
 import { FaUserPlus } from "react-icons/fa";
 import { TiArrowBack } from "react-icons/ti";
+
+import * as S from "./styles";
 import { Checkbox } from "../checkbox";
 import { LocationResponseData } from "../../types/location.types";
 import { DepartmentResponseObject } from "../../types/department.types";

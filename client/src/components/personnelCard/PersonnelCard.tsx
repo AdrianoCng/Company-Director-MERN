@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
-import * as S from "./styles";
-import avatar from "../../assets/avatar.jpg";
 import {
     AiFillFacebook,
     AiFillGoogleSquare,
     AiFillTwitterSquare,
 } from "react-icons/ai";
+
+import * as S from "./styles";
+import avatar from "../../assets/avatar.jpg";
 import { routes } from "../../utils/constants";
 
 interface Props {

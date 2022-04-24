@@ -1,10 +1,11 @@
+import { useParams } from "react-router-dom";
+
 import usePersonnel from "../../hooks/usePersonnel";
 import * as S from "./styles";
 import { Wrapper } from "../homepage/styles";
 import { Sidebar } from "../../components/sidebar";
 import { PersonnelDetailsForm } from "../../components/personnelDetailsForm";
 import { PageMeta } from "../../components/pageMeta";
-import { useParams } from "react-router-dom";
 
 const AddPersonnel = () => {
     const { id } = useParams();

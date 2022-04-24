@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useQuery } from "react-query";
+
 import { PersonnelResponseData } from "../types/personnel.types";
 import { DepartmentResponseObject } from "../types/department.types";
 import { LocationResponseData } from "../types/location.types";

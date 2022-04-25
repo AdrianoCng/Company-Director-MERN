@@ -10,6 +10,9 @@ export const apiEndpoints = {
         updateByID({ personnelID }: { personnelID: string }) {
             return `/api/personnel/${personnelID}`;
         },
+        deleteByID({ personnelID }: { personnelID: string }) {
+            return `/api/personnel/${personnelID}`;
+        },
     },
     location: {
         getAll: "/api/location",

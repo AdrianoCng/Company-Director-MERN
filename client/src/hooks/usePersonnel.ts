@@ -147,6 +147,28 @@ const usePersonnel = ({ personnelID }: Props) => {
         }
     );
 
+    // TODO: type Axios response
+    const { mutate: deletePersonnelByID } = useMutation(
+        () => {
+            if (typeof personnelID === "string") {
+                return api.delete(
+                    apiEndpoints.personnel.deleteByID({ personnelID })
+                );
+            }
+
+            throw new Error("Invalid ID.");
+        },
+        {
+            onSuccess: () => {
+                navigate(routes.homepage);
+                toast("Record successfully deleted.");
+            },
+            onError: (err: AxiosError<AxiosFormErrorResponse>) => {
+                toast(err.message);
+            },
+        }
+    );
+
     const handleInputOnChange = (name: string, value: string) => {
         setForm((prev) => ({ ...prev, [name]: value }));
     };
@@ -155,6 +177,13 @@ const usePersonnel = ({ personnelID }: Props) => {
         e.preventDefault();
 
         !!personnelID ? editPersonnel(form) : addPersonnel(form);
+    };
+
+    // TODO: Add confirmation modal
+    const handleDeletePersonnel: React.MouseEventHandler<
+        HTMLButtonElement
+    > = () => {
+        deletePersonnelByID();
     };
 
     const cleanFormErrors = () => {
@@ -177,6 +206,7 @@ const usePersonnel = ({ personnelID }: Props) => {
         departmentOptions,
         PersonnelDetails,
         formErrors,
+        handleDeletePersonnel,
     };
 };
 

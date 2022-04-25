@@ -1,5 +1,3 @@
-import { FormEventHandler } from "react";
-
 import * as S from "./styles";
 import { Avatar } from "../avatar";
 import { Textbox } from "../textbox";
@@ -9,7 +7,8 @@ import { Button } from "../button";
 import { IFormErrors, PersonnelDetails } from "../../types/personnel.types";
 
 interface Props {
-    onSubmit: FormEventHandler<HTMLFormElement>;
+    onSubmit: React.FormEventHandler<HTMLFormElement>;
+    onDelete: React.MouseEventHandler<HTMLButtonElement>;
     onInputChange: (name: string, value: string) => void;
     form: {
         first_name: string;
@@ -26,6 +25,7 @@ interface Props {
 
 const PersonnelDetailsForm = ({
     onSubmit,
+    onDelete,
     onInputChange,
     form,
     locationOptions,
@@ -40,11 +40,7 @@ const PersonnelDetailsForm = ({
         if (isEditing) {
             return (
                 <>
-                    <Button
-                        type="button"
-                        $secondary
-                        onClick={() => alert("Delete")}
-                    >
+                    <Button type="button" $secondary onClick={onDelete}>
                         Delete
                     </Button>
                     <Button type="submit">Edit</Button>

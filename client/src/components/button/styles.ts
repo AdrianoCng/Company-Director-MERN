@@ -1,12 +1,11 @@
 import styled from "styled-components";
 
 interface Props {
-    $secondary?: boolean;
+    $variant?: "primary" | "danger";
 }
 export const Button = styled.button<Props>`
     padding: 10px;
-    background-color: var(--primary);
-    opacity: ${({ $secondary }) => $secondary && "0.65"};
+    background-color: ${({ $variant }) => `var(--${$variant})`};
     color: white;
     border: none;
     border-radius: 5px;

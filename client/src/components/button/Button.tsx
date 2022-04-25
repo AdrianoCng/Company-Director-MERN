@@ -5,16 +5,16 @@ import * as S from "./styles";
 interface Props {
     type?: "button" | "submit" | "reset";
     onClick?: React.MouseEventHandler<HTMLButtonElement>;
-    $secondary?: boolean;
+    $variant?: "primary" | "danger";
 }
 const Button: FC<Props> = ({
     children,
     type = "button",
     onClick,
-    $secondary = false,
+    $variant = "primary",
 }) => {
     return (
-        <S.Button $secondary={$secondary} type={type} onClick={onClick}>
+        <S.Button $variant={$variant} type={type} onClick={onClick}>
             {children}
         </S.Button>
     );

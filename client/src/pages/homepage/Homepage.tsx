@@ -43,6 +43,10 @@ const Homepage = (): JSX.Element => {
             return null;
         }
 
+        if (allPersonnel.isError) {
+            return null;
+        }
+
         return allPersonnel.data?.data.map(
             ({
                 _id,

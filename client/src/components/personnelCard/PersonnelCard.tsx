@@ -5,7 +5,10 @@ import {
     AiFillTwitterSquare,
 } from "react-icons/ai";
 
+// Styles
 import * as S from "./styles";
+
+// Misc
 import avatar from "../../assets/avatar.jpg";
 import { routes } from "../../constants";
 
@@ -17,7 +20,6 @@ interface Props {
     location: string;
     id: string;
 }
-
 const PersonnelCard = ({
     firstName,
     lastName,

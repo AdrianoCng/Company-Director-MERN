@@ -10,7 +10,6 @@ interface Props {
     required?: boolean;
     error?: string;
 }
-
 const Textbox = ({
     name,
     value,

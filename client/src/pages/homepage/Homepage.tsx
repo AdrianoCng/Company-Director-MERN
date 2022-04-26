@@ -1,5 +1,9 @@
-import * as S from "./styles";
 import useHomepage from "../../hooks/useHomepage";
+
+// Styles
+import * as S from "./styles";
+
+// Components
 import { PersonnelCard } from "../../components/personnelCard";
 import { Sidebar } from "../../components/sidebar";
 import { LoaderSpinner } from "../../components/loaderSpinner";

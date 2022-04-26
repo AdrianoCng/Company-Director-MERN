@@ -4,16 +4,21 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { AxiosError } from "axios";
 
-import { OptionSelectField } from "../types/selectField.types";
-import { api } from "../utils";
-import { apiEndpoints, routes } from "../constants";
+// Hooks
 import useHomepage from "./useHomepage";
+
+// Types
+import { OptionSelectField } from "../types/selectField.types";
 import {
     AddPersonnelForm,
     IFormErrors,
     PersonnelDetailsResponseData,
 } from "../types/personnel.types";
 import { AxiosFormErrorResponse } from "../types/axios.types";
+
+// Misc
+import { api } from "../utils";
+import { apiEndpoints, routes } from "../constants";
 
 const initialAddPersonnelForm: AddPersonnelForm = {
     first_name: "",

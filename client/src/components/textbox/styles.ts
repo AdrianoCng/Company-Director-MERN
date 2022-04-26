@@ -1,4 +1,6 @@
 import styled from "styled-components";
+
+// Styles
 import { inputStyles } from "../../globalStyles";
 
 interface Props {

@@ -6,10 +6,17 @@ import { MdOutlineLocationCity } from "react-icons/md";
 import { FaUserPlus } from "react-icons/fa";
 import { TiArrowBack } from "react-icons/ti";
 
-import * as S from "./styles";
-import { Checkbox } from "../checkbox";
-import { LocationResponseData } from "../../types/location.types";
+// Types
 import { DepartmentResponseObject } from "../../types/department.types";
+import { LocationResponseData } from "../../types/location.types";
+
+// Styles
+import * as S from "./styles";
+
+// Components
+import { Checkbox } from "../checkbox";
+
+// Misc
 import { routes } from "../../constants";
 
 interface Props {
@@ -19,7 +26,6 @@ interface Props {
     departments?: DepartmentResponseObject[] | undefined;
     onChange?: (name: string, value: string) => void;
 }
-
 const Sidebar = ({
     isCollapsed,
     toogle,

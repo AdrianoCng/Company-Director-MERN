@@ -1,4 +1,7 @@
+// Styles
 import * as S from "./styles";
+
+// Types
 import { OptionSelectField } from "../../types/selectField.types";
 
 interface Props {

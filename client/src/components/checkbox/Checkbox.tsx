@@ -1,5 +1,6 @@
 import { useState } from "react";
 
+// Styles
 import * as S from "./styles";
 
 interface Props {
@@ -8,7 +9,6 @@ interface Props {
     value: string;
     onChange?: (name: string, value: string) => void;
 }
-
 const Checkbox = ({ name, id, value, onChange }: Props): JSX.Element => {
     const [selected, setSelected] = useState(false);
 

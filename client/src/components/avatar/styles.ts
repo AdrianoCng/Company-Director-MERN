@@ -1,4 +1,6 @@
 import styled from "styled-components";
+
+// Misc
 import blankAvatar from "../../assets/PngItem_6619328.png";
 
 export const Avatar = styled.div`

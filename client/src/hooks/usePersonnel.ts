@@ -101,7 +101,6 @@ const usePersonnel = ({ personnelID }: Props) => {
     );
 
     // TODO: type Axios response
-    // TODO: Client validation
     const { mutate: addPersonnel } = useMutation(
         async () => {
             cleanFormErrors();
@@ -124,7 +123,6 @@ const usePersonnel = ({ personnelID }: Props) => {
     );
 
     // TODO: type Axios response
-    // TODO: Client validation
     const { mutate: editPersonnel } = useMutation(
         () => {
             if (typeof personnelID === "string") {

@@ -1,4 +1,4 @@
-import { createGlobalStyle, css } from "styled-components";
+import styled, { createGlobalStyle, css } from "styled-components";
 
 const GlobalStyles = createGlobalStyle`
     *,
@@ -40,6 +40,15 @@ export const inputStyles = css`
     border: 1px solid rgba(0, 0, 0, 0.2);
     border-radius: 5px;
     font-size: 1.05em;
+`;
+
+export const ButtonsContainer = styled.div`
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
 `;
 
 export default GlobalStyles;

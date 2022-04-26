@@ -5,6 +5,7 @@ import { SelectField } from "../selectField";
 import { OptionSelectField } from "../../types/selectField.types";
 import { Button } from "../button";
 import { IFormErrors, PersonnelDetails } from "../../types/personnel.types";
+import { ButtonsContainer } from "../../globalStyles";
 
 interface Props {
     onSubmit: React.FormEventHandler<HTMLFormElement>;
@@ -103,7 +104,7 @@ const PersonnelDetailsForm = ({
                     />
                 </S.FormRow>
 
-                <S.ButtonsContainer>{renderButton()}</S.ButtonsContainer>
+                <ButtonsContainer>{renderButton()}</ButtonsContainer>
             </S.Form>
         </>
     );

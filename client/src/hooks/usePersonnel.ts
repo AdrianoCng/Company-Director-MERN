@@ -40,6 +40,8 @@ const usePersonnel = ({ personnelID }: Props) => {
     const [departmentOptions, setDepartmentOptions] = useState<
         OptionSelectField[]
     >([]);
+    const [isDeleteConfirmationModalOpen, setIsDeleteConfirmationModalOpen] =
+        useState(false);
 
     /** Populate location options */
     useEffect(() => {
@@ -234,6 +236,8 @@ const usePersonnel = ({ personnelID }: Props) => {
         PersonnelDetails,
         formErrors,
         handleDeletePersonnel,
+        setIsDeleteConfirmationModalOpen,
+        isDeleteConfirmationModalOpen,
     };
 };
 

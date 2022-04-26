@@ -3,7 +3,7 @@ import ReactModal, { Props, Styles } from "react-modal";
 const Modal = (props: Props) => {
     const defaultStyles: Styles = {
         overlay: {
-            backgroundColor: "rgba(0, 0, 0, 0.4)",
+            backgroundColor: "rgba(0, 0, 0, 0.6)",
             ...props.style?.overlay,
         },
         content: {

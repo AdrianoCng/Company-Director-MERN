@@ -1,5 +1,6 @@
 const { ObjectId } = require("mongodb");
 const db = require("../db");
+const dummyData = require("../utilities/dummyData.json");
 
 module.exports.create = (obj, cb) => {
     const db_connect = db.getDb();
@@ -105,7 +106,7 @@ module.exports.update_personnel = (id, body, cb) => {
     );
 };
 
-module.exports.insertDummyData = (dummyData, cb) => {
+module.exports.insertDummyData = (cb) => {
     const db_connect = db.getDb();
 
     dummyData.forEach(async ({ first_name, last_name, email, department_name, location_name }) => {

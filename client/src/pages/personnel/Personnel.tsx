@@ -39,8 +39,24 @@ const AddPersonnel = () => {
         ? "Edit details about this record."
         : "Add a new entry to the database";
 
-    const renderDeleteConfirmationModal = () => {
-        return (
+    return (
+        <Wrapper $isCollapsed>
+            <Sidebar isCollapsed />
+            <PageMeta title={pageTitle} description={pageDescription} />
+
+            <S.Main>
+                <PersonnelDetailsForm
+                    onSubmit={handleFormOnSubmit}
+                    onDelete={() => setIsDeleteConfirmationModalOpen(true)}
+                    onInputChange={handleInputOnChange}
+                    form={form}
+                    formErrors={formErrors}
+                    locationOptions={locationOptions}
+                    departmentOptions={departmentOptions}
+                    isEditing={isEditing()}
+                />
+            </S.Main>
+
             <Modal
                 isOpen={isDeleteConfirmationModalOpen}
                 onRequestClose={() => setIsDeleteConfirmationModalOpen(false)}
@@ -68,28 +84,6 @@ const AddPersonnel = () => {
                     </ButtonsContainer>
                 </div>
             </Modal>
-        );
-    };
-
-    return (
-        <Wrapper $isCollapsed>
-            <Sidebar isCollapsed />
-            <PageMeta title={pageTitle} description={pageDescription} />
-
-            <S.Main>
-                <PersonnelDetailsForm
-                    onSubmit={handleFormOnSubmit}
-                    onDelete={() => setIsDeleteConfirmationModalOpen(true)}
-                    onInputChange={handleInputOnChange}
-                    form={form}
-                    formErrors={formErrors}
-                    locationOptions={locationOptions}
-                    departmentOptions={departmentOptions}
-                    isEditing={isEditing()}
-                />
-            </S.Main>
-
-            {renderDeleteConfirmationModal()}
         </Wrapper>
     );
 };

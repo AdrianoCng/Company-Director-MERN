@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 import { IconContext } from "react-icons";
 import { QueryClientProvider, QueryClient } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -21,6 +22,7 @@ ReactDOM.render(
                     <App />
                 </BrowserRouter>
             </IconContext.Provider>
+            <ReactQueryDevtools />
         </QueryClientProvider>
         <ToastContainer />
     </StrictMode>,

@@ -103,10 +103,14 @@ const usePersonnel = ({ personnelID }: Props) => {
     // TODO: type Axios response
     // TODO: Client validation
     const { mutate: addPersonnel } = useMutation(
-        (newPersonnel: AddPersonnelForm) => {
+        async () => {
             cleanFormErrors();
 
-            return api.post(apiEndpoints.personnel.add, newPersonnel);
+            if (!validateForm()) {
+                throw new Error();
+            }
+
+            return api.post(apiEndpoints.personnel.add, form);
         },
         {
             onSuccess: () => {
@@ -122,15 +126,19 @@ const usePersonnel = ({ personnelID }: Props) => {
     // TODO: type Axios response
     // TODO: Client validation
     const { mutate: editPersonnel } = useMutation(
-        (updatedPersonnel: AddPersonnelForm) => {
+        () => {
             if (typeof personnelID === "string") {
                 cleanFormErrors();
+
+                if (!validateForm()) {
+                    throw new Error();
+                }
 
                 return api.put(
                     apiEndpoints.personnel.updateByID({
                         personnelID: personnelID || "",
                     }),
-                    updatedPersonnel
+                    form
                 );
             }
 
@@ -176,7 +184,7 @@ const usePersonnel = ({ personnelID }: Props) => {
     const handleFormOnSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
         e.preventDefault();
 
-        !!personnelID ? editPersonnel(form) : addPersonnel(form);
+        !!personnelID ? editPersonnel() : addPersonnel();
     };
 
     // TODO: Add confirmation modal
@@ -196,6 +204,27 @@ const usePersonnel = ({ personnelID }: Props) => {
         errors?.forEach(({ param, msg }) => {
             setFormErrors((prev) => ({ ...prev, [param]: msg }));
         });
+    };
+
+    /**
+     * Validate the personnel form before it is submitted.
+     * @returns True if all the fields are set
+     */
+    const validateForm = (): boolean => {
+        let tempErrors: { [key: string]: string } = {};
+
+        for (const [key, value] of Object.entries(form)) {
+            if (!value) {
+                tempErrors[key] = value;
+
+                setFormErrors((prev) => ({
+                    ...prev,
+                    [key]: "This field is required",
+                }));
+            }
+        }
+
+        return Object.keys(tempErrors).length === 0;
     };
 
     return {

@@ -39,3 +39,5 @@ export const iconStyles = {
         // fontSize: "24px",
     },
 };
+
+export const paginationSize = 15;

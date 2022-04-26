@@ -8,7 +8,7 @@ import { LocationResponseData } from "../types/location.types";
 
 // Misc
 import { api } from "../utils";
-import { apiEndpoints } from "../constants";
+import { apiEndpoints, paginationSize } from "../constants";
 
 interface QueryParamsState {
     [key: string]: string[];
@@ -35,7 +35,7 @@ const useHomepage = () => {
             const urlParams = params.join("&");
 
             const { data } = await api.get<PersonnelResponseData>(
-                `${apiEndpoints.personnel.getAll}?page=${currentPage}&${urlParams}`
+                `${apiEndpoints.personnel.getAll}?page=${currentPage}&per_page=${paginationSize}&${urlParams}`
             );
             return data;
         }

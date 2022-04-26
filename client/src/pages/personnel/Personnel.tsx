@@ -54,13 +54,14 @@ const AddPersonnel = () => {
                                 setIsDeleteConfirmationModalOpen(false)
                             }
                             $size={ButtonSize.SMALL}
-                            $variant={ButtonVariant.PRIMARY_MUTED}
+                            $variant={ButtonVariant.PRIMARY}
                         >
                             No
                         </Button>
                         <Button
                             onClick={handleDeletePersonnel}
                             $size={ButtonSize.SMALL}
+                            $variant={ButtonVariant.DANGER_MUTED}
                         >
                             Yes
                         </Button>

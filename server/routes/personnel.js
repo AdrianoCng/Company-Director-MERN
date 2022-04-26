@@ -28,4 +28,6 @@ router.put("/:id",
     personnel_controller.update_personnel
 );
 
+router.post("/dummy-data", personnel_controller.insertDummyData)
+
 module.exports = router;

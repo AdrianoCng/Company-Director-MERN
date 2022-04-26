@@ -104,3 +104,27 @@ module.exports.update_personnel = (id, body, cb) => {
         cb
     );
 };
+
+module.exports.insertDummyData = (dummyData, cb) => {
+    const db_connect = db.getDb();
+
+    dummyData.forEach(async ({ first_name, last_name, email, department_name, location_name }) => {
+        try {
+            const record = {
+                first_name,
+                last_name,
+                email,
+                department_name,
+                location_name,
+                created_at: new Date(),
+                last_modified: null,
+            };
+
+            await db_connect.collection("personnel").insertOne(record);
+        } catch (error) {
+            return cb(err)
+        }
+    })
+
+    return cb()
+}

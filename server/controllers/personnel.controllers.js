@@ -1,6 +1,7 @@
 const { validationResult } = require("express-validator");
 const Personnel = require("../models/personnel.modals");
-const { paginate } = require("../utilities/functions")
+const { paginate } = require("../utilities/functions");
+const dummyData = require("../utilities/dummyData.json");
 
 exports.get_all_personnel = (req, res) => {
     const errors = validationResult(req);
@@ -118,6 +119,17 @@ exports.update_personnel = (req, res) => {
             if (err) throw err;
             res.status(200).json(response);
         });
+    } catch (error) {
+        res.status(500).json(error.message);
+    }
+}
+
+exports.insertDummyData = (req, res) => {
+    try {
+        Personnel.insertDummyData(dummyData, (err) => {
+            if (err) throw err;
+            res.status(201).json("Dummy data inserted successfully");
+        })
     } catch (error) {
         res.status(500).json(error.message);
     }

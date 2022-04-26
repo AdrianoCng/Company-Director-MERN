@@ -17,7 +17,10 @@ interface QueryParamsState {
 const useHomepage = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [isCollapsed, setIsCollapsed] = useState(true);
-    const [queryParams, setQueryParams] = useState<QueryParamsState>({});
+    const [queryParams, setQueryParams] = useState<QueryParamsState>({
+        department: [],
+        location: [],
+    });
 
     const allPersonnel = useQuery(
         ["all personnel", currentPage, queryParams],

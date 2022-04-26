@@ -22,20 +22,22 @@ const useHomepage = () => {
     const allPersonnel = useQuery(
         ["all personnel", currentPage, queryParams],
         async () => {
+            const baseQueryParams: { [key: string]: any } = {
+                page: currentPage,
+                per_page: paginationSize,
+                ...queryParams,
+            };
+
             const params = [];
 
-            for (let key in queryParams) {
-                if (queryParams[key].length === 0) {
-                    continue;
-                }
-
-                params.push(`${key}=${queryParams[key]}`);
+            for (let key in baseQueryParams) {
+                params.push(`${key}=${baseQueryParams[key]}`);
             }
 
             const urlParams = params.join("&");
 
             const { data } = await api.get<PersonnelResponseData>(
-                `${apiEndpoints.personnel.getAll}?page=${currentPage}&per_page=${paginationSize}&${urlParams}`
+                `${apiEndpoints.personnel.getAll}?${urlParams}`
             );
             return data;
         }

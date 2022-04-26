@@ -2,6 +2,7 @@ import { FC } from "react";
 
 import * as S from "./styles";
 
+// TODO: use Enum if possible
 interface Props {
     type?: "button" | "submit" | "reset";
     onClick?: React.MouseEventHandler<HTMLButtonElement>;

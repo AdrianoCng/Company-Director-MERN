@@ -45,10 +45,13 @@ const AddPersonnel = () => {
                             onClick={() =>
                                 setIsDeleteConfirmationModalOpen(false)
                             }
+                            $size="small"
                         >
                             No
                         </Button>
-                        <Button onClick={handleDeletePersonnel}>Yes</Button>
+                        <Button onClick={handleDeletePersonnel} $size="small">
+                            Yes
+                        </Button>
                     </ButtonsContainer>
                 </div>
             </Modal>

@@ -1,16 +1,38 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+
+const smallButton = css`
+    min-width: 70px;
+    padding: 5px;
+    font-size: 1em;
+`;
+
+const mediumButton = css`
+    min-width: 100px;
+    padding: 10px;
+    font-size: 1.05em;
+`;
+
+const largeButton = css`
+    min-width: 150px;
+    padding: 15px;
+    font-size: 1.15em;
+`;
 
 interface Props {
     $variant?: "primary" | "danger";
+    $size?: "small" | "medium" | "large";
 }
 export const Button = styled.button<Props>`
-    padding: 10px;
     background-color: ${({ $variant }) => `var(--${$variant})`};
     color: white;
     border: none;
     border-radius: 5px;
-    font-size: 1.04em;
     font-weight: bold;
-    min-width: 100px;
     cursor: pointer;
+
+    ${({ $size }) => $size === "small" && smallButton}
+
+    ${({ $size }) => $size === "medium" && mediumButton}
+
+    ${({ $size }) => $size === "large" && largeButton}
 `;

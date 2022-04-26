@@ -1,9 +1,16 @@
 import { useParams } from "react-router-dom";
-
+// Hooks
 import usePersonnel from "../../hooks/usePersonnel";
+
+// Types
+import { ButtonSize, ButtonVariant } from "../../types/button.types";
+
+// Styles
 import * as S from "./styles";
 import { ButtonsContainer } from "../../globalStyles";
 import { Wrapper } from "../homepage/styles";
+
+// Components
 import { Sidebar } from "../../components/sidebar";
 import { PersonnelDetailsForm } from "../../components/personnelDetailsForm";
 import { PageMeta } from "../../components/pageMeta";
@@ -45,11 +52,15 @@ const AddPersonnel = () => {
                             onClick={() =>
                                 setIsDeleteConfirmationModalOpen(false)
                             }
-                            $size="small"
+                            $size={ButtonSize.SMALL}
+                            $variant={ButtonVariant.PRIMARY_MUTED}
                         >
                             No
                         </Button>
-                        <Button onClick={handleDeletePersonnel} $size="small">
+                        <Button
+                            onClick={handleDeletePersonnel}
+                            $size={ButtonSize.SMALL}
+                        >
                             Yes
                         </Button>
                     </ButtonsContainer>

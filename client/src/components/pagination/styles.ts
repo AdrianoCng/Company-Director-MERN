@@ -39,7 +39,8 @@ export const PageButton = styled.div<PageButtonProps>`
     &:hover {
         ${activePageStyles}
         animation: ${shaking} 300ms ease;
-        opacity: ${({ $active }) => !$active && "0.65"};
+        background-color: ${({ $active }) =>
+            !$active && "var(--primary-muted)"};
     }
 
     ${({ $active }) =>

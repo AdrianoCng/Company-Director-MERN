@@ -14,6 +14,12 @@ const GlobalStyles = createGlobalStyle`
         --black: #383838;
         --primary: #1f3350;
         --danger: #b31518;
+        --primary-highlighted: #304e7a;
+        --danger-highlighted: #d7191d;
+        --primary-muted: rgba(31,51,80, 0.65);
+        --danger-muted: rgba(179, 21, 24, 0.65);
+        --primary-muted-highlighted: var(--primary-highlighted);
+        --danger-muted-highlighted: var(--danger-highlighted);
     }
 
     body {

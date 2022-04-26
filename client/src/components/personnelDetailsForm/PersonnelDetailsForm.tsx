@@ -1,11 +1,17 @@
+// Types
+import { OptionSelectField } from "../../types/selectField.types";
+import { IFormErrors, PersonnelDetails } from "../../types/personnel.types";
+import { ButtonType, ButtonVariant } from "../../types/button.types";
+
+// Styles
 import * as S from "./styles";
+import { ButtonsContainer } from "../../globalStyles";
+
+// Components
 import { Avatar } from "../avatar";
 import { Textbox } from "../textbox";
 import { SelectField } from "../selectField";
-import { OptionSelectField } from "../../types/selectField.types";
 import { Button } from "../button";
-import { IFormErrors, PersonnelDetails } from "../../types/personnel.types";
-import { ButtonsContainer } from "../../globalStyles";
 
 interface Props {
     onSubmit: React.FormEventHandler<HTMLFormElement>;
@@ -41,15 +47,15 @@ const PersonnelDetailsForm = ({
         if (isEditing) {
             return (
                 <>
-                    <Button type="button" $variant="danger" onClick={onDelete}>
+                    <Button $variant={ButtonVariant.DANGER} onClick={onDelete}>
                         Delete
                     </Button>
-                    <Button type="submit">Edit</Button>
+                    <Button type={ButtonType.SUBMIT}>Edit</Button>
                 </>
             );
         }
 
-        return <Button type="submit">Add</Button>;
+        return <Button type={ButtonType.SUBMIT}>Add</Button>;
     };
 
     return (

@@ -1,5 +1,8 @@
 import styled, { css } from "styled-components";
 
+// Types
+import { ButtonSize, ButtonVariant } from "../../types/button.types";
+
 const smallButton = css`
     min-width: 70px;
     padding: 5px;
@@ -19,8 +22,8 @@ const largeButton = css`
 `;
 
 interface Props {
-    $variant?: "primary" | "danger";
-    $size?: "small" | "medium" | "large";
+    $variant?: ButtonVariant;
+    $size?: ButtonSize;
 }
 export const Button = styled.button<Props>`
     background-color: ${({ $variant }) => `var(--${$variant})`};
@@ -30,9 +33,13 @@ export const Button = styled.button<Props>`
     font-weight: bold;
     cursor: pointer;
 
-    ${({ $size }) => $size === "small" && smallButton}
+    ${({ $size }) => $size === ButtonSize.SMALL && smallButton}
 
-    ${({ $size }) => $size === "medium" && mediumButton}
+    ${({ $size }) => $size === ButtonSize.MEDIUM && mediumButton}
 
-    ${({ $size }) => $size === "large" && largeButton}
+    ${({ $size }) => $size === ButtonSize.LARGE && largeButton}
+
+    &:hover {
+        background-color: ${({ $variant }) => `var(--${$variant}-highlighted)`};
+    }
 `;

@@ -1,20 +1,26 @@
 import { FC } from "react";
+// Types
+import {
+    ButtonSize,
+    ButtonType,
+    ButtonVariant,
+} from "../../types/button.types";
 
+// Styles
 import * as S from "./styles";
 
-// TODO: use Enum if possible
 interface Props {
-    type?: "button" | "submit" | "reset";
+    type?: ButtonType;
     onClick?: React.MouseEventHandler<HTMLButtonElement>;
-    $variant?: "primary" | "danger";
-    $size?: "small" | "medium" | "large";
+    $variant?: ButtonVariant;
+    $size?: ButtonSize;
 }
 const Button: FC<Props> = ({
     children,
-    type = "button",
+    type = ButtonType.BUTTON,
     onClick,
-    $variant = "primary",
-    $size = "medium",
+    $variant = ButtonVariant.PRIMARY,
+    $size = ButtonSize.MEDIUM,
 }) => {
     return (
         <S.Button

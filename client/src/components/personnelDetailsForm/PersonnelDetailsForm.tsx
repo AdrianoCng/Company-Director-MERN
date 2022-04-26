@@ -29,7 +29,6 @@ interface Props {
     isEditing: boolean;
     formErrors: IFormErrors;
 }
-
 const PersonnelDetailsForm = ({
     onSubmit,
     onDelete,

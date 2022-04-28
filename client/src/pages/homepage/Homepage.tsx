@@ -9,10 +9,11 @@ import { Sidebar } from "../../components/sidebar";
 import { LoaderSpinner } from "../../components/loaderSpinner";
 import { Pagination } from "../../components/pagination";
 import { PageMeta } from "../../components/pageMeta";
+import { useSidebarContext } from "../../contexts/SidebarContext";
 
 const Homepage = (): JSX.Element => {
-    const { allPersonnel, toogleSidebar, isCollapsed, handleInputOnChange, setCurrentPage, currentPage } =
-        useHomepage();
+    const { allPersonnel, handleInputOnChange, setCurrentPage, currentPage } = useHomepage();
+    const { isCollapsed, toogleSidebar } = useSidebarContext();
 
     const renderContent = () => {
         if (!allPersonnel.data?.data) {

@@ -12,10 +12,7 @@ const App = (): JSX.Element => {
         <Routes>
             <Route path={routes.homepage} element={<Homepage />} />
             <Route path={routes.addPersonnel} element={<Personnel />} />
-            <Route
-                path={`${routes.editPersonnel}/:id`}
-                element={<Personnel />}
-            />
+            <Route path={`${routes.editPersonnel}/:id`} element={<Personnel />} />
         </Routes>
     );
 };

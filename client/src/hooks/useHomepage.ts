@@ -9,7 +9,6 @@ interface QueryParamsState {
 
 const useHomepage = () => {
     const [currentPage, setCurrentPage] = useState(1);
-    const [isCollapsed, setIsCollapsed] = useState(true);
     const [queryParams, setQueryParams] = useState<QueryParamsState>({
         department: [],
         location: [],
@@ -18,10 +17,6 @@ const useHomepage = () => {
     const allPersonnel = useAllPersonnelQuery({
         dependencies: [currentPage, queryParams],
     });
-
-    const toogleSidebar = () => {
-        setIsCollapsed((prev) => !prev);
-    };
 
     /**
      * Handle onChange event fired when filtering by location or department
@@ -55,8 +50,6 @@ const useHomepage = () => {
 
     return {
         allPersonnel,
-        toogleSidebar,
-        isCollapsed,
         handleInputOnChange,
         currentPage,
         setCurrentPage,

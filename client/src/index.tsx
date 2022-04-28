@@ -10,6 +10,7 @@ import "react-toastify/dist/ReactToastify.css";
 import App from "./App";
 import GlobalStyles from "./globalStyles";
 import { iconStyles } from "./constants";
+import SidebarProvider from "./contexts/SidebarContext";
 
 const queryClient = new QueryClient();
 
@@ -17,10 +18,12 @@ ReactDOM.render(
     <StrictMode>
         <QueryClientProvider client={queryClient}>
             <IconContext.Provider value={iconStyles}>
-                <BrowserRouter>
-                    <GlobalStyles />
-                    <App />
-                </BrowserRouter>
+                <SidebarProvider>
+                    <BrowserRouter>
+                        <GlobalStyles />
+                        <App />
+                    </BrowserRouter>
+                </SidebarProvider>
             </IconContext.Provider>
             <ReactQueryDevtools />
         </QueryClientProvider>

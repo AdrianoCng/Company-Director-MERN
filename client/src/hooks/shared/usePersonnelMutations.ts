@@ -30,7 +30,7 @@ interface Props {
 const usePersonnelMutations = ({ personnelID, data = defaultFormObject }: Props) => {
     const navigate = useNavigate();
 
-    let {
+    const {
         form,
         validateForm = () => true,
         resolveFormErrors = () => {},

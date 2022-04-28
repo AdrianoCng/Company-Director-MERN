@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 
 // Hooks
 import usePersonnelDetailsQuery from "./shared/usePersonnelDetailsQuery";
@@ -13,10 +14,8 @@ import { OptionSelectField } from "../types/selectField.types";
 // Misc
 import { initialAddPersonnelForm } from "../constants";
 
-interface Props {
-    personnelID?: string;
-}
-const usePersonnel = ({ personnelID }: Props) => {
+const usePersonnel = () => {
+    const { id: personnelID } = useParams();
     const [locationOptions, setLocationOptions] = useState<OptionSelectField[]>([]);
     const [departmentOptions, setDepartmentOptions] = useState<OptionSelectField[]>([]);
     const [isDeleteConfirmationModalOpen, setIsDeleteConfirmationModalOpen] = useState(false);
@@ -92,6 +91,13 @@ const usePersonnel = ({ personnelID }: Props) => {
         deletePersonnelByID();
     };
 
+    const isEditing = () => !!personnelID;
+
+    const pageTitle = isEditing() ? "Edit Personnel" : "Add Personnel";
+    const pageDescription = isEditing()
+        ? "Edit details about this record."
+        : "Add a new entry to the database";
+
     return {
         handleInputOnChange,
         form,
@@ -102,6 +108,9 @@ const usePersonnel = ({ personnelID }: Props) => {
         handleDeletePersonnel,
         setIsDeleteConfirmationModalOpen,
         isDeleteConfirmationModalOpen,
+        pageTitle,
+        pageDescription,
+        isEditing,
     };
 };
 

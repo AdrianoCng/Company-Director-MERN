@@ -1,5 +1,3 @@
-import { useParams } from "react-router-dom";
-
 // Hooks
 import usePersonnel from "../../hooks/usePersonnel";
 
@@ -19,7 +17,6 @@ import { Button } from "../../components/button";
 import { Modal } from "../../components/modal";
 
 const AddPersonnel = () => {
-    const { id } = useParams();
     const {
         handleInputOnChange,
         form,
@@ -30,14 +27,10 @@ const AddPersonnel = () => {
         handleDeletePersonnel,
         setIsDeleteConfirmationModalOpen,
         isDeleteConfirmationModalOpen,
-    } = usePersonnel({ personnelID: id });
-
-    const isEditing = () => !!id;
-
-    const pageTitle = isEditing() ? "Edit Personnel" : "Add Personnel";
-    const pageDescription = isEditing()
-        ? "Edit details about this record."
-        : "Add a new entry to the database";
+        pageTitle,
+        pageDescription,
+        isEditing,
+    } = usePersonnel();
 
     return (
         <Wrapper $isCollapsed>

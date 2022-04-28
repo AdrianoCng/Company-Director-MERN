@@ -14,26 +14,6 @@ const Homepage = (): JSX.Element => {
     const { allPersonnel, toogleSidebar, isCollapsed, handleInputOnChange, setCurrentPage, currentPage } =
         useHomepage();
 
-    const renderLoaderSpinner = () => {
-        if (!allPersonnel.isLoading) {
-            return null;
-        }
-
-        return (
-            <S.LoaderWrapper>
-                <LoaderSpinner />
-            </S.LoaderWrapper>
-        );
-    };
-
-    const renderErrorMessage = () => {
-        if (!allPersonnel.isError) {
-            return null;
-        }
-
-        return <p>Error fetching data. Please try again later.</p>;
-    };
-
     const renderContent = () => {
         if (!allPersonnel.data?.data) {
             return null;
@@ -66,10 +46,15 @@ const Homepage = (): JSX.Element => {
                 <PageMeta title="All Personnel" description="View the list of all the personnel." />
 
                 <S.Deck>
-                    {renderErrorMessage()}
+                    {allPersonnel.isError && <p>Error fetching data. Please try again later.</p>}
+
                     {renderContent()}
 
-                    {renderLoaderSpinner()}
+                    {allPersonnel.isLoading && (
+                        <S.LoaderWrapper>
+                            <LoaderSpinner />
+                        </S.LoaderWrapper>
+                    )}
                 </S.Deck>
 
                 <Pagination

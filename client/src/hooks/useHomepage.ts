@@ -23,18 +23,6 @@ const useHomepage = () => {
         setIsCollapsed((prev) => !prev);
     };
 
-    const goNextPage = () => {
-        setCurrentPage((prev) => prev + 1);
-    };
-
-    const goPreviousPage = () => {
-        setCurrentPage((prev) => prev - 1);
-    };
-
-    const goToPage = (page: number) => {
-        setCurrentPage(page);
-    };
-
     /**
      * Handle onChange event fired when filtering by location or department
      * Populate queryParams with key=value pair
@@ -67,13 +55,11 @@ const useHomepage = () => {
 
     return {
         allPersonnel,
-        goNextPage,
-        goPreviousPage,
         toogleSidebar,
         isCollapsed,
         handleInputOnChange,
-        goToPage,
         currentPage,
+        setCurrentPage,
     };
 };
 

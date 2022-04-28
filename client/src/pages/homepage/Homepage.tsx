@@ -11,7 +11,7 @@ import { Pagination } from "../../components/pagination";
 import { PageMeta } from "../../components/pageMeta";
 
 const Homepage = (): JSX.Element => {
-    const { allPersonnel, toogleSidebar, isCollapsed, handleInputOnChange, goToPage, currentPage } =
+    const { allPersonnel, toogleSidebar, isCollapsed, handleInputOnChange, setCurrentPage, currentPage } =
         useHomepage();
 
     const renderLoaderSpinner = () => {
@@ -75,7 +75,7 @@ const Homepage = (): JSX.Element => {
                 <Pagination
                     currentPage={currentPage}
                     lastPage={allPersonnel.data?.last_page || currentPage}
-                    changePage={goToPage}
+                    changePage={setCurrentPage}
                 />
             </S.Main>
         </S.Wrapper>

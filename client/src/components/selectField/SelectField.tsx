@@ -11,46 +11,34 @@ interface Props {
     value: string;
     label?: string;
     error?: string;
+    placeholder?: string;
 }
-const SelectField = ({
-    options,
-    onChange,
-    name,
-    value,
-    label,
-    error,
-}: Props) => {
-    const renderLabel = () => {
-        if (!label) {
-            return null;
-        }
-
-        return <S.Label>{label}</S.Label>;
-    };
-
+const SelectField = ({ options, onChange, name, value, label, error, placeholder }: Props) => {
     const renderOptions = () => {
-        if (Array.isArray(options) && options?.length < 1) {
+        if (!options) {
             return null;
         }
 
-        return options?.map(({ value, label }) => (
-            <option key={value} value={value}>
+        if (options.length < 1) {
+            return null;
+        }
+
+        const optionsList = [...options];
+
+        if (!!placeholder) {
+            optionsList.unshift({ value: "", label: placeholder });
+        }
+
+        return optionsList?.map(({ value, label }) => (
+            <option disabled={!value} selected={!value} hidden={!value} key={value} value={value}>
                 {label}
             </option>
         ));
     };
 
-    const renderError = () => {
-        if (!error) {
-            return null;
-        }
-
-        return <S.Error>{error}</S.Error>;
-    };
-
     return (
         <S.Container>
-            {renderLabel()}
+            {label && <S.Label>{label}</S.Label>}
 
             <S.SelectInput
                 name={name}
@@ -62,7 +50,7 @@ const SelectField = ({
                 {renderOptions()}
             </S.SelectInput>
 
-            {renderError()}
+            {error && <S.Error>{error}</S.Error>}
         </S.Container>
     );
 };

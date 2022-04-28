@@ -90,6 +90,7 @@ const PersonnelDetailsForm = ({
                         onChange={onInputChange}
                         label={"Location"}
                         error={formErrors[PersonnelDetails.LOCATION]}
+                        placeholder={"Select a location"}
                     />
 
                     <SelectField
@@ -99,6 +100,7 @@ const PersonnelDetailsForm = ({
                         value={department_name}
                         label={"Department"}
                         error={formErrors[PersonnelDetails.DEPARTMENT]}
+                        placeholder={"Select a department"}
                     />
                 </S.FormRow>
 

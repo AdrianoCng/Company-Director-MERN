@@ -1,15 +1,16 @@
 import { useState } from "react";
 import { useQuery } from "react-query";
 
+// Hooks
+import useAllPersonnelQuery from "./shared/useAllPersonnelQuery";
+
 // Types
-import { PersonnelResponseData } from "../types/personnel.types";
 import { DepartmentResponseObject } from "../types/department.types";
 import { LocationResponseData } from "../types/location.types";
 
 // Misc
 import { api } from "../utils";
-import { apiEndpoints, paginationSize } from "../constants";
-import personnelKeyFactory from "../queryKeys/personnelKeyFactory";
+import { apiEndpoints } from "../constants";
 import locationsKeyFactory from "../queryKeys/locationsKeyFactory";
 import departmentsKeyFactory from "../queryKeys/departmentsKeyFactory";
 
@@ -25,41 +26,17 @@ const useHomepage = () => {
         location: [],
     });
 
-    const allPersonnel = useQuery(
-        personnelKeyFactory.list({ currentPage, queryParams }),
-        async () => {
-            const baseQueryParams: { [key: string]: any } = {
-                page: currentPage,
-                per_page: paginationSize,
-                ...queryParams,
-            };
-
-            const params = [];
-
-            for (let key in baseQueryParams) {
-                params.push(`${key}=${baseQueryParams[key]}`);
-            }
-
-            const urlParams = params.join("&");
-
-            const { data } = await api.get<PersonnelResponseData>(
-                `${apiEndpoints.personnel.getAll}?${urlParams}`
-            );
-            return data;
-        }
-    );
+    const { allPersonnel } = useAllPersonnelQuery({
+        dependencies: [currentPage, queryParams],
+    });
 
     const locations = useQuery(locationsKeyFactory.baseKey, async () => {
-        const { data } = await api.get<LocationResponseData>(
-            apiEndpoints.location.getAll
-        );
+        const { data } = await api.get<LocationResponseData>(apiEndpoints.location.getAll);
         return data;
     });
 
     const departments = useQuery(departmentsKeyFactory.baseKey, async () => {
-        const { data } = await api.get<DepartmentResponseObject[]>(
-            apiEndpoints.department.getAll
-        );
+        const { data } = await api.get<DepartmentResponseObject[]>(apiEndpoints.department.getAll);
         return data;
     });
 

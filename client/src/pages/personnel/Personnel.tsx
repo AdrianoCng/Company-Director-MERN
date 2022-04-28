@@ -66,9 +66,7 @@ const AddPersonnel = () => {
 
                     <ButtonsContainer>
                         <Button
-                            onClick={() =>
-                                setIsDeleteConfirmationModalOpen(false)
-                            }
+                            onClick={() => setIsDeleteConfirmationModalOpen(false)}
                             $size={ButtonSize.SMALL}
                             $variant={ButtonVariant.PRIMARY}
                         >

@@ -1,6 +1,6 @@
 // Types
 import { OptionSelectField } from "../../types/selectField.types";
-import { IFormErrors, PersonnelDetails } from "../../types/personnel.types";
+import { AddPersonnelForm, PersonnelDetails } from "../../types/personnel.types";
 import { ButtonType, ButtonVariant } from "../../types/button.types";
 
 // Styles
@@ -17,17 +17,11 @@ interface Props {
     onSubmit: React.FormEventHandler<HTMLFormElement>;
     onDelete: React.MouseEventHandler<HTMLButtonElement>;
     onInputChange: (name: string, value: string) => void;
-    form: {
-        first_name: string;
-        last_name: string;
-        email: string;
-        location_name: string;
-        department_name: string;
-    };
+    form: AddPersonnelForm;
     locationOptions: OptionSelectField[];
     departmentOptions: OptionSelectField[];
     isEditing: boolean;
-    formErrors: IFormErrors;
+    formErrors: AddPersonnelForm;
 }
 const PersonnelDetailsForm = ({
     onSubmit,
@@ -39,8 +33,7 @@ const PersonnelDetailsForm = ({
     isEditing,
     formErrors,
 }: Props) => {
-    const { first_name, last_name, email, location_name, department_name } =
-        form;
+    const { first_name, last_name, email, location_name, department_name } = form;
 
     const renderButton = (): JSX.Element => {
         if (isEditing) {

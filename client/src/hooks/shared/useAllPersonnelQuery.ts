@@ -1,7 +1,7 @@
 import { useQuery, UseQueryOptions } from "react-query";
 
 // Types
-import { PersonnelResponseData } from "../../types/personnel.types";
+import { AllPersonnelDependencies, PersonnelResponseData } from "../../types/personnel.types";
 
 // Misc
 import { paginationSize, apiEndpoints } from "../../constants";
@@ -9,7 +9,7 @@ import { api } from "../../utils";
 import personnelKeyFactory from "../../queryKeys/personnelKeyFactory";
 
 interface Props {
-    dependencies: any[];
+    dependencies: AllPersonnelDependencies;
     useQueryOptions?: Omit<
         UseQueryOptions<
             PersonnelResponseData,

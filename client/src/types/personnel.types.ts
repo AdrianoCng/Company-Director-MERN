@@ -34,3 +34,12 @@ export enum PersonnelDetails {
 export type AddPersonnelForm = {
     [key in PersonnelDetails]: string;
 };
+
+export type AllPersonnelDependencies = [
+    currentPage: number,
+    queryParams: {
+        [key: string]: string[];
+    }
+];
+
+export type PersonnelDetailsDependencies = [personnelID?: string];

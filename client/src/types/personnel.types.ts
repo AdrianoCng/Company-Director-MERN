@@ -35,4 +35,11 @@ export type AddPersonnelForm = {
     [key in PersonnelDetails]: string;
 };
 
-export interface IFormErrors extends AddPersonnelForm {}
+export type AllPersonnelDependencies = [
+    currentPage: number,
+    queryParams: {
+        [key: string]: string[];
+    }
+];
+
+export type PersonnelDetailsDependencies = [personnelID?: string];

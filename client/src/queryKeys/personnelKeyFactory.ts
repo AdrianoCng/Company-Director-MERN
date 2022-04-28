@@ -10,7 +10,7 @@ interface IPersonnelKeyDetails {
 }
 
 const personnelKeyFactory = {
-    /** Base query key - Target all personnel keys */
+    /** Base query key for personnel - Target all personnel queries */
     baseKey: ["personnel"] as const,
     /**
      *

@@ -10,6 +10,8 @@ import { LocationResponseData } from "../types/location.types";
 import { api } from "../utils";
 import { apiEndpoints, paginationSize } from "../constants";
 import personnelKeyFactory from "../queryKeys/personnelKeyFactory";
+import locationsKeyFactory from "../queryKeys/locationsKeyFactory";
+import departmentsKeyFactory from "../queryKeys/departmentsKeyFactory";
 
 interface QueryParamsState {
     [key: string]: string[];
@@ -47,14 +49,14 @@ const useHomepage = () => {
         }
     );
 
-    const locations = useQuery("locations", async () => {
+    const locations = useQuery(locationsKeyFactory.baseKey, async () => {
         const { data } = await api.get<LocationResponseData>(
             apiEndpoints.location.getAll
         );
         return data;
     });
 
-    const departments = useQuery("departments", async () => {
+    const departments = useQuery(departmentsKeyFactory.baseKey, async () => {
         const { data } = await api.get<DepartmentResponseObject[]>(
             apiEndpoints.department.getAll
         );

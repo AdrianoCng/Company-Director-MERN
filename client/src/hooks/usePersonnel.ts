@@ -31,27 +31,6 @@ const usePersonnel = ({ personnelID }: Props) => {
     } = useForm({
         initialValues: initialAddPersonnelForm,
     });
-    const { addPersonnel, editPersonnel, deletePersonnelByID } = usePersonnelMutations({
-        personnelID,
-        data: { form, validateForm, resolveFormErrors, cleanFormErrors },
-    });
-
-    usePersonnelDetailsQuery({
-        dependencies: [personnelID],
-        useQueryOptions: {
-            onSuccess: ({ data }) => {
-                const { first_name, last_name, email, department_name, location_name } = data;
-
-                setForm({
-                    first_name,
-                    last_name,
-                    email,
-                    department_name,
-                    location_name,
-                });
-            },
-        },
-    });
 
     /** Populate location options */
     useEffect(() => {
@@ -76,6 +55,28 @@ const usePersonnel = ({ personnelID }: Props) => {
 
         setDepartmentOptions(departmentsList || []);
     }, [departments.data]);
+
+    usePersonnelDetailsQuery({
+        dependencies: [personnelID],
+        useQueryOptions: {
+            onSuccess: ({ data }) => {
+                const { first_name, last_name, email, department_name, location_name } = data;
+
+                setForm({
+                    first_name,
+                    last_name,
+                    email,
+                    department_name,
+                    location_name,
+                });
+            },
+        },
+    });
+
+    const { addPersonnel, editPersonnel, deletePersonnelByID } = usePersonnelMutations({
+        personnelID,
+        data: { form, validateForm, resolveFormErrors, cleanFormErrors },
+    });
 
     /** Handle Personnel form submit event */
     const handleFormOnSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {

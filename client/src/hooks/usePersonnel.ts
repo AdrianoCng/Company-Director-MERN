@@ -19,6 +19,7 @@ import { AxiosFormErrorResponse } from "../types/axios.types";
 // Misc
 import { api } from "../utils";
 import { apiEndpoints, routes } from "../constants";
+import personnelKeyFactory from "../queryKeys/personnelKeyFactory";
 
 const initialAddPersonnelForm: AddPersonnelForm = {
     first_name: "",
@@ -73,7 +74,7 @@ const usePersonnel = ({ personnelID }: Props) => {
     }, [departments.data]);
 
     const PersonnelDetails = useQuery(
-        ["personnel details", personnelID],
+        personnelKeyFactory.details({ personnelID }),
         async () => {
             if (typeof personnelID === "string") {
                 const { data } = await api.get<PersonnelDetailsResponseData>(

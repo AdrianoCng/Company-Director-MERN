@@ -9,6 +9,7 @@ import { LocationResponseData } from "../types/location.types";
 // Misc
 import { api } from "../utils";
 import { apiEndpoints, paginationSize } from "../constants";
+import personnelKeyFactory from "../queryKeys/personnelKeyFactory";
 
 interface QueryParamsState {
     [key: string]: string[];
@@ -23,7 +24,7 @@ const useHomepage = () => {
     });
 
     const allPersonnel = useQuery(
-        ["all personnel", currentPage, queryParams],
+        personnelKeyFactory.list({ currentPage, queryParams }),
         async () => {
             const baseQueryParams: { [key: string]: any } = {
                 page: currentPage,

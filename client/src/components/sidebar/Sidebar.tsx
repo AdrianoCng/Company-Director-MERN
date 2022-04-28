@@ -6,10 +6,6 @@ import { MdOutlineLocationCity } from "react-icons/md";
 import { FaUserPlus } from "react-icons/fa";
 import { TiArrowBack } from "react-icons/ti";
 
-// Types
-import { DepartmentResponseObject } from "../../types/department.types";
-import { LocationResponseData } from "../../types/location.types";
-
 // Styles
 import * as S from "./styles";
 
@@ -18,25 +14,21 @@ import { Checkbox } from "../checkbox";
 
 // Misc
 import { routes } from "../../constants";
+import useLocationsQuery from "../../hooks/shared/useLocationsQuery";
+import useDepartmentsQuery from "../../hooks/shared/useDepartmentsQuery";
 
 interface Props {
     isCollapsed: boolean;
     toogle?: Dispatch<SetStateAction<boolean>>;
-    locations?: LocationResponseData | undefined;
-    departments?: DepartmentResponseObject[] | undefined;
     onChange?: (name: string, value: string) => void;
 }
-const Sidebar = ({
-    isCollapsed,
-    toogle,
-    locations,
-    departments,
-    onChange,
-}: Props): JSX.Element => {
-    const location = useLocation();
+const Sidebar = ({ isCollapsed, toogle, onChange }: Props): JSX.Element => {
+    const { pathname } = useLocation();
+    const locations = useLocationsQuery();
+    const departments = useDepartmentsQuery();
 
     const renderHeader = () => {
-        if (matchPath(location.pathname, routes.homepage)) {
+        if (matchPath(pathname, routes.homepage)) {
             return (
                 <>
                     <S.Button
@@ -68,7 +60,7 @@ const Sidebar = ({
     };
 
     const renderContent = () => {
-        if (!matchPath(location.pathname, routes.homepage)) {
+        if (!matchPath(pathname, routes.homepage)) {
             return null;
         }
 
@@ -80,14 +72,8 @@ const Sidebar = ({
                     </S.SectionGroupHeader>
 
                     <S.SectionGroupContent>
-                        {locations?.data.map(({ name, _id }) => (
-                            <Checkbox
-                                name={"location"}
-                                id={_id}
-                                key={_id}
-                                value={name}
-                                onChange={onChange}
-                            />
+                        {locations.data?.data.map(({ name, _id }) => (
+                            <Checkbox name={"location"} id={_id} key={_id} value={name} onChange={onChange} />
                         ))}
                     </S.SectionGroupContent>
                 </S.SectionGroup>
@@ -98,7 +84,7 @@ const Sidebar = ({
                     </S.SectionGroupHeader>
 
                     <S.SectionGroupContent>
-                        {departments?.map(({ name, _id }) => (
+                        {departments.data?.map(({ name, _id }) => (
                             <Checkbox
                                 name={"department"}
                                 id={_id}

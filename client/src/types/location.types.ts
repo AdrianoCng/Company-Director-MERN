@@ -1,8 +1,8 @@
-export interface LocationResponseObject {
+export interface LocationsResponseObject {
     name: string;
     _id: string;
 }
 
-export interface LocationResponseData {
-    data: LocationResponseObject[];
+export interface LocationsResponseData {
+    data: LocationsResponseObject[];
 }

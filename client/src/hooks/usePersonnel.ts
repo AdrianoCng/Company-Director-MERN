@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 
 // Hooks
-import useHomepage from "./useHomepage";
 import usePersonnelDetailsQuery from "./shared/usePersonnelDetailsQuery";
 import useForm from "./shared/useForm";
 import usePersonnelMutations from "./shared/usePersonnelMutations";
+import useLocationsQuery from "./shared/useLocationsQuery";
+import useDepartmentsQuery from "./shared/useDepartmentsQuery";
 
 // Types
 import { OptionSelectField } from "../types/selectField.types";
@@ -19,7 +20,8 @@ const usePersonnel = ({ personnelID }: Props) => {
     const [locationOptions, setLocationOptions] = useState<OptionSelectField[]>([]);
     const [departmentOptions, setDepartmentOptions] = useState<OptionSelectField[]>([]);
     const [isDeleteConfirmationModalOpen, setIsDeleteConfirmationModalOpen] = useState(false);
-    const { locations, departments } = useHomepage();
+    const locations = useLocationsQuery();
+    const departments = useDepartmentsQuery();
     const {
         form,
         formErrors,

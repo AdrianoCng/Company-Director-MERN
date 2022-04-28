@@ -1,18 +1,7 @@
 import { useState } from "react";
-import { useQuery } from "react-query";
 
 // Hooks
 import useAllPersonnelQuery from "./shared/useAllPersonnelQuery";
-
-// Types
-import { DepartmentResponseObject } from "../types/department.types";
-import { LocationResponseData } from "../types/location.types";
-
-// Misc
-import { api } from "../utils";
-import { apiEndpoints } from "../constants";
-import locationsKeyFactory from "../queryKeys/locationsKeyFactory";
-import departmentsKeyFactory from "../queryKeys/departmentsKeyFactory";
 
 interface QueryParamsState {
     [key: string]: string[];
@@ -28,16 +17,6 @@ const useHomepage = () => {
 
     const { allPersonnel } = useAllPersonnelQuery({
         dependencies: [currentPage, queryParams],
-    });
-
-    const locations = useQuery(locationsKeyFactory.baseKey, async () => {
-        const { data } = await api.get<LocationResponseData>(apiEndpoints.location.getAll);
-        return data;
-    });
-
-    const departments = useQuery(departmentsKeyFactory.baseKey, async () => {
-        const { data } = await api.get<DepartmentResponseObject[]>(apiEndpoints.department.getAll);
-        return data;
     });
 
     const toogleSidebar = () => {
@@ -91,8 +70,6 @@ const useHomepage = () => {
         goNextPage,
         goPreviousPage,
         toogleSidebar,
-        locations,
-        departments,
         isCollapsed,
         handleInputOnChange,
         goToPage,

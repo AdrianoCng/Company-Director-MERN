@@ -11,16 +11,8 @@ import { Pagination } from "../../components/pagination";
 import { PageMeta } from "../../components/pageMeta";
 
 const Homepage = (): JSX.Element => {
-    const {
-        allPersonnel,
-        toogleSidebar,
-        isCollapsed,
-        locations,
-        departments,
-        handleInputOnChange,
-        goToPage,
-        currentPage,
-    } = useHomepage();
+    const { allPersonnel, toogleSidebar, isCollapsed, handleInputOnChange, goToPage, currentPage } =
+        useHomepage();
 
     const renderLoaderSpinner = () => {
         if (!allPersonnel.isLoading) {
@@ -52,14 +44,7 @@ const Homepage = (): JSX.Element => {
         }
 
         return allPersonnel.data?.data.map(
-            ({
-                _id,
-                first_name,
-                last_name,
-                email,
-                department_name,
-                location_name,
-            }) => (
+            ({ _id, first_name, last_name, email, department_name, location_name }) => (
                 <PersonnelCard
                     firstName={first_name}
                     lastName={last_name}
@@ -75,19 +60,10 @@ const Homepage = (): JSX.Element => {
 
     return (
         <S.Wrapper $isCollapsed={isCollapsed}>
-            <Sidebar
-                isCollapsed={isCollapsed}
-                toogle={toogleSidebar}
-                locations={locations.data}
-                departments={departments.data}
-                onChange={handleInputOnChange}
-            />
+            <Sidebar isCollapsed={isCollapsed} toogle={toogleSidebar} onChange={handleInputOnChange} />
 
             <S.Main>
-                <PageMeta
-                    title="All Personnel"
-                    description="View the list of all the personnel."
-                />
+                <PageMeta title="All Personnel" description="View the list of all the personnel." />
 
                 <S.Deck>
                     {renderErrorMessage()}

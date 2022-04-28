@@ -1,10 +1,7 @@
 import { useQuery, UseQueryOptions } from "react-query";
 
 // Types
-import {
-    PersonnelDetailsDependencies,
-    PersonnelDetailsResponseData,
-} from "../../types/personnel.types";
+import { PersonnelDetailsDependencies, PersonnelDetailsResponseData } from "../../types/personnel.types";
 
 // Misc
 import { apiEndpoints } from "../../constants";
@@ -26,7 +23,7 @@ interface Props {
 const usePersonnelDetailsQuery = ({ dependencies, useQueryOptions }: Props) => {
     const [personnelID] = dependencies;
 
-    const personnelDetails = useQuery(
+    return useQuery(
         personnelKeyFactory.details(dependencies),
         async () => {
             if (typeof personnelID === "string") {
@@ -44,10 +41,6 @@ const usePersonnelDetailsQuery = ({ dependencies, useQueryOptions }: Props) => {
             ...useQueryOptions,
         }
     );
-
-    return {
-        personnelDetails,
-    };
 };
 
 export default usePersonnelDetailsQuery;

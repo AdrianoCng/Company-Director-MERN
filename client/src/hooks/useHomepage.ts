@@ -15,7 +15,7 @@ const useHomepage = () => {
         location: [],
     });
 
-    const { allPersonnel } = useAllPersonnelQuery({
+    const allPersonnel = useAllPersonnelQuery({
         dependencies: [currentPage, queryParams],
     });
 

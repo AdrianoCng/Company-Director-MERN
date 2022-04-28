@@ -23,7 +23,7 @@ interface Props {
 const useAllPersonnelQuery = ({ dependencies, useQueryOptions = {} }: Props) => {
     const [currentPage, queryParams] = dependencies;
 
-    const allPersonnel = useQuery(
+    return useQuery(
         personnelKeyFactory.all(dependencies),
         async () => {
             const baseQueryParams: { [key: string]: any } = {
@@ -49,10 +49,6 @@ const useAllPersonnelQuery = ({ dependencies, useQueryOptions = {} }: Props) => 
             ...useQueryOptions,
         }
     );
-
-    return {
-        allPersonnel,
-    };
 };
 
 export default useAllPersonnelQuery;

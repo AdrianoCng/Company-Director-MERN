@@ -4,7 +4,7 @@ const client = axios.create({
     // baseURL,
 });
 
-const request = <TResponseData>(options: AxiosRequestConfig): AxiosPromise<TResponseData> => {
+const request = <TResponseData = any>(options: AxiosRequestConfig): AxiosPromise<TResponseData> => {
     client.interceptors.response.use(
         (response) => response,
         (error) => {

@@ -1,1 +1,1 @@
-export { default as api } from "./api";
+export { default as request } from "./api";

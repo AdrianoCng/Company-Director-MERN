@@ -6,11 +6,14 @@ import { DepartmentsResponseObject } from "../../types/department.types";
 // Misc
 import { apiEndpoints } from "../../constants";
 import departmentsKeyFactory from "../../queryKeys/departmentsKeyFactory";
-import { api } from "../../utils";
+import { request } from "../../utils";
 
 const useDepartmentsQuery = () => {
     return useQuery(departmentsKeyFactory.baseKey, async () => {
-        const { data } = await api.get<DepartmentsResponseObject[]>(apiEndpoints.department.getAll);
+        const { data } = await request<DepartmentsResponseObject[]>({
+            url: apiEndpoints.department.getAll,
+            method: "GET",
+        });
         return data;
     });
 };

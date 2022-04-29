@@ -5,7 +5,7 @@ import { AllPersonnelDependencies, PersonnelResponseData } from "../../types/per
 
 // Misc
 import { paginationSize, apiEndpoints } from "../../constants";
-import { api } from "../../utils";
+import { request } from "../../utils";
 import personnelKeyFactory from "../../queryKeys/personnelKeyFactory";
 
 interface Props {
@@ -40,9 +40,11 @@ const useAllPersonnelQuery = ({ dependencies, useQueryOptions = {} }: Props) => 
 
             const urlParams = params.join("&");
 
-            const { data } = await api.get<PersonnelResponseData>(
-                `${apiEndpoints.personnel.getAll}?${urlParams}`
-            );
+            const { data } = await request<PersonnelResponseData>({
+                url: `${apiEndpoints.personnel.getAll}?${urlParams}`,
+                method: "GET",
+            });
+
             return data;
         },
         {

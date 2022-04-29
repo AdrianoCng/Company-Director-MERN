@@ -5,7 +5,7 @@ import { PersonnelDetailsDependencies, PersonnelDetailsResponseData } from "../.
 
 // Misc
 import { apiEndpoints } from "../../constants";
-import { api } from "../../utils";
+import { request } from "../../utils";
 import personnelKeyFactory from "./../../queryKeys/personnelKeyFactory";
 
 interface Props {
@@ -27,9 +27,10 @@ const usePersonnelDetailsQuery = ({ dependencies, useQueryOptions }: Props) => {
         personnelKeyFactory.details(dependencies),
         async () => {
             if (typeof personnelID === "string") {
-                const { data } = await api.get<PersonnelDetailsResponseData>(
-                    apiEndpoints.personnel.getByID({ personnelID })
-                );
+                const { data } = await request<PersonnelDetailsResponseData>({
+                    url: apiEndpoints.personnel.getByID({ personnelID }),
+                    method: "GET",
+                });
                 return data;
             }
 

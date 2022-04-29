@@ -9,7 +9,7 @@ import { AddPersonnelForm } from "./../../types/personnel.types";
 
 // Misc
 import { apiEndpoints, initialAddPersonnelForm, routes } from "../../constants";
-import { api } from "../../utils";
+import { request } from "../../utils";
 
 const defaultFormObject = {
     form: initialAddPersonnelForm,
@@ -46,7 +46,11 @@ const usePersonnelMutations = ({ personnelID, data = defaultFormObject }: Props)
                 throw new Error();
             }
 
-            return api.post(apiEndpoints.personnel.add, form);
+            return request({
+                url: apiEndpoints.personnel.add,
+                method: "POST",
+                data: form,
+            });
         },
         {
             onSuccess: () => {
@@ -69,12 +73,13 @@ const usePersonnelMutations = ({ personnelID, data = defaultFormObject }: Props)
                     throw new Error();
                 }
 
-                return api.put(
-                    apiEndpoints.personnel.updateByID({
+                return request({
+                    url: apiEndpoints.personnel.updateByID({
                         personnelID: personnelID || "",
                     }),
-                    form
-                );
+                    method: "PUT",
+                    data: form,
+                });
             }
 
             throw new Error("Invalid ID.");
@@ -94,7 +99,10 @@ const usePersonnelMutations = ({ personnelID, data = defaultFormObject }: Props)
     const { mutate: deletePersonnelByID } = useMutation(
         () => {
             if (typeof personnelID === "string") {
-                return api.delete(apiEndpoints.personnel.deleteByID({ personnelID }));
+                return request({
+                    url: apiEndpoints.personnel.deleteByID({ personnelID }),
+                    method: "DELETE",
+                });
             }
 
             throw new Error("Invalid ID.");

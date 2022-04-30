@@ -1,7 +1,10 @@
 import { useQuery, UseQueryOptions } from "react-query";
 
 // Types
-import { PersonnelDetailsDependencies, PersonnelDetailsResponseData } from "../../types/personnel.types";
+import {
+    PersonnelDetailsDependencies,
+    PersonnelDetailsResponseData,
+} from "../../types/personnel.types";
 
 // Misc
 import { apiEndpoints } from "../../constants";
@@ -39,6 +42,7 @@ const usePersonnelDetailsQuery = ({ dependencies, useQueryOptions }: Props) => {
         {
             enabled: !!personnelID,
             refetchOnWindowFocus: false,
+            staleTime: 0,
             ...useQueryOptions,
         }
     );

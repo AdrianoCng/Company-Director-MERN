@@ -32,6 +32,8 @@ const useAllPersonnelQuery = ({ dependencies, useQueryOptions = {} }: Props) => 
             };
 
             for (let key in queryParams) {
+                if (queryParams[key].length < 1) continue;
+
                 params[key] = queryParams[key].join();
             }
 

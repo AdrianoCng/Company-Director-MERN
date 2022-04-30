@@ -26,23 +26,19 @@ const useAllPersonnelQuery = ({ dependencies, useQueryOptions = {} }: Props) => 
     return useQuery(
         personnelKeyFactory.all(dependencies),
         async () => {
-            const baseQueryParams: { [key: string]: any } = {
+            const params: { [key: string]: any } = {
                 page: currentPage,
                 per_page: paginationSize,
-                ...queryParams,
             };
 
-            const params = [];
-
-            for (let key in baseQueryParams) {
-                params.push(`${key}=${baseQueryParams[key]}`);
+            for (let key in queryParams) {
+                params[key] = queryParams[key].join();
             }
 
-            const urlParams = params.join("&");
-
             const { data } = await request<PersonnelResponseData>({
-                url: `${apiEndpoints.personnel.getAll}?${urlParams}`,
+                url: `${apiEndpoints.personnel.getAll}`,
                 method: "GET",
+                params,
             });
 
             return data;

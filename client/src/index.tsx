@@ -11,7 +11,13 @@ import App from "./App";
 import GlobalStyles from "./globalStyles";
 import { iconStyles } from "./constants";
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+    defaultOptions: {
+        queries: {
+            staleTime: 1000 * 60, // 1 minute
+        },
+    },
+});
 
 ReactDOM.render(
     <StrictMode>

@@ -9,13 +9,19 @@ import locationsKeyFactory from "../../queryKeys/locationsKeyFactory";
 import { request } from "../../utils";
 
 const useLocationsQuery = () => {
-    return useQuery(locationsKeyFactory.baseKey, async () => {
-        const { data } = await request<LocationsResponseData>({
-            url: apiEndpoints.location.getAll,
-            method: "GET",
-        });
-        return data;
-    });
+    return useQuery(
+        locationsKeyFactory.baseKey,
+        async () => {
+            const { data } = await request<LocationsResponseData>({
+                url: apiEndpoints.location.getAll,
+                method: "GET",
+            });
+            return data;
+        },
+        {
+            staleTime: Infinity,
+        }
+    );
 };
 
 export default useLocationsQuery;

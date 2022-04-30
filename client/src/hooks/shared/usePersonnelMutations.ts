@@ -1,4 +1,4 @@
-import { useMutation } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { AxiosError } from "axios";
@@ -10,6 +10,7 @@ import { AddPersonnelForm } from "./../../types/personnel.types";
 // Misc
 import { apiEndpoints, initialAddPersonnelForm, routes } from "../../constants";
 import { request } from "../../utils";
+import personnelKeyFactory from "../../queryKeys/personnelKeyFactory";
 
 const defaultFormObject = {
     form: initialAddPersonnelForm,
@@ -29,6 +30,7 @@ interface Props {
 }
 const usePersonnelMutations = ({ personnelID, data = defaultFormObject }: Props) => {
     const navigate = useNavigate();
+    const queryClient = useQueryClient();
 
     const {
         form,
@@ -54,6 +56,7 @@ const usePersonnelMutations = ({ personnelID, data = defaultFormObject }: Props)
         },
         {
             onSuccess: () => {
+                queryClient.invalidateQueries(personnelKeyFactory.baseKey);
                 navigate(routes.homepage);
                 toast("Record successfully added.");
             },
@@ -86,6 +89,7 @@ const usePersonnelMutations = ({ personnelID, data = defaultFormObject }: Props)
         },
         {
             onSuccess: () => {
+                queryClient.invalidateQueries(personnelKeyFactory.baseKey);
                 navigate(routes.homepage);
                 toast("Record successfully updated.");
             },
@@ -109,6 +113,7 @@ const usePersonnelMutations = ({ personnelID, data = defaultFormObject }: Props)
         },
         {
             onSuccess: () => {
+                queryClient.invalidateQueries(personnelKeyFactory.baseKey);
                 navigate(routes.homepage);
                 toast("Record successfully deleted.");
             },

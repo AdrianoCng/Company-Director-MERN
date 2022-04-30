@@ -10,8 +10,9 @@ const request = <TResponseData = any>(options: AxiosRequestConfig): AxiosPromise
         (error) => {
             if (axios.isAxiosError(error)) {
                 // Additional logic here
-                return error;
             }
+
+            return Promise.reject(error);
         }
     );
 

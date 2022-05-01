@@ -1,20 +1,14 @@
 const { ObjectId } = require("mongodb");
 const db = require("../db");
+const AWS = require("aws-sdk");
 const dummyData = require("../utilities/dummyData.json");
 
 module.exports.create = (obj, cb) => {
     const db_connect = db.getDb();
 
-    const { first_name, last_name, email, department_name, location_name } =
-        obj;
+    const { first_name, last_name, email, department_name, location_name, Location: profile_picture } = obj;
 
-    if (
-        !first_name ||
-        !last_name ||
-        !email ||
-        !department_name ||
-        !location_name
-    ) {
+    if (!first_name || !last_name || !email || !department_name || !location_name) {
         throw new Error();
     }
 
@@ -24,6 +18,7 @@ module.exports.create = (obj, cb) => {
         email,
         department_name,
         location_name,
+        profile_picture,
         created_at: new Date(),
         last_modified: null,
     };
@@ -123,9 +118,9 @@ module.exports.insertDummyData = (cb) => {
 
             await db_connect.collection("personnel").insertOne(record);
         } catch (error) {
-            return cb(err)
+            return cb(err);
         }
-    })
+    });
 
-    return cb()
-}
+    return cb();
+};

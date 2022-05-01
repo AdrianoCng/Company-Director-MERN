@@ -13,13 +13,32 @@ module.exports = {
         ];
     },
     get_by_id: () => {
-        return param("id", "Invalid mongoDB ObjectId").trim().isMongoId()
+        return param("id", "Invalid mongoDB ObjectId").trim().isMongoId();
     },
     create_personnel: () => {
         return [
-            body("first_name", "Invalid first name").exists().withMessage("Email is required").bail().trim().toLowerCase().isAlpha(),
-            body("last_name", "Invalid last name").exists().withMessage("Email is required").bail().trim().toLowerCase().isAlpha(),
-            body("email", "Invalid email").exists().withMessage("Email is required").bail().trim().toLowerCase().isEmail().normalizeEmail(),
+            body("first_name", "Invalid first name")
+                .exists()
+                .withMessage("Email is required")
+                .bail()
+                .trim()
+                .toLowerCase()
+                .isAlpha(),
+            body("last_name", "Invalid last name")
+                .exists()
+                .withMessage("Email is required")
+                .bail()
+                .trim()
+                .toLowerCase()
+                .isAlpha(),
+            body("email", "Invalid email")
+                .exists()
+                .withMessage("Email is required")
+                .bail()
+                .trim()
+                .toLowerCase()
+                .isEmail()
+                .normalizeEmail(),
             body("department_name").exists().bail().trim().toLowerCase().isString(),
             body("location_name").exists().bail().trim().toLowerCase().isString(),
         ];
@@ -31,33 +50,60 @@ module.exports = {
         return [
             param("id", "Invalid mongoDB ObjectId").trim().isMongoId(),
             body("_id", "Cannot updated personnel ID").not().exists(),
-            body("first_name", "Invalid first name").optional().not().isEmpty().trim().toLowerCase().isAlpha(),
+            body("first_name", "Invalid first name")
+                .optional()
+                .not()
+                .isEmpty()
+                .trim()
+                .toLowerCase()
+                .isAlpha(),
             body("last_name", "Invalid last name").optional().not().isEmpty().trim().toLowerCase().isAlpha(),
-            body("email", "Invalid email").optional().not().isEmpty().trim().toLowerCase().isEmail().normalizeEmail(),
+            body("email", "Invalid email")
+                .optional()
+                .not()
+                .isEmpty()
+                .trim()
+                .toLowerCase()
+                .isEmail()
+                .normalizeEmail(),
             body("department_id", "Invalid department Id").optional().not().isEmpty().trim().isMongoId(),
             body("location_id", "Invalid location Id").optional().not().isEmpty().trim().isMongoId(),
-        ]
+        ];
     },
     create_department: () => {
         return [
-            body("name").exists().withMessage("Name is required").bail().trim().toLowerCase().isString().escape()
-        ]
+            body("name")
+                .exists()
+                .withMessage("Name is required")
+                .bail()
+                .trim()
+                .toLowerCase()
+                .isString()
+                .escape(),
+        ];
     },
     update_department: () => {
         return [
             param("id", "Invalid mongDB ObjectId").trim().isMongoId(),
             body("name").exists().bail().trim().toLowerCase().isAlpha(),
-        ]
+        ];
     },
     create_location: () => {
         return [
-            body("name").exists().withMessage("Name is required").bail().trim().toLowerCase().isString().escape()
-        ]
+            body("name")
+                .exists()
+                .withMessage("Name is required")
+                .bail()
+                .trim()
+                .toLowerCase()
+                .isString()
+                .escape(),
+        ];
     },
     update_location: () => {
         return [
             param("id", "Invalid mongDB ObjectId").trim().isMongoId(),
             body("name").exists().bail().trim().toLowerCase().isAlpha(),
-        ]
+        ];
     },
 };

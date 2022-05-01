@@ -1,30 +1,49 @@
 const { validationResult } = require("express-validator");
 const Personnel = require("../models/personnel.modals");
 const { paginate } = require("../utilities/functions");
+const AWS = require("aws-sdk");
+const AWS_ACCESS_KEY = process.env.AWS_ACCESS_KEY;
+const AWS_SECRET_KEY = process.env.AWS_SECRET_KEY;
+const AWS_BUCKET_NAME = process.env.AWS_BUCKET_NAME;
+
+const s3 = new AWS.S3({
+    accessKeyId: AWS_ACCESS_KEY,
+    secrectAccessKey: AWS_SECRET_KEY,
+});
 
 exports.get_all_personnel = (req, res) => {
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
-        res.status(400).json(errors)
+        res.status(400).json(errors);
         return;
     }
 
-    const { page = 1, per_page = 5, order_field = "created_at", order = "desc", location, department = "" } = req.query;
+    const {
+        page = 1,
+        per_page = 5,
+        order_field = "created_at",
+        order = "desc",
+        location,
+        department = "",
+    } = req.query;
 
     const filters = {
         location_name: location,
         department_name: department,
-    }
+    };
 
-    Personnel.get_all(filters, async docs => {
+    Personnel.get_all(filters, async (docs) => {
         try {
-
             const total = await docs.count();
 
             const { from, to, last_page, offset } = paginate({ page, per_page, total });
 
-            const data = await docs.sort({ [order_field]: order }).skip(offset).limit(per_page).toArray();
+            const data = await docs
+                .sort({ [order_field]: order })
+                .skip(offset)
+                .limit(per_page)
+                .toArray();
 
             const response = {
                 data,
@@ -34,14 +53,14 @@ exports.get_all_personnel = (req, res) => {
                 last_page: page > last_page ? 0 : last_page,
                 per_page,
                 total: page > last_page ? 0 : total,
-            }
+            };
 
             res.status(200).json(response);
         } catch (error) {
             res.status(500).json(error.message);
         }
     });
-}
+};
 
 exports.get_by_id = (req, res) => {
     try {
@@ -58,11 +77,11 @@ exports.get_by_id = (req, res) => {
             if (err) throw err;
 
             res.status(doc ? 200 : 404).json({ data: doc });
-        })
+        });
     } catch (error) {
         res.status(500).json(error.message);
     }
-}
+};
 
 exports.create_personnel = (req, res) => {
     try {
@@ -73,14 +92,30 @@ exports.create_personnel = (req, res) => {
             return;
         }
 
-        Personnel.create(req.body, (err, response) => {
-            if (err) throw err;
-            res.status(201).json(response);
-        })
+        console.log(req.file);
+
+        const params = {
+            Bucket: AWS_BUCKET_NAME,
+            Key: req.file.originalname,
+            Body: req.file.buffer,
+            ACL: "public-read",
+            ContentType: "image/jpeg",
+        };
+
+        s3.upload(params, (err, data) => {
+            if (err) console.log(err);
+
+            const obj = { ...req.body, ...data };
+
+            Personnel.create(obj, (err, response) => {
+                if (err) throw err;
+                res.status(201).json(response);
+            });
+        });
     } catch (error) {
         res.status(500).json(error.message);
     }
-}
+};
 
 exports.delete_personnel = (req, res) => {
     try {
@@ -96,12 +131,11 @@ exports.delete_personnel = (req, res) => {
         Personnel.delete(id, (err, response) => {
             if (err) throw err;
             res.status(200).json(response);
-        })
-
+        });
     } catch (error) {
         res.status(500).json(error.message);
     }
-}
+};
 
 exports.update_personnel = (req, res) => {
     try {
@@ -121,15 +155,15 @@ exports.update_personnel = (req, res) => {
     } catch (error) {
         res.status(500).json(error.message);
     }
-}
+};
 
 exports.insertDummyData = (req, res) => {
     try {
         Personnel.insertDummyData((err) => {
             if (err) throw err;
             res.status(201).json("Dummy data inserted successfully");
-        })
+        });
     } catch (error) {
         res.status(500).json(error.message);
     }
-}
+};

@@ -54,7 +54,7 @@ const PersonnelDetailsForm = ({
         <>
             <Avatar />
 
-            <S.Form onSubmit={onSubmit}>
+            <S.Form onSubmit={onSubmit} encType={"multipart/form-data"}>
                 <S.FormRow>
                     <Textbox
                         name={PersonnelDetails.FIRST_NAME}

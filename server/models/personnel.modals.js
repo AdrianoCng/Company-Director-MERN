@@ -22,7 +22,7 @@ module.exports.create = async (req, cb) => {
         email,
         department_name,
         location_name,
-        profile_picture: null,
+        avatar_url: null,
         created_at: new Date(),
         last_modified: null,
     };
@@ -40,7 +40,7 @@ module.exports.create = async (req, cb) => {
             if (err) throw err;
             console.log("data", data);
 
-            db_connect.collection("personnel").insertOne({ ...record, profile_picture: data.Location }, cb);
+            db_connect.collection("personnel").insertOne({ ...record, avatar_url: data.Location }, cb);
         });
 
         return;

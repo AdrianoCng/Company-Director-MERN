@@ -87,27 +87,14 @@ exports.create_personnel = (req, res) => {
             return;
         }
 
-        const params = {
-            Bucket: AWS_BUCKET_NAME,
-            Key: req.file.originalname,
-            Body: req.file.buffer,
-            ACL: "public-read",
-            ContentType: "image/jpeg",
-        };
-
-        if (!req.file) {
-            res.status(400).json({ error: "Please upload an image" });
+        if (req.file && !req.file.mimetype.startsWith("image/")) {
+            res.status(400).json({ error: "Invalid format" });
+            return;
         }
 
-        s3.upload(params, (err, data) => {
-            if (err) console.log(err);
-
-            const obj = { ...req.body, ...data };
-
-            Personnel.create(obj, (err, response) => {
-                if (err) throw err;
-                res.status(201).json(response);
-            });
+        Personnel.create(req, (err, response) => {
+            if (err) throw err;
+            res.status(201).json(response);
         });
     } catch (error) {
         res.status(500).json(error.message);

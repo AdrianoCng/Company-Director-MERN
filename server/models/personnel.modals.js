@@ -1,12 +1,15 @@
 const { ObjectId } = require("mongodb");
 const db = require("../db");
-const AWS = require("aws-sdk");
 const dummyData = require("../utilities/dummyData.json");
+const S3 = require("aws-sdk/clients/s3");
+const AWS_BUCKET_NAME = process.env.AWS_BUCKET_NAME;
 
-module.exports.create = (obj, cb) => {
+const s3 = new S3();
+
+module.exports.create = (req, cb) => {
     const db_connect = db.getDb();
 
-    const { first_name, last_name, email, department_name, location_name, Location: profile_picture } = obj;
+    const { first_name, last_name, email, department_name, location_name } = req.body;
 
     if (!first_name || !last_name || !email || !department_name || !location_name) {
         throw new Error();
@@ -18,7 +21,7 @@ module.exports.create = (obj, cb) => {
         email,
         department_name,
         location_name,
-        profile_picture,
+        profile_picture: req.file ? req.file.Location : null,
         created_at: new Date(),
         last_modified: null,
     };

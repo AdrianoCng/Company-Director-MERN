@@ -1,15 +1,10 @@
 const { validationResult } = require("express-validator");
 const Personnel = require("../models/personnel.modals");
 const { paginate } = require("../utilities/functions");
-const AWS = require("aws-sdk");
-const AWS_ACCESS_KEY = process.env.AWS_ACCESS_KEY;
-const AWS_SECRET_KEY = process.env.AWS_SECRET_KEY;
+const S3 = require("aws-sdk/clients/s3");
 const AWS_BUCKET_NAME = process.env.AWS_BUCKET_NAME;
 
-const s3 = new AWS.S3({
-    accessKeyId: AWS_ACCESS_KEY,
-    secrectAccessKey: AWS_SECRET_KEY,
-});
+const s3 = new S3();
 
 exports.get_all_personnel = (req, res) => {
     const errors = validationResult(req);
@@ -91,8 +86,6 @@ exports.create_personnel = (req, res) => {
             res.status(400).json(errors);
             return;
         }
-
-        console.log(req.file);
 
         const params = {
             Bucket: AWS_BUCKET_NAME,

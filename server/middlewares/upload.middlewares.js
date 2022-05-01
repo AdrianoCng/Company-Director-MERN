@@ -1,21 +1,15 @@
 const multer = require("multer");
 
-const storage = multer.memoryStorage({
-    destination: (req, file, cb) => {
-        cb(null, "");
-    },
-});
+const storage = multer.memoryStorage();
 
 const fileFilter = (req, file, cb) => {
-    const allowFormats = ["image/jpeg", "image/jpg"];
-
-    if (allowFormats.includes(file.mimetype)) {
+    if (file.mimetype.startsWith("image/")) {
         cb(null, true);
     } else {
         cb(null, false);
     }
 };
 
-const upload = multer({ storage, fileFilter });
+const upload = multer({ storage }).single("profile_picture");
 
-module.exports = upload;
+module.exports = upload

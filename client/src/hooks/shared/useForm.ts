@@ -61,7 +61,7 @@ const useForm = <TForm extends { [key: string]: any }>({ initialValues }: Props<
      * @param name input name attribute
      * @param value input value attribute
      */
-    const handleInputOnChange = (name: string, value: string) => {
+    const handleInputOnChange = (name: string, value: any) => {
         setForm((prev) => ({ ...prev, [name]: value }));
     };
 

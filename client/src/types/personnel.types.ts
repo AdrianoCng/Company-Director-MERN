@@ -5,6 +5,7 @@ export interface PersonnelObject {
     email: string;
     department_name: string;
     location_name: string;
+    profile_picture: string;
     created_at: string;
     last_modified: string;
 }
@@ -29,6 +30,7 @@ export enum PersonnelDetails {
     EMAIL = "email",
     LOCATION = "location_name",
     DEPARTMENT = "department_name",
+    PROFILE_PICTURE = "profile_picture",
 }
 
 export type AddPersonnelForm = {

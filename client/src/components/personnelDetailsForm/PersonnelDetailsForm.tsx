@@ -12,11 +12,12 @@ import { Avatar } from "../avatar";
 import { Textbox } from "../textbox";
 import { SelectField } from "../selectField";
 import { Button } from "../button";
+import { FileInput } from "../fileInput";
 
 interface Props {
     onSubmit: React.FormEventHandler<HTMLFormElement>;
     onDelete: React.MouseEventHandler<HTMLButtonElement>;
-    onInputChange: (name: string, value: string) => void;
+    onInputChange: (name: string, value: any) => void;
     form: AddPersonnelForm;
     locationOptions: OptionSelectField[];
     departmentOptions: OptionSelectField[];
@@ -33,7 +34,7 @@ const PersonnelDetailsForm = ({
     isEditing,
     formErrors,
 }: Props) => {
-    const { first_name, last_name, email, location_name, department_name } = form;
+    const { first_name, last_name, email, location_name, department_name, profile_picture } = form;
 
     const renderButton = (): JSX.Element => {
         if (isEditing) {
@@ -101,6 +102,15 @@ const PersonnelDetailsForm = ({
                         label={"Department"}
                         error={formErrors[PersonnelDetails.DEPARTMENT]}
                         placeholder={"Select a department"}
+                    />
+                </S.FormRow>
+
+                <S.FormRow>
+                    <FileInput
+                        name={PersonnelDetails.PROFILE_PICTURE}
+                        label="Profile Picture"
+                        onChange={onInputChange}
+                        error={formErrors[PersonnelDetails.EMAIL]}
                     />
                 </S.FormRow>
 

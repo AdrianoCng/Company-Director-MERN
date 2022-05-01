@@ -10,8 +10,8 @@ router.get("/:id", validate.get_by_id(), personnel_controller.get_by_id);
 
 router.post(
     "/",
+    upload,
     validate.create_personnel(),
-    upload.single("personnelPicture"),
     personnel_controller.create_personnel
 );
 

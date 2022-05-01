@@ -49,4 +49,5 @@ export const initialAddPersonnelForm: AddPersonnelForm = {
     email: "",
     department_name: "",
     location_name: "",
+    profile_picture: "",
 };

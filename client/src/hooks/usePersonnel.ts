@@ -61,7 +61,14 @@ const usePersonnel = () => {
         dependencies: [personnelID],
         useQueryOptions: {
             onSuccess: ({ data }) => {
-                const { first_name, last_name, email, department_name, location_name } = data;
+                const {
+                    first_name,
+                    last_name,
+                    email,
+                    department_name,
+                    location_name,
+                    profile_picture,
+                } = data;
 
                 setForm({
                     first_name,
@@ -69,6 +76,7 @@ const usePersonnel = () => {
                     email,
                     department_name,
                     location_name,
+                    profile_picture,
                 });
             },
         },

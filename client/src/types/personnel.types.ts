@@ -5,7 +5,7 @@ export interface PersonnelObject {
     email: string;
     department_name: string;
     location_name: string;
-    profile_picture: string;
+    avatar_url: string;
     created_at: string;
     last_modified: string;
 }
@@ -30,12 +30,13 @@ export enum PersonnelDetails {
     EMAIL = "email",
     LOCATION = "location_name",
     DEPARTMENT = "department_name",
-    PROFILE_PICTURE = "profile_picture",
+    AVATAR = "avatar",
 }
 
 export type AddPersonnelForm = {
     [key in PersonnelDetails]: string;
 };
+// export type AddPersonnelForm = Exclude<PersonnelDetails, PersonnelDetails.AVATAR_URL>
 
 export type AllPersonnelDependencies = [
     currentPage: number,

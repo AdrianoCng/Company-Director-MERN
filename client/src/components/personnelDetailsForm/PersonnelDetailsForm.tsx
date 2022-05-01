@@ -34,7 +34,7 @@ const PersonnelDetailsForm = ({
     isEditing,
     formErrors,
 }: Props) => {
-    const { first_name, last_name, email, location_name, department_name, profile_picture } = form;
+    const { first_name, last_name, email, location_name, department_name } = form;
 
     const renderButton = (): JSX.Element => {
         if (isEditing) {
@@ -107,10 +107,10 @@ const PersonnelDetailsForm = ({
 
                 <S.FormRow>
                     <FileInput
-                        name={PersonnelDetails.PROFILE_PICTURE}
+                        name={PersonnelDetails.AVATAR}
                         label="Profile Picture"
                         onChange={onInputChange}
-                        error={formErrors[PersonnelDetails.EMAIL]}
+                        error={formErrors[PersonnelDetails.AVATAR]}
                     />
                 </S.FormRow>
 

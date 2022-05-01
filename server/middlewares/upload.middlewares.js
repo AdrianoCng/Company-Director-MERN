@@ -10,6 +10,6 @@ const fileFilter = (req, file, cb) => {
     }
 };
 
-const upload = multer({ storage }).single("profile_picture");
+const upload = multer({ storage }).single("avatar");
 
-module.exports = upload
+module.exports = upload;

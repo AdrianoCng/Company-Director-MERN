@@ -18,29 +18,43 @@ module.exports = {
     create_personnel: () => {
         return [
             body("first_name", "Invalid first name")
-                .exists()
-                .withMessage("Email is required")
+                .exists({ checkFalsy: true })
+                .withMessage("First name field is required")
                 .bail()
                 .trim()
                 .toLowerCase()
                 .isAlpha(),
             body("last_name", "Invalid last name")
-                .exists()
-                .withMessage("Email is required")
+                .exists({ checkFalsy: true })
+                .withMessage("Last name field is required")
                 .bail()
                 .trim()
                 .toLowerCase()
                 .isAlpha(),
             body("email", "Invalid email")
-                .exists()
-                .withMessage("Email is required")
+                .exists({ checkFalsy: true })
+                .withMessage("Email field is required")
                 .bail()
                 .trim()
                 .toLowerCase()
                 .isEmail()
                 .normalizeEmail(),
-            body("department_name").exists().bail().trim().toLowerCase().isString(),
-            body("location_name").exists().bail().trim().toLowerCase().isString(),
+            body("department_name")
+                .exists({ checkFalsy: true })
+                .withMessage("Department field is required")
+                .bail()
+                .trim()
+                .toLowerCase()
+                .isString()
+                .not()
+                .isEmpty(),
+            body("location_name")
+                .exists({ checkFalsy: true })
+                .withMessage("Location field is required")
+                .bail()
+                .trim()
+                .toLowerCase()
+                .isString(),
             // check("profile_picture").optional().custom((value, { req }) => {
             //     if (req.file) {
             //         return !req.file.mimetype.startsWith("image/")

@@ -29,7 +29,7 @@ module.exports.create = async (req, cb) => {
     if (req.file) {
         const params = {
             Bucket: AWS_BUCKET_NAME,
-            Key: req.file.originalname,
+            Key: `${first_name}-${last_name}-${new Date().toISOString()}-${req.file.originalname}`,
             Body: req.file.buffer,
             ACL: "public-read",
             ContentType: "image/jpeg",

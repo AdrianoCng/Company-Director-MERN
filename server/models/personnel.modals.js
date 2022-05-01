@@ -9,7 +9,7 @@ const s3 = new S3();
 module.exports.create = (req, cb) => {
     const db_connect = db.getDb();
 
-    const { first_name, last_name, email, department_name, location_name } = req.body;
+    const { first_name, last_name, email, department_name, location_name } = req;
 
     if (!first_name || !last_name || !email || !department_name || !location_name) {
         throw new Error();
@@ -21,7 +21,7 @@ module.exports.create = (req, cb) => {
         email,
         department_name,
         location_name,
-        profile_picture: req.file ? req.file.Location : null,
+        profile_picture: req.Location || null,
         created_at: new Date(),
         last_modified: null,
     };

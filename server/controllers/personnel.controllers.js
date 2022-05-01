@@ -95,6 +95,10 @@ exports.create_personnel = (req, res) => {
             ContentType: "image/jpeg",
         };
 
+        if (!req.file) {
+            res.status(400).json({ error: "Please upload an image" });
+        }
+
         s3.upload(params, (err, data) => {
             if (err) console.log(err);
 

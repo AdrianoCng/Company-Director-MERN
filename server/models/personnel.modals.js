@@ -12,7 +12,8 @@ module.exports.create = async (req, cb) => {
     const { first_name, last_name, email, department_name, location_name } = req.body;
 
     if (!first_name || !last_name || !email || !department_name || !location_name) {
-        throw new Error();
+        cb(new Error("Field missing"), null);
+        return;
     }
 
     const record = {

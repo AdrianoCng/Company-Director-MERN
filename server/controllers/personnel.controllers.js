@@ -1,10 +1,6 @@
 const { validationResult } = require("express-validator");
 const Personnel = require("../models/personnel.modals");
 const { paginate } = require("../utilities/functions");
-const S3 = require("aws-sdk/clients/s3");
-const AWS_BUCKET_NAME = process.env.AWS_BUCKET_NAME;
-
-const s3 = new S3();
 
 exports.get_all_personnel = (req, res) => {
     const errors = validationResult(req);
@@ -93,7 +89,10 @@ exports.create_personnel = (req, res) => {
         }
 
         Personnel.create(req, (err, response) => {
-            if (err) throw err;
+            if (err) {
+                res.status(400).json(err.message);
+                return;
+            }
             res.status(201).json(response);
         });
     } catch (error) {

@@ -83,20 +83,6 @@ exports.create_personnel = (req, res) => {
             return;
         }
 
-        if (req.file && !req.file.mimetype.startsWith("image/")) {
-            res.status(400).json({
-                errors: [
-                    {
-                        msg: "Invalid file format.",
-                        param: req.file.fieldname,
-                        value: req.file.mimetype,
-                        location: "file",
-                    },
-                ],
-            });
-            return;
-        }
-
         Personnel.create(req, (err, response) => {
             if (err) {
                 res.status(400).json(err.message);

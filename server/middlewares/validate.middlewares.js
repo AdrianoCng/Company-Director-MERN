@@ -1,4 +1,4 @@
-const { body, query, param, check, checkSchema } = require("express-validator");
+const { body, query, param, checkSchema } = require("express-validator");
 const constants = require("../utilities/constants");
 
 module.exports = {
@@ -55,11 +55,15 @@ module.exports = {
                 .trim()
                 .toLowerCase()
                 .isString(),
-            // check("profile_picture").optional().custom((value, { req }) => {
-            //     if (req.file) {
-            //         return !req.file.mimetype.startsWith("image/")
-            //     }
-            // })
+            checkSchema({
+                avatar: {
+                    custom: {
+                        options: (value, { req, path }) =>
+                            !req.file || req.file.mimetype.startsWith("image/"),
+                        errorMessage: "Invalid file format.",
+                    },
+                },
+            }),
         ];
     },
     delete: () => {

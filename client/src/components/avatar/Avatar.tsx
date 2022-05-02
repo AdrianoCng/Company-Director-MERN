@@ -1,7 +1,10 @@
 import * as S from "./styles";
 
-const Avatar = () => {
-    return <S.Avatar />;
+interface Props {
+    avatarUrl?: string;
+}
+const Avatar = ({ avatarUrl }: Props) => {
+    return <S.Avatar avatarUrl={avatarUrl} />;
 };
 
 export default Avatar;

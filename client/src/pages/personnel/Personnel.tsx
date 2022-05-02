@@ -30,6 +30,7 @@ const AddPersonnel = () => {
         pageTitle,
         pageDescription,
         isEditing,
+        personnelDetails,
     } = usePersonnel();
 
     return (
@@ -46,6 +47,7 @@ const AddPersonnel = () => {
                     formErrors={formErrors}
                     locationOptions={locationOptions}
                     departmentOptions={departmentOptions}
+                    personnelDetails={personnelDetails.data}
                     isEditing={isEditing()}
                 />
             </S.Main>

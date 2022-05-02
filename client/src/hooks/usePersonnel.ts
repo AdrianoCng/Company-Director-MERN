@@ -57,7 +57,7 @@ const usePersonnel = () => {
         setDepartmentOptions(departmentsList || []);
     }, [departments.data]);
 
-    usePersonnelDetailsQuery({
+    const personnelDetails = usePersonnelDetailsQuery({
         dependencies: [personnelID],
         useQueryOptions: {
             onSuccess: ({ data }) => {
@@ -112,6 +112,7 @@ const usePersonnel = () => {
         pageTitle,
         pageDescription,
         isEditing,
+        personnelDetails,
     };
 };
 

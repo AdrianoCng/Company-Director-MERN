@@ -24,13 +24,14 @@ const Homepage = (): JSX.Element => {
         }
 
         return allPersonnel.data?.data.map(
-            ({ _id, first_name, last_name, email, department_name, location_name }) => (
+            ({ _id, first_name, last_name, email, department_name, location_name, avatar_url }) => (
                 <PersonnelCard
                     firstName={first_name}
                     lastName={last_name}
                     email={email}
                     department={department_name}
                     location={location_name}
+                    avatarUrl={avatar_url}
                     id={_id}
                     key={_id}
                 />

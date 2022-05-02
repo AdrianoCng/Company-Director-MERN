@@ -1,9 +1,5 @@
 import { Link } from "react-router-dom";
-import {
-    AiFillFacebook,
-    AiFillGoogleSquare,
-    AiFillTwitterSquare,
-} from "react-icons/ai";
+import { AiFillFacebook, AiFillGoogleSquare, AiFillTwitterSquare } from "react-icons/ai";
 
 // Styles
 import * as S from "./styles";
@@ -19,28 +15,20 @@ interface Props {
     department: string;
     location: string;
     id: string;
+    avatarUrl: string | null;
 }
-const PersonnelCard = ({
-    firstName,
-    lastName,
-    email,
-    department,
-    location,
-    id,
-}: Props) => {
+const PersonnelCard = ({ firstName, lastName, email, department, location, id, avatarUrl }: Props) => {
     return (
         <S.Card>
             <S.Background />
 
             <S.Avatar>
-                <img src={avatar} alt="Avatar" />
+                <img src={avatarUrl || avatar} alt="Avatar" />
             </S.Avatar>
 
             <S.Body>
                 <h3>
-                    <Link
-                        to={`${routes.editPersonnel}/${id}`}
-                    >{`${firstName} ${lastName}`}</Link>
+                    <Link to={`${routes.editPersonnel}/${id}`}>{`${firstName} ${lastName}`}</Link>
                 </h3>
                 <span>{department}</span>
                 <span>{location}</span>

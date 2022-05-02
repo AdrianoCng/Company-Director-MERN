@@ -1,6 +1,10 @@
 // Types
 import { OptionSelectField } from "../../types/selectField.types";
-import { AddPersonnelForm, PersonnelDetails } from "../../types/personnel.types";
+import {
+    AddPersonnelForm,
+    PersonnelDetails,
+    PersonnelDetailsResponseData,
+} from "../../types/personnel.types";
 import { ButtonType, ButtonVariant } from "../../types/button.types";
 
 // Styles
@@ -23,6 +27,7 @@ interface Props {
     departmentOptions: OptionSelectField[];
     isEditing: boolean;
     formErrors: AddPersonnelForm;
+    personnelDetails?: PersonnelDetailsResponseData;
 }
 const PersonnelDetailsForm = ({
     onSubmit,
@@ -33,6 +38,7 @@ const PersonnelDetailsForm = ({
     departmentOptions,
     isEditing,
     formErrors,
+    personnelDetails,
 }: Props) => {
     const { first_name, last_name, email, location_name, department_name } = form;
 
@@ -53,7 +59,7 @@ const PersonnelDetailsForm = ({
 
     return (
         <>
-            <Avatar />
+            <Avatar avatarUrl={personnelDetails?.data.avatar_url} />
 
             <S.Form onSubmit={onSubmit} encType={"multipart/form-data"}>
                 <S.FormRow>

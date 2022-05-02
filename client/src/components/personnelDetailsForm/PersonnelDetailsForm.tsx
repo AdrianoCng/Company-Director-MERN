@@ -114,7 +114,7 @@ const PersonnelDetailsForm = ({
                 <S.FormRow>
                     <FileInput
                         name={PersonnelDetails.AVATAR}
-                        label="Profile Picture"
+                        label="Avatar"
                         onChange={onInputChange}
                         error={formErrors[PersonnelDetails.AVATAR]}
                     />

@@ -71,7 +71,6 @@ const usePersonnelMutations = ({ personnelID, data = defaultFormObject }: Props)
             },
             onError: (err: AxiosError<AxiosFormErrorResponse>) => {
                 resolveFormErrors(err);
-                toast(err.message);
             },
         }
     );

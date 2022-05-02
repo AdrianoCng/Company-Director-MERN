@@ -38,7 +38,6 @@ module.exports.create = async (req, cb) => {
 
         s3.upload(params, (err, data) => {
             if (err) throw err;
-            console.log("data", data);
 
             db_connect.collection("personnel").insertOne({ ...record, avatar_url: data.Location }, cb);
         });

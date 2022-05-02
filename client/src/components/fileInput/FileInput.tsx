@@ -8,14 +8,20 @@ interface Props {
 }
 const FileInput = ({ name, label, error, onChange }: Props) => {
     return (
-        <S.FileInput
-            name={name}
-            onChange={(e) => {
-                if (e.target.files) {
-                    onChange(name, e.target.files[0]);
-                }
-            }}
-        />
+        <S.Container>
+            {label && <S.Label>{label}</S.Label>}
+
+            <S.FileInput
+                name={name}
+                onChange={(e) => {
+                    if (e.target.files) {
+                        onChange(name, e.target.files[0]);
+                    }
+                }}
+            />
+
+            {error && <S.Error>{error}</S.Error>}
+        </S.Container>
     );
 };
 

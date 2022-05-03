@@ -39,6 +39,12 @@ const usePersonnelMutations = ({ personnelID, data = defaultFormObject }: Props)
         cleanFormErrors = () => {},
     } = data;
 
+    const formData = new FormData();
+
+    Object.entries(form).forEach(([key, value]) => {
+        formData.append(key, value);
+    });
+
     // TODO: type Axios response
     const { mutate: addPersonnel } = useMutation(
         async () => {
@@ -48,19 +54,10 @@ const usePersonnelMutations = ({ personnelID, data = defaultFormObject }: Props)
             //     throw new Error();
             // }
 
-            const formData = new FormData();
-
-            Object.entries(form).forEach(([key, value]) => {
-                formData.append(key, value);
-            });
-
             return request({
                 url: apiEndpoints.personnel.add,
                 method: "POST",
                 data: formData,
-                headers: {
-                    "Content-Type": "multipart/form-data",
-                },
             });
         },
         {
@@ -81,16 +78,16 @@ const usePersonnelMutations = ({ personnelID, data = defaultFormObject }: Props)
             if (typeof personnelID === "string") {
                 cleanFormErrors();
 
-                if (!validateForm()) {
-                    throw new Error();
-                }
+                // if (!validateForm()) {
+                //     throw new Error();
+                // }
 
                 return request({
                     url: apiEndpoints.personnel.updateByID({
                         personnelID: personnelID || "",
                     }),
                     method: "PUT",
-                    data: form,
+                    data: formData,
                 });
             }
 

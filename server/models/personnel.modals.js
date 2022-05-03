@@ -22,28 +22,10 @@ module.exports.create = async (req, cb) => {
         email,
         department_name,
         location_name,
-        avatar_url: null,
+        avatar_url: req.avatar_url || null,
         created_at: new Date(),
         last_modified: null,
     };
-
-    if (req.file) {
-        const params = {
-            Bucket: AWS_BUCKET_NAME,
-            Key: `${first_name}-${last_name}-${new Date().toISOString()}-${req.file.originalname}`,
-            Body: req.file.buffer,
-            ACL: "public-read",
-            ContentType: "image/jpeg",
-        };
-
-        s3.upload(params, (err, data) => {
-            if (err) throw err;
-
-            db_connect.collection("personnel").insertOne({ ...record, avatar_url: data.Location }, cb);
-        });
-
-        return;
-    }
 
     db_connect.collection("personnel").insertOne(record, cb);
 };
@@ -85,7 +67,9 @@ module.exports.delete = (id, cb) => {
     db_connect.collection("personnel").deleteOne({ _id: ObjectId(id) }, cb);
 };
 
-module.exports.update_personnel = (id, body, cb) => {
+module.exports.update_personnel = (req, cb) => {
+    const { id } = req.params;
+
     if (!id) {
         throw new Error("Id is required");
     }
@@ -94,17 +78,21 @@ module.exports.update_personnel = (id, body, cb) => {
 
     let fields = {};
 
-    for (field in body) {
+    for (let field in req.body) {
         switch (field) {
             case "first_name":
             case "last_name":
             case "email":
             case "department_name":
             case "location_name": {
-                fields[field] = body[field];
+                fields[field] = req.body[field];
                 break;
             }
         }
+    }
+
+    if (req.avatar_url) {
+        fields.avatar_url = req.avatar_url;
     }
 
     if (Object.keys(fields).length === 0) {

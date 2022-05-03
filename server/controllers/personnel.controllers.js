@@ -126,7 +126,7 @@ exports.update_personnel = (req, res) => {
 
         const { id } = req.params;
 
-        Personnel.update_personnel(id, req.body, (err, response) => {
+        Personnel.update_personnel(req, (err, response) => {
             if (err) throw err;
             res.status(200).json(response);
         });

@@ -91,6 +91,15 @@ module.exports = {
                 .normalizeEmail(),
             body("department_id", "Invalid department Id").optional().not().isEmpty().trim().isMongoId(),
             body("location_id", "Invalid location Id").optional().not().isEmpty().trim().isMongoId(),
+            checkSchema({
+                avatar: {
+                    custom: {
+                        options: (value, { req, path }) =>
+                            !req.file || req.file.mimetype.startsWith("image/"),
+                        errorMessage: "Invalid file format.",
+                    },
+                },
+            }),
         ];
     },
     create_department: () => {

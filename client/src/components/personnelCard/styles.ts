@@ -1,10 +1,4 @@
-import styled, { css } from "styled-components";
-
-const flexCenter = css`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-`;
+import styled from "styled-components";
 
 export const Card = styled.div`
     background-color: #fff;
@@ -21,27 +15,32 @@ export const Background = styled.div`
     border-bottom-left-radius: 0;
 `;
 
-export const Avatar = styled.div`
-    height: 100px;
-    position: relative;
-    top: -50px;
-    ${flexCenter}
-    margin-bottom: -50px;
+interface AvatarProps {
+    src: string;
+}
+export const AvatarContainer = styled.div`
+    width: 100%;
+    padding: 10px 0;
+    background-color: rgba(0, 0, 0, 0.05);
+`;
 
-    & img {
-        height: 100%;
-        width: auto;
-        max-width: 100px;
-        max-height: 100px;
-        border-radius: 50%;
-        border: 5px solid rgba(255, 255, 255, 0.5);
-    }
+export const Avatar = styled.div<AvatarProps>`
+    height: 100px;
+    width: 100px;
+    margin: 0 auto;
+    border-radius: 50%;
+    background-image: url(${({ src }) => src});
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 `;
 
 export const Title = styled.div;
 
 export const Body = styled.div`
-    ${flexCenter}
+    display: flex;
+    justify-content: center;
+    align-items: center;
     padding: 20px;
     flex-direction: column;
 

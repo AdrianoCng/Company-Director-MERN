@@ -15,4 +15,5 @@ export const Avatar = styled.div<Props>`
     background-image: url(${({ avatarUrl }) => avatarUrl || blankAvatar});
     background-repeat: no-repeat;
     background-size: cover;
+    background-position: center;
 `;

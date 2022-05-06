@@ -20,11 +20,9 @@ interface Props {
 const PersonnelCard = ({ firstName, lastName, email, department, location, id, avatarUrl }: Props) => {
     return (
         <S.Card>
-            <S.Background />
-
-            <S.Avatar>
-                <img src={avatarUrl || avatar} alt="Avatar" />
-            </S.Avatar>
+            <S.AvatarContainer>
+                <S.Avatar src={avatarUrl || avatar} />
+            </S.AvatarContainer>
 
             <S.Body>
                 <h3>

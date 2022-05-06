@@ -10,3 +10,15 @@ export const Main = styled.main`
     position: relative;
     background-color: white;
 `;
+
+export const FormRow = styled.div`
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+`;
+
+export const Form = styled.form`
+    ${FormRow}:not(:last-of-type) {
+        margin-bottom: 20px;
+    }
+`;

@@ -71,7 +71,7 @@ module.exports.update_personnel = (req, cb) => {
     const { id } = req.params;
 
     if (!id) {
-        throw new Error("Id is required");
+        return cb(new Error("Id is required"));
     }
 
     const db_connect = db.getDb();

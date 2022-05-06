@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
 // Misc
-import blankAvatar from "../../assets/PngItem_6619328.png";
+import { blankAvatar } from "../../constants";
 
 interface Props {
-    avatarUrl?: string;
+    avatarUrl?: string | null;
 }
 export const Avatar = styled.div<Props>`
     height: 300px;

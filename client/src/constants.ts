@@ -1,4 +1,7 @@
+// Types
 import { AddPersonnelForm } from "./types/personnel.types";
+
+export const blankAvatar = require("./assets/blankAvatar.png");
 
 export const baseURL = "http://localhost:5000";
 

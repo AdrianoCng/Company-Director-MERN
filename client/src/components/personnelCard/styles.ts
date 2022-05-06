@@ -1,5 +1,8 @@
 import styled from "styled-components";
 
+// Misc
+import { blankAvatar } from "../../constants";
+
 export const Card = styled.div`
     background-color: #fff;
     flex: 0 0 calc((100% / 5) - 16px);
@@ -16,10 +19,9 @@ export const Background = styled.div`
 `;
 
 interface AvatarProps {
-    src: string;
+    src?: string | null;
 }
 export const AvatarContainer = styled.div`
-    width: 100%;
     padding: 10px 0;
     background-color: rgba(0, 0, 0, 0.05);
 `;
@@ -29,7 +31,7 @@ export const Avatar = styled.div<AvatarProps>`
     width: 100px;
     margin: 0 auto;
     border-radius: 50%;
-    background-image: url(${({ src }) => src});
+    background-image: url(${({ src }) => src || blankAvatar});
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

@@ -43,7 +43,10 @@ const AddPersonnel = () => {
         if (isEditing()) {
             return (
                 <>
-                    <Button $variant={ButtonVariant.DANGER} onClick={() => setIsDeleteConfirmationModalOpen}>
+                    <Button
+                        $variant={ButtonVariant.DANGER}
+                        onClick={() => setIsDeleteConfirmationModalOpen(true)}
+                    >
                         Delete
                     </Button>
                     <Button type={ButtonType.SUBMIT}>Edit</Button>

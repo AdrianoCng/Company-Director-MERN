@@ -32,6 +32,10 @@ const usePersonnel = () => {
     } = useForm({
         initialValues: initialAddPersonnelForm,
     });
+    const { addPersonnel, editPersonnel, deletePersonnelByID } = usePersonnelMutations({
+        personnelID,
+        data: { form, validateForm, resolveFormErrors, cleanFormErrors },
+    });
 
     /** Populate location options */
     useEffect(() => {
@@ -73,11 +77,6 @@ const usePersonnel = () => {
                 });
             },
         },
-    });
-
-    const { addPersonnel, editPersonnel, deletePersonnelByID } = usePersonnelMutations({
-        personnelID,
-        data: { form, validateForm, resolveFormErrors, cleanFormErrors },
     });
 
     /** Handle Personnel form submit event */

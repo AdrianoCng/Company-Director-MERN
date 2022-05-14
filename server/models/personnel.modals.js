@@ -23,6 +23,7 @@ module.exports.create = async (req, cb) => {
         department_name,
         location_name,
         avatar_url: req.avatar_url || null,
+        avatar_key: req.avatar_key || null,
         created_at: new Date(),
         last_modified: null,
     };
@@ -93,6 +94,10 @@ module.exports.update_personnel = (req, cb) => {
 
     if (req.avatar_url) {
         fields.avatar_url = req.avatar_url;
+    }
+
+    if (req.avatar_key) {
+        fields.avatar_key = req.avatar_key;
     }
 
     if (Object.keys(fields).length === 0) {

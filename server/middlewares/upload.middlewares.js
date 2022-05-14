@@ -33,9 +33,10 @@ module.exports = [
             });
 
             try {
-                const { Location } = await uploadToS3;
+                const { Location, Key } = await uploadToS3;
 
                 req.avatar_url = Location;
+                req.avatar_key = Key;
             } catch (error) {
                 next(error);
             }

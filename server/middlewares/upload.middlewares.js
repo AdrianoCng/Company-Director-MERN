@@ -16,9 +16,7 @@ module.exports = [
         if (req.file) {
             const params = {
                 Bucket: AWS_BUCKET_NAME,
-                Key: `${first_name.toLowerCase()}_${last_name.toLowerCase()}/${new Date().toISOString()}-${
-                    req.file.originalname
-                }`,
+                Key: `${first_name.toLowerCase()}_${last_name.toLowerCase()}/${req.file.originalname}`,
                 Body: req.file.buffer,
                 ACL: "public-read",
                 ContentType: "image/jpeg",

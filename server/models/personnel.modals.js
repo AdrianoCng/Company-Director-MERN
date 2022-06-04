@@ -2,7 +2,6 @@ const { ObjectId } = require("mongodb");
 const db = require("../db");
 const dummyData = require("../utilities/dummyData.json");
 const S3 = require("aws-sdk/clients/s3");
-const AWS_BUCKET_NAME = process.env.AWS_BUCKET_NAME;
 
 const s3 = new S3();
 

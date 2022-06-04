@@ -10,7 +10,10 @@ export const Textbox = styled.input.attrs({ type: "text" })<Props>`
     ${inputStyles}
 `;
 
-export const Label = styled.label`
+interface LabelProps {
+    $disabled: boolean;
+}
+export const Label = styled.label<LabelProps>`
     font-size: 0.8em;
     position: absolute;
     left: 10px;
@@ -18,6 +21,8 @@ export const Label = styled.label`
     background-color: white;
     color: var(--primary);
     padding: 0 4px;
+
+    ${({ $disabled }) => $disabled && "color: var(--primary-muted)"};
 `;
 
 export const Container = styled.div`

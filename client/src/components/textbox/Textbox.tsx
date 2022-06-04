@@ -9,6 +9,7 @@ interface Props {
     label?: string;
     required?: boolean;
     error?: string;
+    disabled?: boolean;
 }
 const Textbox = ({
     name,
@@ -19,13 +20,18 @@ const Textbox = ({
     label,
     required = false,
     error,
+    disabled = false,
 }: Props) => {
     const renderLabel = () => {
         if (!label) {
             return null;
         }
 
-        return <S.Label htmlFor={id}>{label}</S.Label>;
+        return (
+            <S.Label $disabled={disabled} htmlFor={id}>
+                {label}
+            </S.Label>
+        );
     };
 
     const renderError = () => {
@@ -49,6 +55,7 @@ const Textbox = ({
                 }}
                 placeholder={placeholder}
                 required={required}
+                disabled={disabled}
             />
 
             {renderError()}

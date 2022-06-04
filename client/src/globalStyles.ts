@@ -16,10 +16,11 @@ const GlobalStyles = createGlobalStyle`
         --danger: #b31518;
         --primary-highlighted: #304e7a;
         --danger-highlighted: #d7191d;
-        --primary-muted: rgba(31,51,80, 0.65);
-        --danger-muted: rgba(179, 21, 24, 0.65);
+        --primary-muted: rgba(31,51,80, 0.5);
+        --danger-muted: rgba(179, 21, 24, 0.5);
         --primary-muted-highlighted: var(--primary-highlighted);
         --danger-muted-highlighted: var(--danger-highlighted);
+        --black-muted: rgba(56, 56, 56, 0.65);
     }
 
     body {
@@ -46,6 +47,10 @@ export const inputStyles = css`
     border: 1px solid rgba(0, 0, 0, 0.2);
     border-radius: 5px;
     font-size: 1.05em;
+
+    &:disabled {
+        color: var(--black-muted);
+    }
 `;
 
 export const ButtonsContainer = styled.div`

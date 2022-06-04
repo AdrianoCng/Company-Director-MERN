@@ -73,6 +73,7 @@ const AddPersonnel = () => {
                             onChange={handleInputOnChange}
                             label="First Name"
                             error={formErrors[PersonnelDetails.FIRST_NAME]}
+                            disabled={isEditing()}
                         />
                         <Textbox
                             name={PersonnelDetails.LAST_NAME}
@@ -80,6 +81,7 @@ const AddPersonnel = () => {
                             value={last_name}
                             onChange={handleInputOnChange}
                             error={formErrors[PersonnelDetails.LAST_NAME]}
+                            disabled={isEditing()}
                         />
                     </S.FormRow>
 

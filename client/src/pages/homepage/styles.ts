@@ -1,11 +1,7 @@
 import styled from "styled-components";
 
 // Misc
-import {
-    sidebarCollapsedWidth,
-    sidebarExpandedWidth,
-    sidebarTransition,
-} from "../../constants";
+import { sidebarCollapsedWidth, sidebarExpandedWidth, sidebarTransition } from "../../constants";
 
 export const Main = styled.main`
     height: 100%;
@@ -13,8 +9,8 @@ export const Main = styled.main`
 `;
 
 export const Deck = styled.div`
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
     gap: 20px;
     margin-top: 20px;
     max-height: calc(100% - 120px);
@@ -31,8 +27,7 @@ interface WrapperProps {
     $isCollapsed: boolean;
 }
 export const Wrapper = styled.div<WrapperProps>`
-    margin-left: ${(props) =>
-        props.$isCollapsed ? sidebarCollapsedWidth : sidebarExpandedWidth};
+    margin-left: ${(props) => (props.$isCollapsed ? sidebarCollapsedWidth : sidebarExpandedWidth)};
     padding: 20px;
     height: 100vh;
     transition: ${sidebarTransition("margin")};

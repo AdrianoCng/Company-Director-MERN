@@ -73,8 +73,14 @@ module.exports = {
         return [
             param("id", "Invalid mongoDB ObjectId").trim().isMongoId(),
             body("_id", "Cannot updated personnel ID").not().exists(),
-            body("first_name", "First name is not required").not().exists(),
-            body("last_name", "Last name is not required").not().exists(),
+            body("first_name", "Invalid first name")
+                .optional()
+                .not()
+                .isEmpty()
+                .trim()
+                .toLowerCase()
+                .isAlpha(),
+            body("last_name", "Invalid last name").optional().not().isEmpty().trim().toLowerCase().isAlpha(),
             body("email", "Invalid email")
                 .optional()
                 .not()

@@ -82,9 +82,6 @@ const usePersonnelMutations = ({ personnelID, data = defaultFormObject }: Props)
                 //     throw new Error();
                 // }
 
-                formData.delete("first_name");
-                formData.delete("last_name");
-
                 return request({
                     url: apiEndpoints.personnel.updateByID({
                         personnelID: personnelID || "",

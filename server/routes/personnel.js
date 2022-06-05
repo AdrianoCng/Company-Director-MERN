@@ -1,6 +1,6 @@
 const validate = require("../middlewares/validate.middlewares");
 const upload = require("../middlewares/upload.middlewares");
-const deleteS3Folder = require("../middlewares/deleteS3Folder.middlewares");
+// const deleteS3Folder = require("../middlewares/deleteS3Folder.middlewares");
 const findPersonnelDetails = require("../middlewares/findPersonnelDetails.middlewares");
 const personnel_controller = require("../controllers/personnel.controllers");
 
@@ -16,7 +16,7 @@ router.delete(
     "/:id",
     validate.delete(),
     findPersonnelDetails,
-    deleteS3Folder,
+    // deleteS3Folder,
     personnel_controller.delete_personnel
 );
 

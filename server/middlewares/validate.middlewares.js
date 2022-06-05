@@ -95,7 +95,8 @@ module.exports = {
                 avatar: {
                     custom: {
                         options: (value, { req, path }) =>
-                            !req.file || req.file.mimetype.startsWith("image/"),
+                            !req.file ||
+                            (req.file.mimetype.startsWith("image/") && req.file.size < 1024 * 1024 * 10),
                         errorMessage: "Invalid file format.",
                     },
                 },

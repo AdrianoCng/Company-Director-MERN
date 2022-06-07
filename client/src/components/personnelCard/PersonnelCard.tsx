@@ -5,7 +5,7 @@ import { AiFillFacebook, AiFillGoogleSquare, AiFillTwitterSquare } from "react-i
 import * as S from "./styles";
 
 // Misc
-import avatar from "../../assets/avatar.jpg";
+import avatar from "../../assets/blankAvatar.jpeg";
 import { routes } from "../../constants";
 
 interface Props {

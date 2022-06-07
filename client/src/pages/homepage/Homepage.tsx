@@ -50,13 +50,13 @@ const Homepage = (): JSX.Element => {
                     {allPersonnel.isError && <p>Error fetching data. Please try again later.</p>}
 
                     {renderContent()}
-
-                    {allPersonnel.isLoading && (
-                        <S.LoaderWrapper>
-                            <LoaderSpinner />
-                        </S.LoaderWrapper>
-                    )}
                 </S.Deck>
+
+                {allPersonnel.isLoading && (
+                    <S.LoaderWrapper>
+                        <LoaderSpinner />
+                    </S.LoaderWrapper>
+                )}
 
                 <Pagination
                     currentPage={currentPage}

@@ -19,7 +19,7 @@ export const Background = styled.div`
 `;
 
 interface AvatarProps {
-    src?: string | null;
+    $src?: string | null;
 }
 export const AvatarContainer = styled.div`
     padding: 10px 0;
@@ -31,7 +31,7 @@ export const Avatar = styled.div<AvatarProps>`
     width: 100px;
     margin: 0 auto;
     border-radius: 50%;
-    background-image: url(${({ src }) => src || blankAvatar});
+    background-image: url(${({ $src }) => $src || blankAvatar});
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

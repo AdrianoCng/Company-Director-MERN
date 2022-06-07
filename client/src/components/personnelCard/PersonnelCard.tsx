@@ -21,7 +21,7 @@ const PersonnelCard = ({ firstName, lastName, email, department, location, id, a
     return (
         <S.Card>
             <S.AvatarContainer>
-                <S.Avatar src={avatarUrl || avatar} />
+                <S.Avatar $src={avatarUrl || avatar} />
             </S.AvatarContainer>
 
             <S.Body>

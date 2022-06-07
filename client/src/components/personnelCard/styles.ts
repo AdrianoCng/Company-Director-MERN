@@ -22,14 +22,15 @@ interface AvatarProps {
     $src?: string | null;
 }
 export const AvatarContainer = styled.div`
-    padding: 10px 0;
-    background-color: rgba(0, 0, 0, 0.05);
+    padding: 30px 0 10px;
+    background-color: rgba(0, 0, 0, 0.1);
 `;
 
 export const Avatar = styled.div<AvatarProps>`
     height: 100px;
     width: 100px;
     margin: 0 auto;
+    margin-bottom: -40px;
     border-radius: 50%;
     background-image: url(${({ $src }) => $src || blankAvatar});
     background-size: cover;
@@ -45,6 +46,7 @@ export const Body = styled.div`
     align-items: center;
     padding: 20px;
     flex-direction: column;
+    margin-top: 20px;
 
     h3,
     span {

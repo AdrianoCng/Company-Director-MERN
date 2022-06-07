@@ -21,7 +21,9 @@ const PersonnelCard = ({ firstName, lastName, email, department, location, id, a
     return (
         <S.Card>
             <S.AvatarContainer>
-                <S.Avatar $src={avatarUrl || avatar} />
+                <Link to={`${routes.editPersonnel}/${id}`}>
+                    <S.Avatar $src={avatarUrl || avatar} />
+                </Link>
             </S.AvatarContainer>
 
             <S.Body>

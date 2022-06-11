@@ -16,11 +16,19 @@ app.use("/api/personnel", personnel);
 app.use("/api/department", department);
 app.use("/api/location", location);
 
+if (process.env.NODE_ENV === "production") {
+    app.use(express.static("client/build"));
+
+    app.get("*", (req, res) => {
+        res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+    });
+}
+
 const PORT = process.env.PORT || 5001;
 app.listen(PORT, () => {
-    db.connectToServer(err => {
+    db.connectToServer((err) => {
         if (err) console.log(err);
     });
 
-    console.log(`Server listening on port ${PORT}`)
-})
+    console.log(`Server listening on port ${PORT}`);
+});

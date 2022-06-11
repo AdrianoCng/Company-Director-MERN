@@ -1,3 +1,4 @@
+import { devices } from "./../../globalStyles";
 import styled from "styled-components";
 
 // Misc
@@ -10,11 +11,27 @@ export const Main = styled.main`
 
 export const Deck = styled.div`
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: 1fr;
     gap: 20px;
     margin-top: 20px;
     max-height: calc(100% - 120px);
     overflow: scroll;
+
+    @media ${devices.tablet} {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media ${devices.laptop} {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media ${devices.laptopL} {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    @media ${devices.desktop} {
+        grid-template-columns: repeat(5, 1fr);
+    }
 
     -ms-overflow-style: none;
     scrollbar-width: none;

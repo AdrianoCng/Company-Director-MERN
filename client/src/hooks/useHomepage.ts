@@ -9,6 +9,7 @@ interface QueryParamsState {
 
 const useHomepage = () => {
     const [currentPage, setCurrentPage] = useState(1);
+    const [lastPage, setLastPage] = useState(1);
     const [isCollapsed, setIsCollapsed] = useState(true);
     const [queryParams, setQueryParams] = useState<QueryParamsState>({
         department: [],
@@ -17,6 +18,11 @@ const useHomepage = () => {
 
     const allPersonnel = useAllPersonnelQuery({
         dependencies: [currentPage, queryParams],
+        useQueryOptions: {
+            onSuccess(data) {
+                setLastPage(data.last_page);
+            },
+        },
     });
 
     const toogleSidebar = () => {
@@ -60,6 +66,7 @@ const useHomepage = () => {
         handleInputOnChange,
         currentPage,
         setCurrentPage,
+        lastPage,
     };
 };
 

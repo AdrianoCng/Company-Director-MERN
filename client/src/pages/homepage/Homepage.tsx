@@ -11,8 +11,15 @@ import { Pagination } from "../../components/pagination";
 import { PageMeta } from "../../components/pageMeta";
 
 const Homepage = (): JSX.Element => {
-    const { allPersonnel, toogleSidebar, isCollapsed, handleInputOnChange, setCurrentPage, currentPage } =
-        useHomepage();
+    const {
+        allPersonnel,
+        toogleSidebar,
+        isCollapsed,
+        handleInputOnChange,
+        setCurrentPage,
+        currentPage,
+        lastPage,
+    } = useHomepage();
 
     const renderContent = () => {
         if (!allPersonnel.data?.data) {
@@ -41,7 +48,11 @@ const Homepage = (): JSX.Element => {
 
     return (
         <S.Wrapper $isCollapsed={isCollapsed}>
-            <Sidebar isCollapsed={isCollapsed} toogle={toogleSidebar} onChange={handleInputOnChange} />
+            <Sidebar
+                isCollapsed={isCollapsed}
+                toogle={toogleSidebar}
+                onChange={handleInputOnChange}
+            />
 
             <S.Main>
                 <PageMeta title="All Personnel" description="View the list of all the personnel." />
@@ -60,7 +71,7 @@ const Homepage = (): JSX.Element => {
 
                 <Pagination
                     currentPage={currentPage}
-                    lastPage={allPersonnel.data?.last_page || currentPage}
+                    lastPage={lastPage}
                     changePage={setCurrentPage}
                 />
             </S.Main>

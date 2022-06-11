@@ -51,7 +51,6 @@ export const Wrapper = styled.div<WrapperProps>`
 `;
 
 export const LoaderWrapper = styled.div`
-    height: calc(100vh - 40px);
     width: 100%;
     display: flex;
     justify-content: center;

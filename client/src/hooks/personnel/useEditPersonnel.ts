@@ -1,5 +1,6 @@
 import { useMutation, useQueryClient } from "react-query";
-import { AxiosError, AxiosResponse } from "axios";
+import { AxiosError } from "axios";
+import { AxiosResponse } from "axios";
 import { toast } from "react-toastify";
 
 import { apiEndpoints } from "./../../constants";
@@ -7,12 +8,20 @@ import { request } from "../../utils";
 import { AxiosFormErrorResponse } from "../../types/axios.types";
 import personnelKeys from "./personnel.keys";
 
-const useAddPersonnel = () => {
+interface Variables {
+    personnelID: string;
+    data: FormData;
+}
+const useEditPersonnel = () => {
     const queryClient = useQueryClient();
 
-    const mutation = useMutation<AxiosResponse, AxiosError<AxiosFormErrorResponse>, FormData>(
-        (formData) => {
-            return request({ url: apiEndpoints.personnel.add, method: "POST", data: formData });
+    const mutation = useMutation<AxiosResponse, AxiosError<AxiosFormErrorResponse>, Variables>(
+        ({ personnelID, data }) => {
+            return request({
+                url: apiEndpoints.personnel.updateByID({ personnelID }),
+                method: "PUT",
+                data,
+            });
         },
         {
             onSuccess: () => {
@@ -25,4 +34,4 @@ const useAddPersonnel = () => {
     return [mutation.mutate, mutation] as const;
 };
 
-export default useAddPersonnel;
+export default useEditPersonnel;

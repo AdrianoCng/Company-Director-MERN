@@ -10,7 +10,11 @@ import personnelKeys from "./personnel.keys";
 const useAddPersonnel = () => {
     const queryClient = useQueryClient();
 
-    const mutation = useMutation<AxiosResponse, AxiosError<AxiosFormErrorResponse>, FormData>(
+    const { mutate, ...mutation } = useMutation<
+        AxiosResponse,
+        AxiosError<AxiosFormErrorResponse>,
+        FormData
+    >(
         (formData) => {
             return request({ url: apiEndpoints.personnel.add, method: "POST", data: formData });
         },
@@ -22,7 +26,7 @@ const useAddPersonnel = () => {
         }
     );
 
-    return [mutation.mutate, mutation] as const;
+    return [mutate, mutation] as const;
 };
 
 export default useAddPersonnel;

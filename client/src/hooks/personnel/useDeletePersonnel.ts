@@ -1,41 +1,34 @@
+import { AxiosError, AxiosResponse } from "axios";
 import { useMutation, useQueryClient } from "react-query";
-import { AxiosError } from "axios";
-import { AxiosResponse } from "axios";
 import { toast } from "react-toastify";
 
 import { apiEndpoints } from "./../../constants";
+import { AxiosFormErrorResponse } from "./../../types/axios.types";
 import { request } from "../../utils";
-import { AxiosFormErrorResponse } from "../../types/axios.types";
 import personnelKeys from "./personnel.keys";
 
-interface Variables {
-    personnelID: string;
-    data: FormData;
-}
-const useEditPersonnel = () => {
+const useDeletePersonnel = () => {
     const queryClient = useQueryClient();
-
     const { mutate, ...mutation } = useMutation<
         AxiosResponse,
         AxiosError<AxiosFormErrorResponse>,
-        Variables
+        string
     >(
-        ({ personnelID, data }) => {
+        (personnelID) => {
             return request({
-                url: apiEndpoints.personnel.updateByID({ personnelID }),
-                method: "PUT",
-                data,
+                url: apiEndpoints.personnel.deleteByID({ personnelID }),
+                method: "DELETE",
             });
         },
         {
             onSuccess: () => {
                 queryClient.invalidateQueries(personnelKeys.baseKey);
-                toast("Record successfully updated.");
+                toast("Record successfully deleted.");
             },
         }
     );
 
-    return [mutate, mutation] as const;
+    return [mutate, mutation];
 };
 
-export default useEditPersonnel;
+export default useDeletePersonnel;

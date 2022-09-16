@@ -5,6 +5,9 @@ const personnelKeys = {
     all(params?: GetPersonnelParams) {
         return [this.baseKey, "All", { ...params }];
     },
+    details(id: string) {
+        return [this.baseKey, "Details", { id }];
+    },
 };
 
 export default personnelKeys;

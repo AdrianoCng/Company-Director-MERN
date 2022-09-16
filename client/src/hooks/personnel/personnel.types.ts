@@ -20,6 +20,10 @@ export interface PersonnelResponse {
     total: number;
 }
 
+export interface PersonnelDetailsResponse {
+    data: Personnel;
+}
+
 export interface GetPersonnelParams {
     page?: number;
     per_page?: number;

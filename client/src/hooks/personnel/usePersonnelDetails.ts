@@ -11,7 +11,7 @@ interface QueryOptions
     personnelID: string;
 }
 const usePersonellDetails = ({ personnelID, ...queryOptions }: QueryOptions) => {
-    const query = useQuery<PersonnelDetailsResponse, AxiosError>(
+    const { data, ...query } = useQuery<PersonnelDetailsResponse, AxiosError>(
         personnelKeys.details(personnelID),
         async () => {
             const { data } = await request<PersonnelDetailsResponse>({
@@ -28,7 +28,7 @@ const usePersonellDetails = ({ personnelID, ...queryOptions }: QueryOptions) => 
         }
     );
 
-    return [query.data, query] as const;
+    return [data, query] as const;
 };
 
 export default usePersonellDetails;

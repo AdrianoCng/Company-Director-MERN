@@ -11,7 +11,7 @@ interface QueryOptions
     params?: GetPersonnelParams;
 }
 const usePersonnel = (queryOptions?: QueryOptions) => {
-    const query = useQuery<PersonnelResponse, AxiosError>(
+    const { data, ...query } = useQuery<PersonnelResponse, AxiosError>(
         personnelKeys.all(queryOptions?.params),
         async () => {
             const queryParams = queryOptions?.params;
@@ -32,7 +32,7 @@ const usePersonnel = (queryOptions?: QueryOptions) => {
         { ...queryOptions }
     );
 
-    return [query.data, query] as const;
+    return [data, query] as const;
 };
 
 export default usePersonnel;
